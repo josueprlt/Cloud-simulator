@@ -25,7 +25,9 @@ services:
     volumes:
       - ./api:/app
     command: >
-      sh -c "php -S 0.0.0.0:8000 -t public"
+      sh -c "composer install --no-interaction --prefer-dist --optimize-autoloader
+      && php bin/console doctrine:migrations:migrate --no-interaction
+      && php -S 0.0.0.0:8000 -t public"
 
   frontend:
     build:
