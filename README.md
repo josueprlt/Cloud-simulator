@@ -35,13 +35,16 @@ Pour démarrer le projet avec les conteneurs Docker et appliquer les migrations 
 ```
 
 #### Details des commandes du make File
-        
-- make up : Cette commande lance tous les conteneurs en mode détaché et construit les images Docker si nécessaire.
-- make down : Arrête et supprime les conteneurs
-- make migrate : Exécute les migrations dans le conteneur backend pour s'assurer que le schéma de la base de données est à jour.
-- make fixtures : Charge les données de test définies dans les fixtures pour faciliter le développement.
-- make logs : Afficher les logs en temps réel
-- make install-frontend : Installation des dépendances du frontend
+
+- make build : Construit tous les conteneurs définis dans le fichier docker-compose, en téléchargeant les images et en préparant les conteneurs pour l'exécution.
+- make start : Démarre les conteneurs en mode détaché (en arrière-plan).
+- make down : Arrête et supprime tous les conteneurs du projet.
+- make logs : Affiche les logs de tous les conteneurs en temps réel pour aider au suivi des processus.
+- make migrate : Exécute les migrations dans le conteneur backend pour mettre à jour le schéma de la base de données.
+- make fixtures : Charge les fixtures (données de test) dans la base de données.
+- make clean : Arrête et supprime tous les conteneurs ainsi que les volumes pour un nettoyage complet du projet.
+- make install-frontend : Installe les dépendances npm du frontend dans le conteneur frontend.
+- make start-frontend : Démarre le serveur de développement pour l'application frontend (Vue.js).
 
 ` Note : Lors du premier démarrage, la construction des conteneurs peut prendre quelques minutes.`
 
