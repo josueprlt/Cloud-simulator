@@ -24,10 +24,6 @@ services:
       - "8000:8000"
     volumes:
       - ./api:/app
-    command: >
-      sh -c "composer install --no-interaction --prefer-dist --optimize-autoloader
-      && php bin/console doctrine:migrations:migrate --no-interaction
-      && php -S 0.0.0.0:8000 -t public"
 
   frontend:
     build:
@@ -37,7 +33,6 @@ services:
       - "8080:8080"
     volumes:
       - ./app:/app
-    command: ["npm", "run", "serve"]
 
 volumes:
   postgres_data:
