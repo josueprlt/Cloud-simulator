@@ -23,6 +23,15 @@ down:
 logs:
 	$(COMPOSE) logs -f
 
+# Vérifier que la base de données est prête
+wait-for-database:
+	@echo "Waiting for database to be ready..."
+	@until $(COMPOSE) exec -T database pg_isready -U postgres; do \
+		echo "Database is not ready. Retrying in 2 seconds..."; \
+		sleep 2; \
+	done
+	@echo "Database is ready!"
+
 # Installer les dépendances backend
 install-backend:
 	$(EXEC_BACKEND) composer install
@@ -43,11 +52,15 @@ clean:
 
 # Installer les dépendances frontend
 install-frontend:
-	$(EXEC_FRONTEND) npm install
+	$(COMPOSE) run --rm frontend npm install
+
+# Commande pour redémarrer le conteneur frontend si nécessaire
+restart-frontend:
+	$(COMPOSE) up -d frontend
 
 # Lancer le serveur de développement pour le frontend
-start-frontend:
+start-frontend: restart-frontend
 	$(EXEC_FRONTEND) npm run serve
 
 # Commande de démarrage rapide pour le développement
-start-dev: build start install-backend migrate fixtures install-frontend start-frontend
+start-dev: build start wait-for-database install-backend migrate fixtures install-frontend start-frontend
