@@ -23,6 +23,10 @@ down:
 logs:
 	$(COMPOSE) logs -f
 
+# Installer les dépendances backend
+install-backend:
+	$(EXEC_BACKEND) composer install
+
 # Appliquer les migrations de la base de données
 migrate:
 	$(EXEC_BACKEND) php bin/console doctrine:migrations:migrate --no-interaction
@@ -46,4 +50,4 @@ start-frontend:
 	$(EXEC_FRONTEND) npm run serve
 
 # Commande de démarrage rapide pour le développement
-start-dev: build start migrate fixtures install-frontend start-frontend
+start-dev: build start install-backend migrate fixtures install-frontend start-frontend
