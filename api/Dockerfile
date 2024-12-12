@@ -1,6 +1,10 @@
 # API/Dockerfile
 FROM php:8.2-cli
 
+
+# Définir la variable d'environnement
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Installer les extensions nécessaires et Composer
 RUN apt-get update && apt-get install -y \
     libpq-dev \
