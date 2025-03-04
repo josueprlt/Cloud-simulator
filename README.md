@@ -9,6 +9,7 @@ Bienvenue dans Trip Share ! Ce projet est une application web full-stack contain
 
 ### Optionnel :
  - installler Make pour exécuter les commandes définies dans le Makefile : https://www.gnu.org/software/make/
+ - installer python3 pour avoir acces au venv
 
 ### Installation :
 
@@ -33,6 +34,10 @@ Pour démarrer le projet avec les conteneurs Docker et appliquer les migrations 
 ```
  make start-dev 
 ```
+
+### Install requirements
+
+pip install -r requirements.txt
 
 #### Details des commandes du make File
 
