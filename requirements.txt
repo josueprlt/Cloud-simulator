@@ -1,0 +1,2 @@
+commitizen==4.1.1
+mkdocs==1.6.1
