@@ -37,6 +37,9 @@ Pour démarrer le projet avec les conteneurs Docker et appliquer les migrations 
 
 ### Install requirements
 
+python(3) -m venv .venv
+.venv\Scripts\activate (windows avec powershell)
+
 pip install -r requirements.txt
 
 #### Details des commandes du make File
