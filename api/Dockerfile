@@ -1,5 +1,5 @@
 # API/Dockerfile
-FROM php:8.2-cli
+FROM php:8.4-cli
 
 #test branche
 # Définir la variable d'environnement
