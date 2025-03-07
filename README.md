@@ -78,6 +78,7 @@ docker exec -it trip-share-frontend-1 sh
 - Migrations : Assurez-vous de toujours appliquer les migrations après avoir récupéré une mise à jour contenant des modifications des entités. pour verifier dans le container back lancer php bin/console do:mi:li 
 - Fixtures : Les données de test sont chargées automatiquement avec make start-dev, mais vous pouvez aussi les recharger avec make fixtures à tout moment.
 - Dependence : lors des mises à jour, vérifier les dépendances (`composer install` pour Symfony et `npm install` pour Vue.js) dans les conteneurs respectifs.
+- Authentification par jwt : Générer les paires clés/phrase pour générer des jetons JWT : php bin/console lexik:jwt:generate-keypair
 
 
 #### Voilà ! Avec ce fichier README.md, toute ton équipe aura un guide complet pour lancer et maintenir le projet. 🎉
