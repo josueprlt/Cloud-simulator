@@ -4,18 +4,18 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
     {
         path: '/',
-        name: 'Voyage',
-        component: () => import('../src/components/VoyageComponent.vue')
+        name: 'Login',
+        component: () => import('../src/views/login/LoginView.vue')
     },
     {
         path: '/hebergement',
         name: 'Hebergement',
-        component: () => import('../src/components/HebergementComponent.vue')
+        component: () => import('../src/views/HebergementComponent.vue')
     },
     {
         path: '/activite',
         name: 'Activite',
-        component: () => import('../src/components/ActiviteComponent.vue')
+        component: () => import('../src/views/ActiviteComponent.vue')
     }
 ];
 
