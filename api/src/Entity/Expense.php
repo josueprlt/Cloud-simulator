@@ -31,6 +31,12 @@ class Expense
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
+    #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
+    private ?Activity $activity = null;
+
+    #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
+    private ?Accomodation $accomodation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +98,40 @@ class Expense
     public function setPicture(string $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getActivity(): ?Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(Activity $activity): static
+    {
+        // set the owning side of the relation if necessary
+        if ($activity->getExpenseId() !== $this) {
+            $activity->setExpenseId($this);
+        }
+
+        $this->activity = $activity;
+
+        return $this;
+    }
+
+    public function getAccomodation(): ?Accomodation
+    {
+        return $this->accomodation;
+    }
+
+    public function setAccomodation(Accomodation $accomodation): static
+    {
+        // set the owning side of the relation if necessary
+        if ($accomodation->getExpenseId() !== $this) {
+            $accomodation->setExpenseId($this);
+        }
+
+        $this->accomodation = $accomodation;
 
         return $this;
     }
