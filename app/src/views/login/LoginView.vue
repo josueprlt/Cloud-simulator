@@ -14,6 +14,8 @@ const login = ref({
 const checkTokenToRedirect = () => {
     const token = sessionStorage.getItem('token')
     if (token) {
+        console.log("Token in sessionStorage:", token);
+        
         axios.get('http://localhost:8000/api', {
             headers: { Authorization: `Bearer ${token}` }
         }).then(() => {
@@ -82,7 +84,8 @@ const submitConnexion = async () => {
                     </button>
                 </div>
             </form>
-            <p class="mt-10">Vous n’avez pas de compte? <a class="underline" href="">S’inscrire</a></p>
+            <p class="mt-10">Vous n’avez pas de compte ?<router-link class="underline" :to="{ name: 'Register'}"> S’inscrire</router-link></p>
+
         </div>
     </div>
 </template>

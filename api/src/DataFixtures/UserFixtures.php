@@ -18,6 +18,7 @@ class UserFixtures extends Fixture
     {
         $user  = new User();
 
+        $user->setUsername('firstUser');
         $user->setEmail('basic-user@exemple.com');
 
         $hashedPassword = $this->passwordHasher->hashPassword(
