@@ -2,51 +2,56 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Accomodation;
-use App\Entity\Activity;
-use App\Entity\Expense;
 use App\Enum\AccomodationType;
 use App\Enum\ExpenseType;
+use App\Factory\ExpenseFactory;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+
 class ExpenseFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager): void
     {
-         $expenseActivity = new Expense();
-         $expenseActivity->setTitle('Dépense1')
-                ->setCost(40)
-                ->setType(ExpenseType::ACTIVITY)
-                ->setPicture('imagecool');
+        $factory = new ExpenseFactory();
 
-         $expenseAccomodation = new Expense();
-         $expenseAccomodation->setTitle('Dépense2')
-            ->setCost(40)
-            ->setType(ExpenseType::ACCOMODATION)
-            ->setPicture('imagecool');
+        $activityData = [
+            'title' => 'Activite', 
+            'cost' => 4,
+            'is_payed' => true,
+            'picture' => 'coolpicture2.jpg',
+            'start_at' => new \DateTimeImmutable('now'),
+            'end_at'=> (new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')),
+            'description'=> 'Une activité géniale',
+            'link' => 'http://lien.com'
+        ];
 
-         $manager->persist($expenseActivity, $expenseAccomodation);
+        $accomodationData = [
+            'title' => 'Activite', 
+            'cost' => 4,
+            'is_payed' => true,
+            'picture' => 'coolpicture2.jpg',
+            'name' => 'B&B', 
+            'accomodation_type' => AccomodationType::HOTEL,
+            'check_in' => new \DateTimeImmutable('now'),
+            'check_out'=> (new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')),
+            'breakfast'=> true,
+            'schedule' => 'Ouvert le lundi ché'
+        ];
 
+        $otherExpenseData = [
+            'title' => 'Gauffre de liège banane nutella', 
+            'cost' => 8,
+            'is_payed' => true,
+            'picture' => 'coolpicture25.jpg'
+        ];
 
-        $activity = new Activity();
-        $activity->setExpenseId($expenseActivity)
-            ->setDescription('Activité cool')
-            ->setStartAt(new \DateTimeImmutable('now'))
-            ->setEndAt((new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')));
-        $manager->persist($activity);
-
-
-        $accomodation = new Accomodation();
-        $accomodation->setExpenseId($expenseAccomodation)
-            ->setType(AccomodationType::CAMPING)
-            ->setName('Camping')
-            ->setCheckIn(new \DateTimeImmutable('now'))
-            ->setCheckOut((new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')))
-            ->setBreakfast(true);
-        $manager->persist($accomodation);
+        $manager->persist($factory->create(ExpenseType::ACCOMODATION, $accomodationData,$manager));
+        $manager->persist($factory->create(ExpenseType::ACTIVITY, $activityData, $manager));
+        $manager->persist($factory->create(ExpenseType::OTHER, $otherExpenseData,$manager));
 
         $manager->flush();
     }
-
 }
