@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource]
-#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Entity]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private int $id;
 
     #[ORM\Column(length: 25)]
-    private string $username;
+    private string $pseudo;
 
     #[ORM\Column(length: 180)]
     private string $email;
@@ -135,9 +135,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the value of username
      */ 
-    public function getUsername()
+    public function getPseudo()
     {
-        return $this->username;
+        return $this->pseudo;
     }
 
     /**
@@ -145,9 +145,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return  self
      */ 
-    public function setUsername($username)
+    public function setPseudo($pseudo)
     {
-        $this->username = $username;
+        $this->pseudo = $pseudo;
 
         return $this;
     }

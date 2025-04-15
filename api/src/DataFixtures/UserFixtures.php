@@ -18,12 +18,12 @@ class UserFixtures extends Fixture
     {
         $user  = new User();
 
-        $user->setUsername('firstUser');
+        $user->setPseudo('firstUser');
         $user->setEmail('basic-user@exemple.com');
 
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
-            'DoNotUseThisPassword'
+            'Test!este1'
         );
 
         $user->setPassword($hashedPassword);

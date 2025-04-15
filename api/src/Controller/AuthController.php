@@ -24,16 +24,18 @@ class AuthController extends AbstractController
             $data = json_decode($request->getContent(), true);
             $user = new User();
     
-            $user->setUsername($data['username']);
+            $user->setPseudo($data['username']);
             $user->setEmail($data['email']);
     
             if ($data['password'] === $data['confirmPassword']) {
     
+                // Set plain password and hash it
                 $plainPassword = $data['password'];
                 $user->setPlainPassword($plainPassword);
-                
+    
+                // Validate the user entity
                 $errors = $validator->validate($user);
-
+    
                 if (count($errors) > 0) {
                     $errorMessages = [];
                     foreach ($errors as $error) {
@@ -45,12 +47,18 @@ class AuthController extends AbstractController
                     return new JsonResponse(['error' => implode(', ', $errorMessages)], 400);
                 }
     
-                $hashed = $passwordHasher->hashPassword($user, $plainPassword);
+                // Hash the password
+                $hashed = $passwordHasher->hashPassword($user, $user->getPlainPassword());
                 $user->setPassword($hashed);
+    
+                // Make sure to clear sensitive data
+                $user->eraseCredentials();
+    
             } else {
                 return new JsonResponse(['error' => 'The passwords do not match'], 400);
             }
     
+            // Persist user to the database
             $entityManager->persist($user);
             $entityManager->flush();
     
@@ -61,5 +69,5 @@ class AuthController extends AbstractController
         } 
     
         return new JsonResponse(['message' => sprintf('Success, User: %s has been created.', $data['email'])], 201);
-    }
+    }    
 }

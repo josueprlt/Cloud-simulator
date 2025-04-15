@@ -14,8 +14,6 @@ const login = ref({
 const checkTokenToRedirect = () => {
     const token = sessionStorage.getItem('token')
     if (token) {
-        console.log("Token in sessionStorage:", token);
-        
         axios.get('http://localhost:8000/api', {
             headers: { Authorization: `Bearer ${token}` }
         }).then(() => {
@@ -31,7 +29,7 @@ const checkTokenToRedirect = () => {
 const submitConnexion = async () => {
     try {
         const response = await axios.post(
-            'http://localhost:8000/api/login',
+            'http://localhost:8000/api/auth/login_check',
             JSON.stringify(login.value),
             {
             headers: {
