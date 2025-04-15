@@ -3,48 +3,61 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Enum\AccomodationType;
-use App\Repository\AccomodationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: AccomodationRepository::class)]
-#[ApiResource]
+#[ORM\Entity]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Delete()
+    ]
+)]
 class Accomodation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
+    private string $name;
 
     #[ORM\Column(enumType: AccomodationType::class)]
-    private ?AccomodationType $type = null;
+    #[Assert\NotNull(message: "Le type d'hébergement ne peut pas être nul.")]
+    private AccomodationType $type;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $checkIn = null;
+    #[Assert\NotBlank(message: "La date du check-in ne peut pas être vide.")]
+    private \DateTimeImmutable $checkIn;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $checkOut = null;
+    #[Assert\NotBlank(message: "La date du check-out ne peut pas être vide.")]
+    private \DateTimeImmutable $checkOut;
 
-    #[ORM\Column]
-    private ?bool $breakfast = null;
+    #[ORM\Column(options: ['default' => false])]
+    private bool $breakfast = false;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $schedule = null;
 
     #[ORM\OneToOne(inversedBy: 'accomodation', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Expense $expenseId = null;
+    private Expense $expenseId;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -56,7 +69,7 @@ class Accomodation
         return $this;
     }
 
-    public function getType(): ?AccomodationType
+    public function getType(): AccomodationType
     {
         return $this->type;
     }
@@ -68,7 +81,7 @@ class Accomodation
         return $this;
     }
 
-    public function getCheckIn(): ?\DateTimeImmutable
+    public function getCheckIn(): \DateTimeImmutable
     {
         return $this->checkIn;
     }
@@ -80,7 +93,7 @@ class Accomodation
         return $this;
     }
 
-    public function getCheckOut(): ?\DateTimeImmutable
+    public function getCheckOut(): \DateTimeImmutable
     {
         return $this->checkOut;
     }

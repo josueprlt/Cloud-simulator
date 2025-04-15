@@ -3,40 +3,52 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\Repository\ActivityRepository;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: ActivityRepository::class)]
-#[ApiResource]
+#[ORM\Entity]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Delete()
+    ]
+)]
 class Activity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $startAt = null;
+    #[Assert\NotBlank(message: "La date de début ne peut pas être vide.")]
+    private \DateTimeImmutable $startAt;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $endAt = null;
+    #[Assert\NotBlank(message: "La date de fin ne peut pas être vide.")]
+    private \DateTimeImmutable $endAt;
 
     #[ORM\Column(type: 'text')]
-    private ?string $description = null;
+    #[Assert\NotBlank(message: "La description ne peut pas être vide.")]
+    private string $description;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
     #[ORM\OneToOne(inversedBy: 'activity', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Expense $expenseId = null;
+    private Expense $expenseId;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getStartAt(): ?\DateTimeImmutable
+    public function getStartAt(): \DateTimeImmutable
     {
         return $this->startAt;
     }
@@ -48,7 +60,7 @@ class Activity
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeImmutable
+    public function getEndAt(): \DateTimeImmutable
     {
         return $this->endAt;
     }
@@ -60,7 +72,7 @@ class Activity
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }

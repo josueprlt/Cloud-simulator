@@ -38,7 +38,7 @@ class ExpenseFixtures extends Fixture
             'check_in' => new \DateTimeImmutable('now'),
             'check_out'=> (new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')),
             'breakfast'=> true,
-            'schedule' => 'Ouvert le lundi ché'
+            'schedule' => 'Ouvert le lundi'
         ];
 
         $otherExpenseData = [

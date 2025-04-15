@@ -2,34 +2,52 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use App\Controller\ExpenseController;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
 use App\Enum\ExpenseType;
-use App\Repository\ExpenseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: ExpenseRepository::class)]
-#[ApiResource]
+#[ORM\Entity]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(
+            controller: ExpenseController::class,
+        ),
+        new Delete()
+    ]
+)]
 class Expense
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
+    private string $title;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le coût ne peut pas être vide.")]
     private ?int $cost = null;
 
     #[ORM\Column(options: ['default' => false])]
     private bool $isPayed = false;
 
     #[ORM\Column(enumType: ExpenseType::class)]
-    private ?ExpenseType $type = null;
+    #[Assert\NotBlank(message: "Vous devez choisir un type de dépense.")]
+    private ExpenseType $type;
 
     #[ORM\Column(length: 255)]
-    private ?string $picture = null;
+    #[Assert\NotBlank(message: "L'image ne peut pas être vide.")]
+    private string $picture;
 
     #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
     private ?Activity $activity = null;
@@ -37,12 +55,12 @@ class Expense
     #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
     private ?Accomodation $accomodation = null;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -54,7 +72,7 @@ class Expense
         return $this;
     }
 
-    public function getCost(): ?int
+    public function getCost(): int
     {
         return $this->cost;
     }
