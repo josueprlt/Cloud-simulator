@@ -70,7 +70,7 @@
             </li>
             <li>
               <ul class="-mx-2 space-y-1">
-                <a href="/expense/add" class=" flex gap-x-3 bg-stone-900 text-white p-2 px-4 rounded-md">Ajouter une dépense</a>
+                <a href="/expense/add" class=" flex gap-x-3 bg-stone-900 text-white p-2 px-4 rounded-md hover:bg-orange-500">Ajouter une dépense</a>
               </ul>
             </li>
             <li>
@@ -134,11 +134,11 @@ import LogoComponent from "@/components/logoComponent.vue";
 import TravelChoice from "@/components/navbar/TravelChoice.vue";
 
 const navigation = [
-  { name: 'Tableau de bord', href: '#', icon: HomeIcon, current: true },
-  { name: 'Activités', href: '#', icon: UsersIcon, current: false },
-  { name: 'Dépenses', href: '#', icon: FolderIcon, current: false },
-  { name: 'Logements', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Participants', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Tableau de bord', href: '/', icon: HomeIcon, current: true },
+  { name: 'Activités', href: '/activity', icon: UsersIcon, current: false },
+  { name: 'Dépenses', href: '/expense', icon: FolderIcon, current: false },
+  { name: 'Logements', href: '/accommodation', icon: CalendarIcon, current: false },
+  { name: 'Participants', href: '/users', icon: ChartPieIcon, current: false },
 ]
 
 const sidebarOpen = ref(false)
