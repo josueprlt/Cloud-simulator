@@ -29,7 +29,7 @@ const checkTokenToRedirect = () => {
 const submitConnexion = async () => {
     try {
         const response = await axios.post(
-            'http://localhost:8000/api/login',
+            'http://localhost:8000/api/auth/login_check',
             JSON.stringify(login.value),
             {
             headers: {
@@ -82,7 +82,8 @@ const submitConnexion = async () => {
                     </button>
                 </div>
             </form>
-            <p class="mt-10">Vous n’avez pas de compte? <a class="underline" href="">S’inscrire</a></p>
+            <p class="mt-10">Vous n’avez pas de compte ?<router-link class="underline" :to="{ name: 'Register'}"> S’inscrire</router-link></p>
+
         </div>
     </div>
 </template>
