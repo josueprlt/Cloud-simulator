@@ -25,7 +25,18 @@
                 <nav class="flex flex-1 flex-col">
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
+                      <ul class="-mx-2 space-y-1">
+                        <TravelChoice/>
+                      </ul>
+                    </li>
+                    <li>
+                      <ul class="-mx-2 space-y-1">
+                        <a href="/expense/add" class=" flex gap-x-3 bg-stone-900 text-white p-2 px-4 rounded-md">Ajouter une dépense</a>
+                      </ul>
+                    </li>
+                    <li>
                       <ul role="list" class="-mx-2 space-y-1">
+                        <h3 class="mb-2">Menu principal</h3>
                         <li v-for="item in navigation" :key="item.name">
                           <a :href="item.href" :class="[item.current ? 'border-2 bg-orange-50 border-orange-600 text-stone-950' : 'text-stone-600 hover:bg-orange-700 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold']">
                             <component :is="item.icon" :class="[item.current ? 'text-stone-950' : 'text-stone-600 group-hover:text-white', 'size-6 shrink-0']" aria-hidden="true" />
@@ -53,7 +64,18 @@
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
+              <ul class="-mx-2 space-y-1">
+                <TravelChoice/>
+              </ul>
+            </li>
+            <li>
+              <ul class="-mx-2 space-y-1">
+                <a href="/expense/add" class=" flex gap-x-3 bg-stone-900 text-white p-2 px-4 rounded-md">Ajouter une dépense</a>
+              </ul>
+            </li>
+            <li>
               <ul role="list" class="-mx-2 space-y-1">
+                <h3>Menu principal</h3>
                 <li v-for="item in navigation" :key="item.name">
                   <a :href="item.href" :class="[item.current ? 'bg-orange-50 border-2 border-orange-600 text-stone-950' : 'text-stone-800 hover:bg-orange-200 hover:text-stone-800', 'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold']">
                     <component :is="item.icon" :class="[item.current ? 'text-stone-950' : 'text-stone-800 group-hover:text-stone-800', 'size-6 shrink-0']" aria-hidden="true" />
@@ -109,14 +131,14 @@ import {
   XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import LogoComponent from "@/components/logoComponent.vue";
+import TravelChoice from "@/components/navbar/TravelChoice.vue";
 
 const navigation = [
   { name: 'Tableau de bord', href: '#', icon: HomeIcon, current: true },
   { name: 'Activités', href: '#', icon: UsersIcon, current: false },
   { name: 'Dépenses', href: '#', icon: FolderIcon, current: false },
   { name: 'Logements', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Participant', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Participants', href: '#', icon: ChartPieIcon, current: false },
 ]
 
 const sidebarOpen = ref(false)
