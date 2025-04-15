@@ -51,7 +51,7 @@ const submitRegistration = async () => {
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form @submit.prevent="submitRegistration" class="space-y-6" action="#" method="POST">
                 <div>
-                    <label for="username" class="text-left block text-sm/6 font-medium text-gray-900">Username</label>
+                    <label for="username" class="text-left block text-sm/6 font-medium text-gray-900">Nom d'utilisateur</label>
                     <div class="mt-2">
                         <input type="username" v-model="register.username" id="email" autocomplete="username" required
                             class="block w-full border-2 border-solid rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6">
@@ -73,7 +73,7 @@ const submitRegistration = async () => {
                     </div>
                 </div>
                 <div>
-                    <label for="email" class="text-left block text-sm/6 font-medium text-gray-900">Confirm passe</label>
+                    <label for="email" class="text-left block text-sm/6 font-medium text-gray-900">Confirmer mot de passe</label>
                     <div class="mt-2">
                         <input type="password" v-model="register.confirmPassword" id="password" autocomplete="password"
                             required
@@ -86,7 +86,7 @@ const submitRegistration = async () => {
                 <div>
                     <button type="submit" class="flex w-full justify-center rounded-md bg-stone-900 px-3 py-1.5 mt-10 text-sm/6 
                         font-semibold text-white shadow-xs hover:bg-stone-500 focus-visible:outline-2 
-                        focus-visible:outline-offset-2 focus-visible:outline-stone-600">Register
+                        focus-visible:outline-offset-2 focus-visible:outline-stone-600">S'enregistrer
                     </button>
                 </div>
             </form>

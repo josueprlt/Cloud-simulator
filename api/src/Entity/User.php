@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         pattern: '/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
         message: 'The password must contain at least one uppercase letter, one number, and one special character.'
     )]
-    private ?string $plainPassword = null;
+    private string $plainPassword;
 
     public function getId(): int
     {
@@ -112,12 +112,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPlainPassword(): ?string
+    public function getPlainPassword(): string
     {
         return $this->plainPassword;
     }
 
-    public function setPlainPassword(?string $plainPassword): self
+    public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
         return $this;
