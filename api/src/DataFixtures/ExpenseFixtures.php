@@ -2,13 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Enum\AccomodationType;
 use App\Enum\ExpenseType;
 use App\Factory\ExpenseFactory;
-use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-
 
 class ExpenseFixtures extends Fixture
 {
@@ -22,8 +19,8 @@ class ExpenseFixtures extends Fixture
             'cost' => 4,
             'is_payed' => true,
             'picture' => 'coolpicture2.jpg',
-            'start_at' => new \DateTimeImmutable('now'),
-            'end_at'=> (new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')),
+            'start_at' => '2025-04-15',
+            'end_at'=> '2025-04-20',
             'description'=> 'Une activité géniale',
             'link' => 'http://lien.com'
         ];
@@ -34,9 +31,9 @@ class ExpenseFixtures extends Fixture
             'is_payed' => true,
             'picture' => 'coolpicture2.jpg',
             'name' => 'B&B', 
-            'accomodation_type' => AccomodationType::HOTEL,
-            'check_in' => new \DateTimeImmutable('now'),
-            'check_out'=> (new \DateTimeImmutable('now'))->add(new \DateInterval('P1D')),
+            'accomodation_type' => 'hotel',
+            'check_in' => '2025-04-15',
+            'check_out'=> '2025-04-20',
             'breakfast'=> true,
             'schedule' => 'Ouvert le lundi'
         ];

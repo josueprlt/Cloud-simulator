@@ -27,6 +27,7 @@ class ExpenseFactory
         match ($type) {
             ExpenseType::ACCOMODATION => self::createAccomodation($data, $expense, $entityManager),
             ExpenseType::ACTIVITY => self::createActivity($data, $expense, $entityManager),
+            ExpenseType::OTHER => null
         };
 
         return $expense;
@@ -61,8 +62,12 @@ class ExpenseFactory
     private static function createActivity(array $data, Expense $expense, $entityManager): void
     {
         $activity = new Activity();
-        $activity->setStartAt($data['start_at']);
-        $activity->setEndAt($data['end_at']);
+
+        $startAt =new \DateTimeImmutable($data['start_at']);
+        $endAt = new \DateTimeImmutable($data['end_at']);
+
+        $activity->setStartAt($startAt);
+        $activity->setEndAt($endAt);
         $activity->setDescription($data['description']);
         $activity->setLink($data['link'] ?? null);
         $activity->setExpenseId($expense);
