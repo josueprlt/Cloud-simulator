@@ -13,6 +13,11 @@ const routes = [
         component: () => import('../src/views/register/RegisterView.vue')
     },
     {
+        path: "/dashboard",
+        name: "dashboard",
+        component: () => import('@/views/HomeView.vue')
+    },
+    {
         path: '/hebergement',
         name: 'Hebergement',
         component: () => import('../src/views/HebergementComponent.vue')
@@ -22,7 +27,6 @@ const routes = [
         name: 'Activite',
         component: () => import('../src/views/ActiviteComponent.vue')
     }
-  
 ];
 
 const router = createRouter({
