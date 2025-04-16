@@ -88,8 +88,8 @@
             <li class="-mx-6 mt-auto">
               <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-stone-800 hover:bg-orange-200">
                 <img class="size-8 rounded-full bg-orange-700" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                <span class="sr-only">Your profile</span>
-                <span aria-hidden="true">Tom Cook</span>
+                <span class="sr-only">Votre profile</span>
+                <span aria-hidden="true">{{user.name}}</span>
               </a>
             </li>
           </ul>
@@ -104,7 +104,7 @@
       </button>
       <div class="flex-1 text-sm/6 font-semibold text-white">Dashboard</div>
       <a href="#">
-        <span class="sr-only">Your profile</span>
+        <span class="sr-only">Votre profile</span>
         <img class="size-8 rounded-full bg-orange-700" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
       </a>
     </div>
@@ -124,7 +124,6 @@ import {
   Bars3Icon,
   CalendarIcon,
   ChartPieIcon,
-  DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
   UsersIcon,
@@ -140,6 +139,12 @@ const navigation = [
   { name: 'Logements', href: '/accommodation', icon: CalendarIcon, current: false },
   { name: 'Participants', href: '/users', icon: ChartPieIcon, current: false },
 ]
+const user =
+  {
+    id: 1,
+    name: 'Tom Cook',
+    email: 'tom.cook@example.com'
+  }
 
 const sidebarOpen = ref(false)
 </script>
