@@ -5,11 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Put;
 use App\Controller\ExpenseController;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
 use App\Enum\ExpenseType;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
@@ -20,39 +22,52 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Post(
             controller: ExpenseController::class,
         ),
+        new Put(
+            controller: ExpenseController::class,
+        ),
         new Delete()
-    ]
+    ],
+    normalizationContext: [
+        'groups' => ['expense:read'],
+    ],
 )]
 class Expense
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private int $id;
+    private readonly int $id;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
+    #[Groups(['expense:read', 'accomodation:read', 'activity:read'])]
     private string $title;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le coût ne peut pas être vide.")]
+    #[Groups(['expense:read', 'accomodation:read', 'activity:read'])]
     private ?int $cost = null;
 
     #[ORM\Column(options: ['default' => false])]
+    #[Groups(['expense:read', 'accomodation:read', 'activity:read'])]
     private bool $isPayed = false;
 
     #[ORM\Column(enumType: ExpenseType::class)]
     #[Assert\NotBlank(message: "Vous devez choisir un type de dépense.")]
+    #[Groups(['expense:read', 'accomodation:read', 'activity:read'])]
     private ExpenseType $type;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "L'image ne peut pas être vide.")]
+    #[Groups(['expense:read', 'accomodation:read', 'activity:read'])]
     private string $picture;
 
     #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
+    #[Groups(['expense:read'])]
     private ?Activity $activity = null;
 
     #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
+    #[Groups(['expense:read'])]
     private ?Accomodation $accomodation = null;
 
     public function getId(): int

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Expense;
 use App\Enum\ExpenseType;
 use App\Factory\ExpenseFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,27 +19,39 @@ class ExpenseController extends AbstractController
     {
     }
 
-    #[Route('/api/expense', name: 'app_expense', methods: ['POST'])]
+    /**
+     * @throws \DateMalformedStringException
+     */
     public function __invoke(Request $request): Response
     {
         $dataTable = json_decode($request->getContent(), true);
+        $expense = null;
+        $successMessage = null;
 
         if (!isset($dataTable['type']) || !isset($dataTable['data'])) {
-            return new JsonResponse(['error' => 'Invalid data'], 400);
+            return new JsonResponse(['error' => 'Invalid data, dataTable pas ienb'], 400);
        }
        $type = $dataTable['type'];
        $data = $dataTable['data'];
-
        $expenseType = ExpenseType::fromString($type);
 
        if($expenseType === null) {
-           return new JsonResponse(['error' => 'Invalid data'], 400);
+           return new JsonResponse(['error' => 'Invalid data, expenseType = null'], 400);
        }
 
-        $expense = ExpenseFactory::create($expenseType, $data, $this->entityManager);
+       if ($request->getMethod() === Request::METHOD_POST) {
+            $expense = new Expense();
+            $successMessage = 'Expense created';
+        } elseif ($request->getMethod() === Request::METHOD_PUT) {
+            $expenses = $this->entityManager->getRepository(Expense::class);
+            $expense = $expenses->find((int)($request->attributes->get('id')));
+            $successMessage = 'Expense updated';
+        }
+
+        $createdExpense = ExpenseFactory::create($expense, $expenseType, $data, $this->entityManager);
         $this->entityManager->persist($expense);
         $this->entityManager->flush();
+        return new JsonResponse(['message' => $successMessage, 'id' => $createdExpense->getId(), 'type' => $type], 201);
 
-        return new JsonResponse(['message' => 'Expense created', 'id' => $expense->getId()], 201);
-    }
+}
 }

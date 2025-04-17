@@ -39,9 +39,7 @@ class AuthController extends AbstractController
                 if (count($errors) > 0) {
                     $errorMessages = [];
                     foreach ($errors as $error) {
-                        if ($error instanceof ConstraintViolationInterface) {
-                            $errorMessages[] = $error->getMessage();
-                        }
+                        $errorMessages[] = $error->getMessage();
                     }
     
                     return new JsonResponse(['error' => implode(', ', $errorMessages)], 400);

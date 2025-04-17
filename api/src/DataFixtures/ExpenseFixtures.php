@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Expense;
 use App\Enum\ExpenseType;
 use App\Factory\ExpenseFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -10,9 +11,13 @@ use Doctrine\Persistence\ObjectManager;
 class ExpenseFixtures extends Fixture
 {
 
+    /**
+     * @throws \DateMalformedStringException
+     */
     public function load(ObjectManager $manager): void
     {
         $factory = new ExpenseFactory();
+        $expense = new Expense();
 
         $activityData = [
             'title' => 'Activite', 
@@ -26,7 +31,7 @@ class ExpenseFixtures extends Fixture
         ];
 
         $accomodationData = [
-            'title' => 'Activite', 
+            'title' => 'Accomodation',
             'cost' => 4,
             'is_payed' => true,
             'picture' => 'coolpicture2.jpg',
@@ -45,9 +50,9 @@ class ExpenseFixtures extends Fixture
             'picture' => 'coolpicture25.jpg'
         ];
 
-        $manager->persist($factory->create(ExpenseType::ACCOMODATION, $accomodationData,$manager));
-        $manager->persist($factory->create(ExpenseType::ACTIVITY, $activityData, $manager));
-        $manager->persist($factory->create(ExpenseType::OTHER, $otherExpenseData,$manager));
+        $manager->persist($factory->create($expense, ExpenseType::ACCOMODATION, $accomodationData,$manager));
+        $manager->persist($factory->create($expense, ExpenseType::ACTIVITY, $activityData, $manager));
+        $manager->persist($factory->create($expense, ExpenseType::OTHER, $otherExpenseData,$manager));
 
         $manager->flush();
     }

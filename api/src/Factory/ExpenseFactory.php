@@ -13,12 +13,11 @@ class ExpenseFactory
     /**
      * @throws \DateMalformedStringException
      */
-    public static function create(ExpenseType $type, array $data, $entityManager): Expense
+    public static function create(Expense $expense, ExpenseType $type, array $data, $entityManager): Expense
     {
-        $expense = new Expense();
         $expense->setTitle($data['title']);
         $expense->setCost($data['cost']);
-        $expense->isPayed($data['is_payed']);
+        $expense->setPayed($data['is_payed']);
         $expense->setPicture($data['picture']);
         $expense->setType($type);
         // $expense->setAddressId();
@@ -38,6 +37,8 @@ class ExpenseFactory
      */
     private static function createAccomodation(array $data, Expense $expense, $entityManager): void
     {
+        $accomodation = $expense->getAccomodation() ?? new Accomodation();
+
         $accomodationType = AccomodationType::fromString($data['accomodation_type']);
         if($accomodationType === null) {
             throw new \InvalidArgumentException('Type d\'hébergement invalide');
@@ -46,7 +47,6 @@ class ExpenseFactory
         $checkIn =new \DateTimeImmutable($data['check_in']);
         $checkOut = new \DateTimeImmutable($data['check_out']);
 
-        $accomodation = new Accomodation();
         $accomodation->setName($data['name']);
         $accomodation->setType($accomodationType);
         $accomodation->setCheckIn($checkIn);
@@ -61,7 +61,7 @@ class ExpenseFactory
 
     private static function createActivity(array $data, Expense $expense, $entityManager): void
     {
-        $activity = new Activity();
+        $activity = $expense->getActivity() ?? new Activity();
 
         $startAt =new \DateTimeImmutable($data['start_at']);
         $endAt = new \DateTimeImmutable($data['end_at']);

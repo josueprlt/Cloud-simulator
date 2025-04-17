@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use App\Enum\AccomodationType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
@@ -17,7 +18,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Get(),
         new GetCollection(),
         new Delete()
-    ]
+    ],
+    normalizationContext: [
+        'groups' => ['accomodation:read'],
+    ],
 )]
 class Accomodation
 {
@@ -28,28 +32,35 @@ class Accomodation
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
+    #[Groups(['accomodation:read'])]
     private string $name;
 
     #[ORM\Column(enumType: AccomodationType::class)]
     #[Assert\NotNull(message: "Le type d'hébergement ne peut pas être nul.")]
+    #[Groups(['accomodation:read'])]
     private AccomodationType $type;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date du check-in ne peut pas être vide.")]
+    #[Groups(['accomodation:read'])]
     private \DateTimeImmutable $checkIn;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date du check-out ne peut pas être vide.")]
+    #[Groups(['accomodation:read'])]
     private \DateTimeImmutable $checkOut;
 
     #[ORM\Column(options: ['default' => false])]
+    #[Groups(['accomodation:read'])]
     private bool $breakfast = false;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['accomodation:read'])]
     private ?string $schedule = null;
 
     #[ORM\OneToOne(inversedBy: 'accomodation', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['accomodation:read'])]
     private Expense $expenseId;
 
     public function getId(): int

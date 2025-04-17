@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
@@ -15,6 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Get(),
         new GetCollection(),
         new Delete()
+    ],
+    normalizationContext: [
+        'groups' => ['activity:read'],
     ]
 )]
 class Activity
@@ -26,21 +30,26 @@ class Activity
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date de début ne peut pas être vide.")]
+    #[Groups(['activity:read'])]
     private \DateTimeImmutable $startAt;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date de fin ne peut pas être vide.")]
+    #[Groups(['activity:read'])]
     private \DateTimeImmutable $endAt;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank(message: "La description ne peut pas être vide.")]
+    #[Groups(['activity:read'])]
     private string $description;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['activity:read'])]
     private ?string $link = null;
 
     #[ORM\OneToOne(inversedBy: 'activity', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['activity:read'])]
     private Expense $expenseId;
 
     public function getId(): int
