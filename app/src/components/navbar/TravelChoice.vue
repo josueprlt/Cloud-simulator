@@ -62,6 +62,11 @@
             <p class="text-sm mt-[-5px]">{{ travel.member }} membres</p>
           </div>
         </li>
+          <li class="p-2 border-t border-stone-200">
+            <button @click="addTravel" class="w-full flex gap-x-3 bg-stone-900 text-white p-2 px-4 rounded-md">
+              Ajouter un voyage
+            </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -69,6 +74,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
+
+const router = useRouter();
 
 // Liste des voyages
 const travels = [
@@ -115,5 +122,9 @@ const toggleDropdown = () => {
 const selectTravel = (travel) => {
   travels.forEach((t) => (t.active = t.id === travel.id));
   isOpen.value = false;
+};
+
+const addTravel = () => {
+  router.push({name: 'formTrip'})
 };
 </script>

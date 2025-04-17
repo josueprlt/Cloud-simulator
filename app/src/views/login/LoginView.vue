@@ -11,13 +11,15 @@ const login = ref({
     password: ''
 })
 
+const errorMessage = ref('')
+
 const checkTokenToRedirect = () => {
     const token = sessionStorage.getItem('token')
     if (token) {
         axios.get('http://localhost:8000/api', {
             headers: { Authorization: `Bearer ${token}` }
         }).then(() => {
-            router.push({name: 'Hebergement'});
+            router.push({name: 'dashboard'});
         }).catch(() => {
             router.push({name: 'Login'});
         });
@@ -41,11 +43,17 @@ const submitConnexion = async () => {
         checkTokenToRedirect()
   } catch (error) {
     console.error("Connexion imposible:", error)
+    errorMessage.value = "Indentifiant incorect"
   }
 }
+
 </script>
 <template>
     <LogoComponent />
+    <div v-if="errorMessage" class="bg-red-100 border border-red-400 text-red-700 text-center py-2 mt-5 rounded relative"
+        role="alert">
+        <span class="block sm:inline">{{ errorMessage }}</span>
+    </div>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Connectez-vous à votre
