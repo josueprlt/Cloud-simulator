@@ -36,7 +36,7 @@ class Expense
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private readonly int $id;
+    private int $id;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]

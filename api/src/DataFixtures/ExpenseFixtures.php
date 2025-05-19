@@ -17,7 +17,9 @@ class ExpenseFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $factory = new ExpenseFactory();
-        $expense = new Expense();
+        $expenseOther = new Expense();
+        $expenseAccomodation = new Expense();
+        $expenseActivity = new Expense();
 
         $activityData = [
             'title' => 'Activite', 
@@ -50,9 +52,9 @@ class ExpenseFixtures extends Fixture
             'picture' => 'coolpicture25.jpg'
         ];
 
-        $manager->persist($factory->create($expense, ExpenseType::ACCOMODATION, $accomodationData,$manager));
-        $manager->persist($factory->create($expense, ExpenseType::ACTIVITY, $activityData, $manager));
-        $manager->persist($factory->create($expense, ExpenseType::OTHER, $otherExpenseData,$manager));
+        $manager->persist($factory->create($expenseAccomodation, ExpenseType::ACCOMODATION, $accomodationData,$manager));
+        $manager->persist($factory->create($expenseActivity, ExpenseType::ACTIVITY, $activityData, $manager));
+        $manager->persist($factory->create($expenseOther, ExpenseType::OTHER, $otherExpenseData,$manager));
 
         $manager->flush();
     }
