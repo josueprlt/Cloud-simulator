@@ -62,11 +62,11 @@ class Expense
     #[Groups(['expense:read', 'accomodation:read', 'activity:read'])]
     private string $picture;
 
-    #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'expense', cascade: ['persist', 'remove'])]
     #[Groups(['expense:read'])]
     private ?Activity $activity = null;
 
-    #[ORM\OneToOne(mappedBy: 'expenseId', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'expense', cascade: ['persist', 'remove'])]
     #[Groups(['expense:read'])]
     private ?Accomodation $accomodation = null;
 
@@ -143,8 +143,8 @@ class Expense
     public function setActivity(Activity $activity): static
     {
         // set the owning side of the relation if necessary
-        if ($activity->getExpenseId() !== $this) {
-            $activity->setExpenseId($this);
+        if ($activity->getExpense() !== $this) {
+            $activity->setExpense($this);
         }
 
         $this->activity = $activity;
@@ -160,8 +160,8 @@ class Expense
     public function setAccomodation(Accomodation $accomodation): static
     {
         // set the owning side of the relation if necessary
-        if ($accomodation->getExpenseId() !== $this) {
-            $accomodation->setExpenseId($this);
+        if ($accomodation->getExpense() !== $this) {
+            $accomodation->setExpense($this);
         }
 
         $this->accomodation = $accomodation;

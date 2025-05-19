@@ -30,27 +30,27 @@ class Activity
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date de début ne peut pas être vide.")]
-    #[Groups(['activity:read'])]
+    #[Groups(['activity:read','expense:read'])]
     private \DateTimeImmutable $startAt;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date de fin ne peut pas être vide.")]
-    #[Groups(['activity:read'])]
+    #[Groups(['activity:read','expense:read'])]
     private \DateTimeImmutable $endAt;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank(message: "La description ne peut pas être vide.")]
-    #[Groups(['activity:read'])]
+    #[Groups(['activity:read','expense:read'])]
     private string $description;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['activity:read'])]
+    #[Groups(['activity:read','expense:read'])]
     private ?string $link = null;
 
     #[ORM\OneToOne(inversedBy: 'activity', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['activity:read'])]
-    private Expense $expenseId;
+    private Expense $expense;
 
     public function getId(): int
     {
@@ -105,14 +105,14 @@ class Activity
         return $this;
     }
 
-    public function getExpenseId(): ?Expense
+    public function getExpense(): ?Expense
     {
-        return $this->expenseId;
+        return $this->expense;
     }
 
-    public function setExpenseId(Expense $expenseId): static
+    public function setExpense(Expense $expense): static
     {
-        $this->expenseId = $expenseId;
+        $this->expense = $expense;
 
         return $this;
     }

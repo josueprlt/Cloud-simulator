@@ -53,7 +53,7 @@ class ExpenseFactory
         $accomodation->setCheckOut($checkOut);
         $accomodation->setBreakfast($data['breakfast']);
         $accomodation->setSchedule($data['schedule'] ?? null);
-        $accomodation->setExpenseId($expense);
+        $accomodation->setExpense($expense);
 
         $entityManager->persist($accomodation);
         $entityManager->flush();
@@ -70,7 +70,7 @@ class ExpenseFactory
         $activity->setEndAt($endAt);
         $activity->setDescription($data['description']);
         $activity->setLink($data['link'] ?? null);
-        $activity->setExpenseId($expense);
+        $activity->setExpense($expense);
 
         $entityManager->persist($activity);
         $entityManager->flush();

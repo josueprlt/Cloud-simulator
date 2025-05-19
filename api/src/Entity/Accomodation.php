@@ -32,36 +32,36 @@ class Accomodation
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
-    #[Groups(['accomodation:read'])]
+    #[Groups(['accomodation:read','expense:read'])]
     private string $name;
 
     #[ORM\Column(enumType: AccomodationType::class)]
     #[Assert\NotNull(message: "Le type d'hébergement ne peut pas être nul.")]
-    #[Groups(['accomodation:read'])]
+    #[Groups(['accomodation:read','expense:read'])]
     private AccomodationType $type;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date du check-in ne peut pas être vide.")]
-    #[Groups(['accomodation:read'])]
+    #[Groups(['accomodation:read','expense:read'])]
     private \DateTimeImmutable $checkIn;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "La date du check-out ne peut pas être vide.")]
-    #[Groups(['accomodation:read'])]
+    #[Groups(['accomodation:read','expense:read'])]
     private \DateTimeImmutable $checkOut;
 
     #[ORM\Column(options: ['default' => false])]
-    #[Groups(['accomodation:read'])]
+    #[Groups(['accomodation:read','expense:read'])]
     private bool $breakfast = false;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['accomodation:read'])]
+    #[Groups(['accomodation:read','expense:read'])]
     private ?string $schedule = null;
 
     #[ORM\OneToOne(inversedBy: 'accomodation', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['accomodation:read'])]
-    private Expense $expenseId;
+    private Expense $expense;
 
     public function getId(): int
     {
@@ -140,14 +140,14 @@ class Accomodation
         return $this;
     }
 
-    public function getExpenseId(): ?Expense
+    public function getExpense(): ?Expense
     {
-        return $this->expenseId;
+        return $this->expense;
     }
 
-    public function setExpenseId(Expense $expenseId): static
+    public function setExpense(Expense $expense): static
     {
-        $this->expenseId = $expenseId;
+        $this->expense = $expense;
 
         return $this;
     }
