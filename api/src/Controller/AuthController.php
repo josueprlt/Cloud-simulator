@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -67,5 +69,26 @@ class AuthController extends AbstractController
         } 
     
         return new JsonResponse(['message' => sprintf('Success, User: %s has been created.', $data['email'])], 201);
-    }    
+    }
+
+    #[Route('/api/get_user', name: 'api_get_user', methods: ['GET'])]
+    public function getUserInfo(#[CurrentUser] $user): JsonResponse
+    {
+        if (!$user) {
+            return new JsonResponse(['error' => 'Unauthorized'], 401);
+        }
+    
+        return new JsonResponse([
+            'id' => $user->getId(),
+            'email' => $user->getUserIdentifier(),
+            'pseudo' => $user->getPseudo(),
+            'trips' => array_map(function ($trip) {
+                return [
+                    'id' => $trip->getId(),
+                    'title' => $trip->getTitle(),
+                    'member' => $trip->getUsers()->toArray() 
+                ];
+            }, $user->getTrips()->toArray())
+                ]);
+    }
 }

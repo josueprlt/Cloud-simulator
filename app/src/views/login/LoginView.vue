@@ -19,7 +19,7 @@ const checkTokenToRedirect = () => {
         axios.get('http://localhost:8000/api', {
             headers: { Authorization: `Bearer ${token}` }
         }).then(() => {
-            router.push({name: 'dashboard'});
+            router.push({name: 'Dashboard'});
         }).catch(() => {
             router.push({name: 'Login'});
         });
