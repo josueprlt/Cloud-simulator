@@ -39,9 +39,7 @@ class AuthController extends AbstractController
                 if (count($errors) > 0) {
                     $errorMessages = [];
                     foreach ($errors as $error) {
-                        if ($error instanceof ConstraintViolationInterface) {
-                            $errorMessages[] = $error->getMessage();
-                        }
+                        $errorMessages[] = $error->getMessage();
                     }
     
                     return new JsonResponse(['error' => implode(', ', $errorMessages)], 400);
@@ -65,7 +63,7 @@ class AuthController extends AbstractController
         } catch (UniqueConstraintViolationException $e) {
             return new JsonResponse(['error' => 'Email already exists.'], 400);
         } catch (ErrorException $e) {
-            return new JsonResponse(['error' => sprintf('Something failed : ', $e)], 400);
+            return new JsonResponse(['error' => sprintf('Something failed : %s ', $e)], 400);
         } 
     
         return new JsonResponse(['message' => sprintf('Success, User: %s has been created.', $data['email'])], 201);
