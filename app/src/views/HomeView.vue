@@ -3,7 +3,24 @@
 import SidebarComponent from "@/components/navbar/SidebarComponent.vue";
 import CardMini from "@/components/card/CardMini.vue";
 import Card from "@/components/card/CardWithImage.vue";
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
+const route = useRoute()
+const router = useRouter()
+const successMessage = ref('')
+
+onMounted(() => {
+  if (route.query.successMessage) {
+    successMessage.value = route.query.successMessage
+
+    router.replace({ query: { ...route.query, successMessage: undefined } })
+
+    setTimeout(() => {
+      successMessage.value = ''
+    }, 4000)
+  }
+})
 
 const activity = [
   {
@@ -66,14 +83,18 @@ const accommodation = [
     registered : true,
   },
 ]
+
 </script>
 
 <template>
   <SidebarComponent>
+    <div v-if="successMessage" class="bg-green-100 border border-black-400 text-center py-2 mt-5 rounded relative" role="alert">
+  <span class="block sm:inline">{{ successMessage }}</span>
+</div>
     <div class="flex flex-col gap-10">
       <CardMini />
       <Card :api-data="activity" categorie="activity" />
-      <Card :api-data="accommodation" title="Vos Logement" categorie="accommodation"/>
+      <Card :api-data="accommodation" title="Vos Logement" categorie="accommodation" />
     </div>
 
   </SidebarComponent>

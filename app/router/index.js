@@ -13,8 +13,13 @@ const routes = [
         component: () => import('../src/views/register/RegisterView.vue')
     },
     {
+        path: '/form-trip',
+        name: 'Form trip',
+        component: () => import('../src/views/trip/FormTrip.vue')
+    },
+    {
         path: "/dashboard",
-        name: "dashboard",
+        name: "Dashboard",
         component: () => import('@/views/HomeView.vue')
     },
     {

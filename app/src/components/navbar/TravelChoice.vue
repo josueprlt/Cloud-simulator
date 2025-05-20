@@ -8,33 +8,22 @@
       <div class="h-10 w-14 rounded-md overflow-hidden">
         <img
           class="h-full w-full object-cover"
-          :src="activeTravel.img"
-          :alt="activeTravel.title"
+          :src="activeTravel?.thumbnail || defaultThumbnail"
+          :alt="activeTravel?.title || 'Voyage'"
         />
       </div>
       <div class="w-full flex flex-col gap-0">
-        <h5 class="text-lg font-bold text-left">{{ activeTravel.title }}</h5>
-        <p class="text-sm mt-[-5px] text-left">{{ activeTravel.member }} membres</p>
+        <h5 class="text-sm font-bold text-left">{{ activeTravel?.title || 'Voyage inconnu' }}</h5>
+        <p class="text-sm mt-[-5px] text-left">{{ activeTravel?.users.length }} membre</p>
       </div>
       <svg
-        id="fi_7693521"
-        enable-background="new 0 0 24 24"
-        viewBox="0 0 24 24"
-        width="20px"
-        xmlns="http://www.w3.org/2000/svg"
         :class="{ 'rotate-180': isOpen }"
         class="transition-transform"
+        width="20"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <g>
-          <path
-            d="m12 22c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l4.3 4.3 4.3-4.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-5 5c-.2.2-.4.3-.7.3z"
-          ></path>
-        </g>
-        <g>
-          <path
-            d="m7 9c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l5-5c.4-.4 1-.4 1.4 0l5 5c.4.4.4 1 0 1.4s-1 .4-1.4 0l-4.3-4.3-4.3 4.3c-.2.2-.4.3-.7.3z"
-          ></path>
-        </g>
+        <path d="M12 22c-.3 0-.5-.1-.7-.3l-5-5a1 1 0 1 1 1.4-1.4L12 19.6l4.3-4.3a1 1 0 1 1 1.4 1.4l-5 5c-.2.2-.4.3-.7.3z"/>
       </svg>
     </button>
 
@@ -53,14 +42,19 @@
           <div class="h-10 w-14 rounded-md overflow-hidden">
             <img
               class="h-full w-full object-cover"
-              :src="travel.img"
+              :src="travel.thumbnail || defaultThumbnail"
               :alt="travel.title"
             />
           </div>
           <div class="w-full flex flex-col gap-0">
-            <h5 class="text-lg font-bold">{{ travel.title }}</h5>
-            <p class="text-sm mt-[-5px]">{{ travel.member }} membres</p>
+            <h5 class="text-sm font-bold">{{ travel.title }}</h5>
+            <p class="text-sm mt-[-5px]">{{ travel.users.length }} membre</p>
           </div>
+        </li>
+        <li class="p-2 border-t border-stone-200">
+          <button @click="addTravel" class="w-full flex gap-x-3 bg-stone-900 text-white p-2 px-4 rounded-md">
+            Ajouter un voyage
+          </button>
         </li>
       </ul>
     </div>
@@ -68,52 +62,45 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue"
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
-// Liste des voyages
-const travels = [
-  {
-    id: 1,
-    title: "Grèce 2024",
-    img: "https://images.unsplash.com/photo-1603288986817-7973bc90d346?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    member: 5,
-    active: true,
-  },
-  {
-    id: 2,
-    title: "Italie 2023",
-    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    member: 3,
-    active: false,
-  },
-  {
-    id: 3,
-    title: "Espagne 2022",
-    img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    member: 4,
-    active: false,
-  },
-];
+const router = useRouter()
+const store = useStore()
 
-// État du dropdown
-const isOpen = ref(false);
+const travels = computed(() => store.getters["user/trips"] || [])
+const defaultThumbnail = 'https://i.postimg.cc/T1Vjc2h0/trip.jpg'
 
-// Voyage actif
-const activeTravel = computed(() => travels.find((travel) => travel.active));
+// ID du voyage actif (init avec le premier voyage non archivé si dispo)
+const activeTravelId = ref(null)
 
-// Autres voyages
+watch(travels, () => {
+  console.log(travels.value);
+  
+  if (!activeTravelId.value && travels.value.length) {
+    const firstValid = travels.value.find(t => !t.isArchive)
+    if (firstValid) activeTravelId.value = firstValid.id
+  }
+}, { immediate: true })
+
+const activeTravel = computed(() =>
+  travels.value.find(t => t.id === activeTravelId.value)
+)
+
 const otherTravels = computed(() =>
-  travels.filter((travel) => !travel.active)
-);
+  travels.value.filter(t => !t.isArchive && t.id !== activeTravelId.value)
+)
 
-// Fonction pour ouvrir/fermer le dropdown
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value;
-};
+const isOpen = ref(false)
+const toggleDropdown = () => (isOpen.value = !isOpen.value)
 
-// Fonction pour sélectionner un voyage
 const selectTravel = (travel) => {
-  travels.forEach((t) => (t.active = t.id === travel.id));
-  isOpen.value = false;
-};
+  activeTravelId.value = travel.id
+  isOpen.value = false
+}
+
+const addTravel = () => {
+  router.push({ name: 'Form trip' })
+}
 </script>

@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { useRouter } from 'vue-router';
 import {onMounted, ref} from 'vue';
 import axios from 'axios';
@@ -84,4 +84,4 @@ onMounted(() => {
       </li>
     </ul>
   </div>
-</template>
+</template> -->
