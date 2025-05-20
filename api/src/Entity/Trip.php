@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Attribute\MaxDepth;
         new Post(),
         new Get()
     ],
-    normalizationContext: ['groups' => ['trip:read'], 'enable_max_depth' => true]
+    normalizationContext: ['groups' => ['trip:read', 'user:read'], 'enable_max_depth' => true]
     )]
 class Trip
 {

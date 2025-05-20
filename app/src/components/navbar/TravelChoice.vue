@@ -14,7 +14,7 @@
       </div>
       <div class="w-full flex flex-col gap-0">
         <h5 class="text-sm font-bold text-left">{{ activeTravel?.title || 'Voyage inconnu' }}</h5>
-        <p class="text-sm mt-[-5px] text-left">1 membre</p>
+        <p class="text-sm mt-[-5px] text-left">{{ activeTravel?.users.length }} membre</p>
       </div>
       <svg
         :class="{ 'rotate-180': isOpen }"
@@ -48,7 +48,7 @@
           </div>
           <div class="w-full flex flex-col gap-0">
             <h5 class="text-sm font-bold">{{ travel.title }}</h5>
-            <p class="text-sm mt-[-5px]">1 membre</p>
+            <p class="text-sm mt-[-5px]">{{ travel.users.length }} membre</p>
           </div>
         </li>
         <li class="p-2 border-t border-stone-200">
@@ -76,6 +76,8 @@ const defaultThumbnail = 'https://i.postimg.cc/T1Vjc2h0/trip.jpg'
 const activeTravelId = ref(null)
 
 watch(travels, () => {
+  console.log(travels.value);
+  
   if (!activeTravelId.value && travels.value.length) {
     const firstValid = travels.value.find(t => !t.isArchive)
     if (firstValid) activeTravelId.value = firstValid.id
