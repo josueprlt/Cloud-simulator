@@ -925,9 +925,87 @@ bde32fbf-cac0-40fd-9e4b-9d0482a1f8af	7d7ad24c-6292-497b-9809-ec4d797b1df5	\N	711
 COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, collection, item, origin) FROM stdin;
 1	login	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:20:30.137+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	http://localhost:8055
 2	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:20:32.413+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_settings	1	http://localhost:8055
+61	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:48:04.015+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	1	http://localhost:8055
+63	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:48:50.252+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	3	http://localhost:8055
+64	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:49:13.7+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	2	http://localhost:8055
+66	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:49:50.696+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	5	http://localhost:8055
+67	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:50:05.893+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	6	http://localhost:8055
+69	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:53:24.114+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	2	http://localhost:8055
+70	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:53:33.85+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	3	http://localhost:8055
+72	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:53:54.044+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	5	http://localhost:8055
+74	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:54:12.35+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	7	http://localhost:8055
 3	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.76+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	1	http://localhost:8055
 4	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.769+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	test	http://localhost:8055
 5	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:12.851+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	2	http://localhost:8055
+<<<<<<< HEAD
+=======
+62	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:48:17.311+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	2	http://localhost:8055
+65	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:49:43.078+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	4	http://localhost:8055
+68	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:52:59.751+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	1	http://localhost:8055
+71	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:53:43.753+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	4	http://localhost:8055
+73	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:54:03.635+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	6	http://localhost:8055
+6	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:19:12.27+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	test	http://localhost:8055
+7	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:19:12.28+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	1	http://localhost:8055
+8	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:19:12.282+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	2	http://localhost:8055
+9	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:19:25.626+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	3	http://localhost:8055
+10	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:19:25.633+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	simulations	http://localhost:8055
+11	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:20:01.708+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	4	http://localhost:8055
+12	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:20:01.712+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	resources	http://localhost:8055
+13	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:21:41.918+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	5	http://localhost:8055
+14	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:21:41.926+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	aws_prices	http://localhost:8055
+15	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:35:43.952+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	6	http://localhost:8055
+16	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:35:43.956+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	services	http://localhost:8055
+17	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:35:51.284+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	7	http://localhost:8055
+18	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:01.682+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	8	http://localhost:8055
+19	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:12.112+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	9	http://localhost:8055
+20	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:12.12+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	regions	http://localhost:8055
+21	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:20.661+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	10	http://localhost:8055
+22	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:26.021+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	11	http://localhost:8055
+23	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:36.331+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	aws_prices	http://localhost:8055
+24	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:36.335+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	5	http://localhost:8055
+27	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:44.01+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	simulations	http://localhost:8055
+28	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:44.013+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	3	http://localhost:8055
+35	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:38:14.86+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	16	http://localhost:8055
+36	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:38:32.069+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	17	http://localhost:8055
+37	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:38:52.992+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	18	http://localhost:8055
+38	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:39:14.212+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	19	http://localhost:8055
+39	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:39:23.551+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	20	http://localhost:8055
+40	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:39:30.564+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	21	http://localhost:8055
+41	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:40:00.887+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	22	http://localhost:8055
+42	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:41:37.918+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	22	http://localhost:8055
+43	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:41:51.62+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	23	http://localhost:8055
+44	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:42:08.459+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	24	http://localhost:8055
+45	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:42:08.467+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	simulations	http://localhost:8055
+75	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:54:31.406+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	1	http://localhost:8055
+25	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:39.613+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	resources	http://localhost:8055
+26	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:39.619+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	4	http://localhost:8055
+29	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:54.541+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	12	http://localhost:8055
+30	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:36:54.547+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	instance_types	http://localhost:8055
+31	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:37:01.162+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	13	http://localhost:8055
+32	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:37:38.273+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	14	http://localhost:8055
+33	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:37:57.373+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	15	http://localhost:8055
+34	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:37:57.382+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	pricing	http://localhost:8055
+46	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:42:21.467+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	25	http://localhost:8055
+47	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:42:34.84+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	26	http://localhost:8055
+48	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:42:54.666+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	27	http://localhost:8055
+49	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:42:54.675+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	simulation_entries	http://localhost:8055
+50	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:43:13.452+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	28	http://localhost:8055
+51	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:43:25.001+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	29	http://localhost:8055
+52	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:43:39.046+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	30	http://localhost:8055
+53	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:43:48.789+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	31	http://localhost:8055
+54	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:43:55.969+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	32	http://localhost:8055
+55	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:44:14.161+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	33	http://localhost:8055
+56	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:44:49.445+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	34	http://localhost:8055
+57	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:44:49.53+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	35	http://localhost:8055
+58	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:44:49.534+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	simulations_simulation_entries	http://localhost:8055
+59	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:44:49.578+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	36	http://localhost:8055
+60	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:44:49.66+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	37	http://localhost:8055
+76	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:54:47.154+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	3	http://localhost:8055
+77	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:54:56.249+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	6	http://localhost:8055
+78	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:55:05.303+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	2	http://localhost:8055
+79	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:55:13.374+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	4	http://localhost:8055
+80	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:55:22.167+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	5	http://localhost:8055
+>>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1143,6 +1221,7 @@ abf8a154-5b1c-4a46-ac9c-7300570f4f17	$t:public_label	public	$t:public_descriptio
 --
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
+1	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	regions	\N	\N	{"tabular":{"fields":["code","name"]}}	{"tabular":{"widths":{"code":160,"name":441.5260009765625}}}	\N	\N	bookmark	\N
 \.
 
 
@@ -1160,9 +1239,77 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 
 COPY public.directus_revisions (id, activity, collection, item, data, delta, parent, version) FROM stdin;
 1	2	directus_settings	1	{"id":1,"project_name":"Directus","project_url":null,"project_color":"#6644FF","project_logo":null,"public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":null,"default_language":"en-US","custom_aspect_ratios":null,"public_favicon":null,"default_appearance":"auto","default_theme_light":null,"theme_light_overrides":null,"default_theme_dark":null,"theme_dark_overrides":null,"report_error_url":null,"report_bug_url":null,"report_feature_url":null,"public_registration":false,"public_registration_verify_email":true,"public_registration_role":null,"public_registration_email_filter":null,"visual_editor_urls":null,"accepted_terms":true,"project_id":"01999fe7-9ac7-751b-8d05-12a3d32a1c9d"}	{"accepted_terms":true}	\N	\N
+50	61	services	1	{"name":"Amazon EC2"}	{"name":"Amazon EC2"}	\N	\N
+52	63	services	3	{"name":"Amazon RDS"}	{"name":"Amazon RDS"}	\N	\N
+53	64	services	2	{"id":2,"name":"AWS Lambda","code":null}	{"name":"AWS Lambda"}	\N	\N
+55	66	services	5	{"name":"Amazon EKS"}	{"name":"Amazon EKS"}	\N	\N
+56	67	services	6	{"name":"Amazon S3"}	{"name":"Amazon S3"}	\N	\N
+65	76	services	3	{"id":3,"name":"RDS","code":" AmazonRDS"}	{"name":"RDS","code":" AmazonRDS"}	\N	\N
+66	77	services	6	{"id":6,"name":"S3","code":"AmazonS3"}	{"name":"S3","code":"AmazonS3"}	\N	\N
+67	78	services	2	{"id":2,"name":"Lambda","code":" AWSLambda"}	{"name":"Lambda","code":" AWSLambda"}	\N	\N
+68	79	services	4	{"id":4,"name":"ECS","code":"AmazonECS"}	{"name":"ECS","code":"AmazonECS"}	\N	\N
+69	80	services	5	{"id":5,"name":"EKS","code":"AmazonEKS"}	{"name":"EKS","code":"AmazonEKS"}	\N	\N
+51	62	services	2	{"name":"Lambda"}	{"name":"Lambda"}	\N	\N
+54	65	services	4	{"name":"Amazon ECS"}	{"name":"Amazon ECS"}	\N	\N
 2	3	directus_fields	1	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"test"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"test"}	\N	\N
 3	4	directus_collections	test	{"singleton":false,"collection":"test"}	{"singleton":false,"collection":"test"}	\N	\N
 4	5	directus_fields	2	{"sort":2,"interface":"input","special":null,"collection":"test","field":"testfield"}	{"sort":2,"interface":"input","special":null,"collection":"test","field":"testfield"}	\N	\N
+<<<<<<< HEAD
+=======
+57	68	regions	1	{"name":"US East (N. Virginia)","code":"\\tus-east-1"}	{"name":"US East (N. Virginia)","code":"\\tus-east-1"}	\N	\N
+60	71	regions	4	{"name":"EU (Frankfurt)\\t","code":" eu-central-1"}	{"name":"EU (Frankfurt)\\t","code":" eu-central-1"}	\N	\N
+62	73	regions	6	{"name":"Asia Pacific (Tokyo)\\t","code":" ap-northeast-1"}	{"name":"Asia Pacific (Tokyo)\\t","code":" ap-northeast-1"}	\N	\N
+5	9	directus_fields	3	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"simulations"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"simulations"}	\N	\N
+6	10	directus_collections	simulations	{"singleton":false,"collection":"simulations"}	{"singleton":false,"collection":"simulations"}	\N	\N
+7	11	directus_fields	4	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"resources"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"resources"}	\N	\N
+8	12	directus_collections	resources	{"singleton":false,"collection":"resources"}	{"singleton":false,"collection":"resources"}	\N	\N
+9	13	directus_fields	5	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"aws_prices"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"aws_prices"}	\N	\N
+10	14	directus_collections	aws_prices	{"singleton":false,"collection":"aws_prices"}	{"singleton":false,"collection":"aws_prices"}	\N	\N
+11	15	directus_fields	6	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"services"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"services"}	\N	\N
+12	16	directus_collections	services	{"singleton":false,"collection":"services"}	{"singleton":false,"collection":"services"}	\N	\N
+13	17	directus_fields	7	{"sort":2,"interface":"input","special":null,"collection":"services","field":"name"}	{"sort":2,"interface":"input","special":null,"collection":"services","field":"name"}	\N	\N
+14	18	directus_fields	8	{"sort":3,"interface":"input","special":null,"collection":"services","field":"code"}	{"sort":3,"interface":"input","special":null,"collection":"services","field":"code"}	\N	\N
+15	19	directus_fields	9	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"regions"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"regions"}	\N	\N
+16	20	directus_collections	regions	{"singleton":false,"collection":"regions"}	{"singleton":false,"collection":"regions"}	\N	\N
+17	21	directus_fields	10	{"sort":2,"interface":"input","special":null,"collection":"regions","field":"name"}	{"sort":2,"interface":"input","special":null,"collection":"regions","field":"name"}	\N	\N
+18	22	directus_fields	11	{"sort":3,"interface":"input","special":null,"collection":"regions","field":"code"}	{"sort":3,"interface":"input","special":null,"collection":"regions","field":"code"}	\N	\N
+25	35	directus_fields	16	{"sort":2,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"pricing","field":"service"}	{"sort":2,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"pricing","field":"service"}	\N	\N
+26	36	directus_fields	17	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"pricing","field":"region"}	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"pricing","field":"region"}	\N	\N
+27	37	directus_fields	18	{"sort":4,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"pricing","field":"instance_type"}	{"sort":4,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"pricing","field":"instance_type"}	\N	\N
+28	38	directus_fields	19	{"sort":5,"interface":"input","special":null,"collection":"pricing","field":"price_per_unit"}	{"sort":5,"interface":"input","special":null,"collection":"pricing","field":"price_per_unit"}	\N	\N
+29	39	directus_fields	20	{"sort":6,"interface":"input","special":null,"collection":"pricing","field":"unit"}	{"sort":6,"interface":"input","special":null,"collection":"pricing","field":"unit"}	\N	\N
+30	40	directus_fields	21	{"sort":7,"interface":"input","special":null,"collection":"pricing","field":"currency"}	{"sort":7,"interface":"input","special":null,"collection":"pricing","field":"currency"}	\N	\N
+31	41	directus_fields	22	{"sort":8,"interface":"input","special":null,"collection":"pricing","field":"updated_field"}	{"sort":8,"interface":"input","special":null,"collection":"pricing","field":"updated_field"}	\N	\N
+32	43	directus_fields	23	{"sort":8,"interface":"datetime","special":null,"collection":"pricing","field":"updated_at"}	{"sort":8,"interface":"datetime","special":null,"collection":"pricing","field":"updated_at"}	\N	\N
+33	44	directus_fields	24	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"simulations"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"simulations"}	\N	\N
+34	45	directus_collections	simulations	{"singleton":false,"collection":"simulations"}	{"singleton":false,"collection":"simulations"}	\N	\N
+45	56	directus_fields	34	{"sort":4,"interface":"list-m2m","special":["m2m"],"collection":"simulations","field":"entries"}	{"sort":4,"interface":"list-m2m","special":["m2m"],"collection":"simulations","field":"entries"}	\N	\N
+46	57	directus_fields	35	{"sort":1,"hidden":true,"field":"id","collection":"simulations_simulation_entries"}	{"sort":1,"hidden":true,"field":"id","collection":"simulations_simulation_entries"}	\N	\N
+47	58	directus_collections	simulations_simulation_entries	{"hidden":true,"icon":"import_export","collection":"simulations_simulation_entries"}	{"hidden":true,"icon":"import_export","collection":"simulations_simulation_entries"}	\N	\N
+48	59	directus_fields	36	{"sort":2,"hidden":true,"collection":"simulations_simulation_entries","field":"simulations_id"}	{"sort":2,"hidden":true,"collection":"simulations_simulation_entries","field":"simulations_id"}	\N	\N
+49	60	directus_fields	37	{"sort":3,"hidden":true,"collection":"simulations_simulation_entries","field":"simulation_entries_id"}	{"sort":3,"hidden":true,"collection":"simulations_simulation_entries","field":"simulation_entries_id"}	\N	\N
+58	69	regions	2	{"name":"US West (Oregon)","code":" us-west-2"}	{"name":"US West (Oregon)","code":" us-west-2"}	\N	\N
+59	70	regions	3	{"name":"EU (Ireland)\\t","code":" eu-west-1"}	{"name":"EU (Ireland)\\t","code":" eu-west-1"}	\N	\N
+61	72	regions	5	{"name":"EU (Paris)\\t","code":" eu-west-3"}	{"name":"EU (Paris)\\t","code":" eu-west-3"}	\N	\N
+63	74	regions	7	{"name":"Asia Pacific (Singapore)\\t","code":" ap-southeast-1"}	{"name":"Asia Pacific (Singapore)\\t","code":" ap-southeast-1"}	\N	\N
+19	29	directus_fields	12	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"instance_types"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"instance_types"}	\N	\N
+20	30	directus_collections	instance_types	{"singleton":false,"collection":"instance_types"}	{"singleton":false,"collection":"instance_types"}	\N	\N
+21	31	directus_fields	13	{"sort":2,"interface":"input","special":null,"collection":"instance_types","field":"name"}	{"sort":2,"interface":"input","special":null,"collection":"instance_types","field":"name"}	\N	\N
+22	32	directus_fields	14	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"instance_types","field":"service"}	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{name}}"},"collection":"instance_types","field":"service"}	\N	\N
+23	33	directus_fields	15	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"pricing"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"pricing"}	\N	\N
+24	34	directus_collections	pricing	{"singleton":false,"collection":"pricing"}	{"singleton":false,"collection":"pricing"}	\N	\N
+35	46	directus_fields	25	{"sort":2,"interface":"input","special":null,"collection":"simulations","field":"name"}	{"sort":2,"interface":"input","special":null,"collection":"simulations","field":"name"}	\N	\N
+36	47	directus_fields	26	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"simulations","field":"region"}	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"simulations","field":"region"}	\N	\N
+37	48	directus_fields	27	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"simulation_entries"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"simulation_entries"}	\N	\N
+38	49	directus_collections	simulation_entries	{"singleton":false,"collection":"simulation_entries"}	{"singleton":false,"collection":"simulation_entries"}	\N	\N
+39	50	directus_fields	28	{"sort":2,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"simulation_entries","field":"simulation"}	{"sort":2,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"simulation_entries","field":"simulation"}	\N	\N
+40	51	directus_fields	29	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"simulation_entries","field":"service"}	{"sort":3,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"simulation_entries","field":"service"}	\N	\N
+41	52	directus_fields	30	{"sort":4,"interface":"select-dropdown-m2o","special":["m2o"],"required":false,"collection":"simulation_entries","field":"instance_type"}	{"sort":4,"interface":"select-dropdown-m2o","special":["m2o"],"required":false,"collection":"simulation_entries","field":"instance_type"}	\N	\N
+42	53	directus_fields	31	{"sort":5,"interface":"input","special":null,"collection":"simulation_entries","field":"quantity"}	{"sort":5,"interface":"input","special":null,"collection":"simulation_entries","field":"quantity"}	\N	\N
+43	54	directus_fields	32	{"sort":6,"interface":"input","special":null,"collection":"simulation_entries","field":"unit"}	{"sort":6,"interface":"input","special":null,"collection":"simulation_entries","field":"unit"}	\N	\N
+44	55	directus_fields	33	{"sort":7,"interface":"input","special":null,"collection":"simulation_entries","field":"price_snapshot"}	{"sort":7,"interface":"input","special":null,"collection":"simulation_entries","field":"price_snapshot"}	\N	\N
+64	75	services	1	{"id":1,"name":"EC2","code":" AmazonEC2"}	{"name":"EC2","code":" AmazonEC2"}	\N	\N
+>>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1180,8 +1327,13 @@ COPY public.directus_roles (id, name, icon, description, parent) FROM stdin;
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin, next_token) FROM stdin;
+<<<<<<< HEAD
 Tz-F1PXFVAg5YbvLbITdQY-Dq-pQHNFmrtL9qi2hflofxtC54MTK12J6v6gwk96y	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.996+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	xi6TFRDzyRaQmgyrga027YLv51B7byKX2IXXzHxwsuOAizeIegUA97njAdtRYqn9
 xi6TFRDzyRaQmgyrga027YLv51B7byKX2IXXzHxwsuOAizeIegUA97njAdtRYqn9	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:43:54.995+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
+=======
+teLLqFvtS7L_UtLlgXUg5fIk3PR5kFpO8pBlfvgRDCK-huA_2ipCBfHfahGLmNIV	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:58:15.954+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	o3kiagHAI7OLZKLzmo6Wun4LZ14bZ_BbfV6RwsKYfxOeCyu7S2PBjkkDAoCbRnxv
+o3kiagHAI7OLZKLzmo6Wun4LZ14bZ_BbfV6RwsKYfxOeCyu7S2PBjkkDAoCbRnxv	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:58:05.954+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
+>>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1215,7 +1367,11 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides, text_direction) FROM stdin;
+<<<<<<< HEAD
 27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	\N	2025-10-01 13:43:55.016+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N	auto
+=======
+27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	\N	2025-10-01 14:58:05.964+00	/content/regions	default	\N	\N	t	\N	\N	\N	\N	\N	auto
+>>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1239,7 +1395,72 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: directus
 --
 
+<<<<<<< HEAD
 COPY public.test (id, testfield) FROM stdin;
+=======
+COPY public.instance_types (id, name, service) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pricing; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.pricing (id, service, region, instance_type, price_per_unit, unit, currency, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: regions; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.regions (id, name, code) FROM stdin;
+1	US East (N. Virginia)	\tus-east-1
+2	US West (Oregon)	 us-west-2
+3	EU (Ireland)\t	 eu-west-1
+4	EU (Frankfurt)\t	 eu-central-1
+5	EU (Paris)\t	 eu-west-3
+6	Asia Pacific (Tokyo)\t	 ap-northeast-1
+7	Asia Pacific (Singapore)\t	 ap-southeast-1
+\.
+
+
+--
+-- Data for Name: services; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.services (id, name, code) FROM stdin;
+1	EC2	 AmazonEC2
+3	RDS	 AmazonRDS
+6	S3	AmazonS3
+2	Lambda	 AWSLambda
+4	ECS	AmazonECS
+5	EKS	AmazonEKS
+\.
+
+
+--
+-- Data for Name: simulation_entries; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.simulation_entries (id, simulation, service, instance_type, quantity, unit, price_snapshot) FROM stdin;
+\.
+
+
+--
+-- Data for Name: simulations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.simulations (id, name, region) FROM stdin;
+\.
+
+
+--
+-- Data for Name: simulations_simulation_entries; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.simulations_simulation_entries (id, simulations_id, simulation_entries_id) FROM stdin;
+>>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1247,7 +1468,11 @@ COPY public.test (id, testfield) FROM stdin;
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('public.directus_activity_id_seq', 5, true);
+=======
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 80, true);
+>>>>>>> 76d0a939 (update db & add items)
 
 
 --
@@ -1275,7 +1500,7 @@ SELECT pg_catalog.setval('public.directus_permissions_id_seq', 1, false);
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, true);
 
 
 --
@@ -1289,7 +1514,11 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, false);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('public.directus_revisions_id_seq', 4, true);
+=======
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 69, true);
+>>>>>>> 76d0a939 (update db & add items)
 
 
 --
@@ -1310,7 +1539,53 @@ SELECT pg_catalog.setval('public.directus_webhooks_id_seq', 1, false);
 -- Name: test_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('public.test_id_seq', 1, false);
+=======
+SELECT pg_catalog.setval('public.instance_types_id_seq', 1, false);
+
+
+--
+-- Name: pricing_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.pricing_id_seq', 1, false);
+
+
+--
+-- Name: regions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.regions_id_seq', 7, true);
+
+
+--
+-- Name: services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.services_id_seq', 6, true);
+
+
+--
+-- Name: simulation_entries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.simulation_entries_id_seq', 1, false);
+
+
+--
+-- Name: simulations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.simulations_id_seq', 1, false);
+
+
+--
+-- Name: simulations_simulation_entries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.simulations_simulation_entries_id_seq', 1, false);
+>>>>>>> 76d0a939 (update db & add items)
 
 
 --
