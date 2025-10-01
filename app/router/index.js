@@ -3,34 +3,24 @@ import { createRouter, createWebHistory } from 'vue-router';
 // Définir les routes de l'application
 const routes = [
     {
-        path: '/',
-        name: 'Login',
-        component: () => import('../src/views/login/LoginView.vue')
-    },
-    {
-        path: '/register',
-        name: 'Register',
-        component: () => import('../src/views/register/RegisterView.vue')
-    },
-    {
-        path: '/form-trip',
-        name: 'Form trip',
-        component: () => import('../src/views/trip/FormTrip.vue')
+        path: '/results',
+        name: 'ResultsView',
+        component: () => import('../src/views/ResultsView.vue')
     },
     {
         path: "/dashboard",
-        name: "Dashboard",
-        component: () => import('@/views/HomeView.vue')
+        name: "DashboardView",
+        component: () => import('../src/views/DashboardView.vue')
     },
     {
-        path: '/hebergement',
-        name: 'Hebergement',
-        component: () => import('../src/views/HebergementComponent.vue')
+        path: '/history',
+        name: 'HistoryView',
+        component: () => import('../src/views/HistoryView.vue')
     },
     {
-        path: '/activite',
-        name: 'Activite',
-        component: () => import('../src/views/ActiviteComponent.vue')
+        path: '/simulate',
+        name: 'SimulateConfig',
+        component: () => import('../src/views/SimulateConfig.vue')
     }
 ];
 
