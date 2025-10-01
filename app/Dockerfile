@@ -1,10 +1,13 @@
-# app/Dockerfile
-FROM node:22
+FROM node:18-alpine
 
 WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+
 COPY . .
 
-RUN npm install --legacy-peer-deps
-
 EXPOSE 8080
-CMD ["npm", "run", "serve"]
+
+CMD ["yarn", "dev", "--host", "0.0.0.0", "--port", "8080"]
