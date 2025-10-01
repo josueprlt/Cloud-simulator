@@ -1,15 +1,22 @@
-import ChartComponent from "./components/ChartComponent"
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import DashboardPage from './pages/DashboardPage.jsx';
 
 function App() {
 
     return (
         <>
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
-            <ChartComponent/>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<DashboardPage/>}/>
+                    <Route path="/simulator" element={<DashboardPage/>}/>
+                    <Route path="/results" element={<DashboardPage/>}/>
+                    <Route path="/historic" element={<DashboardPage/>}/>
+                </Routes>
+            </Router>
         </>
     )
 }
 
 export default App
+
+
