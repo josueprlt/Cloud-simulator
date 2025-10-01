@@ -2209,4 +2209,3 @@ ALTER TABLE ONLY public.directus_webhooks
 --
 
 \unrestrict ZfLzQpRkR4hW9upgVK8kxKbA6CCObtWXEyIYdIAbTmOojWon2PgoA7mI3nIghHw
-
