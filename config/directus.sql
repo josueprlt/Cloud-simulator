@@ -2,10 +2,8 @@
 -- PostgreSQL database dump
 --
 
-\restrict ZfLzQpRkR4hW9upgVK8kxKbA6CCObtWXEyIYdIAbTmOojWon2PgoA7mI3nIghHw
-
--- Dumped from database version 15.14 (Debian 15.14-1.pgdg13+1)
--- Dumped by pg_dump version 15.14 (Debian 15.14-1.pgdg13+1)
+-- Dumped from database version 15.13 (Debian 15.13-1.pgdg120+1)
+-- Dumped by pg_dump version 15.13 (Debian 15.13-1.pgdg120+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -805,22 +803,23 @@ ALTER SEQUENCE public.directus_webhooks_id_seq OWNED BY public.directus_webhooks
 
 
 --
--- Name: test; Type: TABLE; Schema: public; Owner: directus
+-- Name: instance_types; Type: TABLE; Schema: public; Owner: directus
 --
 
-CREATE TABLE public.test (
+CREATE TABLE public.instance_types (
     id integer NOT NULL,
-    testfield character varying(255)
+    name character varying(255),
+    service integer
 );
 
 
-ALTER TABLE public.test OWNER TO directus;
+ALTER TABLE public.instance_types OWNER TO directus;
 
 --
--- Name: test_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+-- Name: instance_types_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
 --
 
-CREATE SEQUENCE public.test_id_seq
+CREATE SEQUENCE public.instance_types_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -829,13 +828,232 @@ CREATE SEQUENCE public.test_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.test_id_seq OWNER TO directus;
+ALTER TABLE public.instance_types_id_seq OWNER TO directus;
 
 --
--- Name: test_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+-- Name: instance_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
 --
 
-ALTER SEQUENCE public.test_id_seq OWNED BY public.test.id;
+ALTER SEQUENCE public.instance_types_id_seq OWNED BY public.instance_types.id;
+
+
+--
+-- Name: pricing; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.pricing (
+    id integer NOT NULL,
+    service integer,
+    region integer,
+    instance_type integer,
+    price_per_unit numeric(10,5),
+    unit character varying(255),
+    currency character varying(255),
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.pricing OWNER TO directus;
+
+--
+-- Name: pricing_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.pricing_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pricing_id_seq OWNER TO directus;
+
+--
+-- Name: pricing_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.pricing_id_seq OWNED BY public.pricing.id;
+
+
+--
+-- Name: regions; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.regions (
+    id integer NOT NULL,
+    name character varying(255),
+    code character varying(255)
+);
+
+
+ALTER TABLE public.regions OWNER TO directus;
+
+--
+-- Name: regions_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.regions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.regions_id_seq OWNER TO directus;
+
+--
+-- Name: regions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.regions_id_seq OWNED BY public.regions.id;
+
+
+--
+-- Name: services; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.services (
+    id integer NOT NULL,
+    name character varying(255),
+    code character varying(255)
+);
+
+
+ALTER TABLE public.services OWNER TO directus;
+
+--
+-- Name: services_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.services_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.services_id_seq OWNER TO directus;
+
+--
+-- Name: services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.services_id_seq OWNED BY public.services.id;
+
+
+--
+-- Name: simulation_entries; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.simulation_entries (
+    id integer NOT NULL,
+    simulation integer,
+    service integer,
+    instance_type integer,
+    quantity numeric(10,5),
+    unit character varying(255),
+    price_snapshot numeric(10,5)
+);
+
+
+ALTER TABLE public.simulation_entries OWNER TO directus;
+
+--
+-- Name: simulation_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.simulation_entries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.simulation_entries_id_seq OWNER TO directus;
+
+--
+-- Name: simulation_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.simulation_entries_id_seq OWNED BY public.simulation_entries.id;
+
+
+--
+-- Name: simulations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.simulations (
+    id integer NOT NULL,
+    name character varying(255),
+    region integer
+);
+
+
+ALTER TABLE public.simulations OWNER TO directus;
+
+--
+-- Name: simulations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.simulations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.simulations_id_seq OWNER TO directus;
+
+--
+-- Name: simulations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.simulations_id_seq OWNED BY public.simulations.id;
+
+
+--
+-- Name: simulations_simulation_entries; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.simulations_simulation_entries (
+    id integer NOT NULL,
+    simulations_id integer,
+    simulation_entries_id integer
+);
+
+
+ALTER TABLE public.simulations_simulation_entries OWNER TO directus;
+
+--
+-- Name: simulations_simulation_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.simulations_simulation_entries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.simulations_simulation_entries_id_seq OWNER TO directus;
+
+--
+-- Name: simulations_simulation_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.simulations_simulation_entries_id_seq OWNED BY public.simulations_simulation_entries.id;
 
 
 --
@@ -902,10 +1120,52 @@ ALTER TABLE ONLY public.directus_webhooks ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- Name: test id; Type: DEFAULT; Schema: public; Owner: directus
+-- Name: instance_types id; Type: DEFAULT; Schema: public; Owner: directus
 --
 
-ALTER TABLE ONLY public.test ALTER COLUMN id SET DEFAULT nextval('public.test_id_seq'::regclass);
+ALTER TABLE ONLY public.instance_types ALTER COLUMN id SET DEFAULT nextval('public.instance_types_id_seq'::regclass);
+
+
+--
+-- Name: pricing id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.pricing ALTER COLUMN id SET DEFAULT nextval('public.pricing_id_seq'::regclass);
+
+
+--
+-- Name: regions id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.regions ALTER COLUMN id SET DEFAULT nextval('public.regions_id_seq'::regclass);
+
+
+--
+-- Name: services id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.services ALTER COLUMN id SET DEFAULT nextval('public.services_id_seq'::regclass);
+
+
+--
+-- Name: simulation_entries id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulation_entries ALTER COLUMN id SET DEFAULT nextval('public.simulation_entries_id_seq'::regclass);
+
+
+--
+-- Name: simulations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations ALTER COLUMN id SET DEFAULT nextval('public.simulations_id_seq'::regclass);
+
+
+--
+-- Name: simulations_simulation_entries id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations_simulation_entries ALTER COLUMN id SET DEFAULT nextval('public.simulations_simulation_entries_id_seq'::regclass);
 
 
 --
@@ -937,8 +1197,6 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 3	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.76+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	1	http://localhost:8055
 4	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.769+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	test	http://localhost:8055
 5	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:12.851+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	2	http://localhost:8055
-<<<<<<< HEAD
-=======
 62	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:48:17.311+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	2	http://localhost:8055
 65	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:49:43.078+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	4	http://localhost:8055
 68	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:52:59.751+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	regions	1	http://localhost:8055
@@ -1005,7 +1263,9 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 78	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:55:05.303+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	2	http://localhost:8055
 79	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:55:13.374+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	4	http://localhost:8055
 80	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:55:22.167+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	services	5	http://localhost:8055
->>>>>>> 76d0a939 (update db & add items)
+81	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 15:10:28.088+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	test	http://localhost:8055
+82	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 15:10:28.097+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	1	http://localhost:8055
+83	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 15:10:28.099+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	2	http://localhost:8055
 \.
 
 
@@ -1014,7 +1274,13 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 --
 
 COPY public.directus_collections (collection, icon, note, display_template, hidden, singleton, translations, archive_field, archive_app_filter, archive_value, unarchive_value, sort_field, accountability, color, item_duplication_fields, sort, "group", collapse, preview_url, versioning) FROM stdin;
-test	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+services	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+regions	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+instance_types	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+pricing	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+simulations	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+simulation_entries	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+simulations_simulation_entries	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -1047,8 +1313,37 @@ COPY public.directus_extensions (enabled, id, folder, source, bundle) FROM stdin
 --
 
 COPY public.directus_fields (id, collection, field, special, interface, options, display, display_options, readonly, hidden, sort, width, translations, note, conditions, required, "group", validation, validation_message) FROM stdin;
-1	test	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
-2	test	testfield	\N	input	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+6	services	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+7	services	name	\N	input	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+8	services	code	\N	input	\N	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
+9	regions	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+10	regions	name	\N	input	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+11	regions	code	\N	input	\N	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
+12	instance_types	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+13	instance_types	name	\N	input	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+14	instance_types	service	m2o	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
+15	pricing	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+16	pricing	service	m2o	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+17	pricing	region	m2o	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
+18	pricing	instance_type	m2o	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+19	pricing	price_per_unit	\N	input	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+20	pricing	unit	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+21	pricing	currency	\N	input	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+23	pricing	updated_at	\N	datetime	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
+24	simulations	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+25	simulations	name	\N	input	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+26	simulations	region	m2o	select-dropdown-m2o	\N	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
+27	simulation_entries	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+28	simulation_entries	simulation	m2o	select-dropdown-m2o	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+29	simulation_entries	service	m2o	select-dropdown-m2o	\N	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
+30	simulation_entries	instance_type	m2o	select-dropdown-m2o	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+31	simulation_entries	quantity	\N	input	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+32	simulation_entries	unit	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+33	simulation_entries	price_snapshot	\N	input	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+34	simulations	entries	m2m	list-m2m	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+35	simulations_simulation_entries	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+36	simulations_simulation_entries	simulations_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+37	simulations_simulation_entries	simulation_entries_id	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -1230,6 +1525,16 @@ COPY public.directus_presets (id, bookmark, "user", role, collection, search, la
 --
 
 COPY public.directus_relations (id, many_collection, many_field, one_collection, one_field, one_collection_field, one_allowed_collections, junction_field, sort_field, one_deselect_action) FROM stdin;
+1	instance_types	service	services	\N	\N	\N	\N	\N	nullify
+2	pricing	service	services	\N	\N	\N	\N	\N	nullify
+3	pricing	region	regions	\N	\N	\N	\N	\N	nullify
+4	pricing	instance_type	instance_types	\N	\N	\N	\N	\N	nullify
+5	simulations	region	regions	\N	\N	\N	\N	\N	nullify
+6	simulation_entries	simulation	simulations	\N	\N	\N	\N	\N	nullify
+7	simulation_entries	service	services	\N	\N	\N	\N	\N	nullify
+8	simulation_entries	instance_type	instance_types	\N	\N	\N	\N	\N	nullify
+9	simulations_simulation_entries	simulation_entries_id	simulation_entries	\N	\N	\N	simulations_id	\N	nullify
+10	simulations_simulation_entries	simulations_id	simulations	entries	\N	\N	simulation_entries_id	\N	nullify
 \.
 
 
@@ -1254,8 +1559,6 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 2	3	directus_fields	1	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"test"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"test"}	\N	\N
 3	4	directus_collections	test	{"singleton":false,"collection":"test"}	{"singleton":false,"collection":"test"}	\N	\N
 4	5	directus_fields	2	{"sort":2,"interface":"input","special":null,"collection":"test","field":"testfield"}	{"sort":2,"interface":"input","special":null,"collection":"test","field":"testfield"}	\N	\N
-<<<<<<< HEAD
-=======
 57	68	regions	1	{"name":"US East (N. Virginia)","code":"\\tus-east-1"}	{"name":"US East (N. Virginia)","code":"\\tus-east-1"}	\N	\N
 60	71	regions	4	{"name":"EU (Frankfurt)\\t","code":" eu-central-1"}	{"name":"EU (Frankfurt)\\t","code":" eu-central-1"}	\N	\N
 62	73	regions	6	{"name":"Asia Pacific (Tokyo)\\t","code":" ap-northeast-1"}	{"name":"Asia Pacific (Tokyo)\\t","code":" ap-northeast-1"}	\N	\N
@@ -1309,7 +1612,6 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 43	54	directus_fields	32	{"sort":6,"interface":"input","special":null,"collection":"simulation_entries","field":"unit"}	{"sort":6,"interface":"input","special":null,"collection":"simulation_entries","field":"unit"}	\N	\N
 44	55	directus_fields	33	{"sort":7,"interface":"input","special":null,"collection":"simulation_entries","field":"price_snapshot"}	{"sort":7,"interface":"input","special":null,"collection":"simulation_entries","field":"price_snapshot"}	\N	\N
 64	75	services	1	{"id":1,"name":"EC2","code":" AmazonEC2"}	{"name":"EC2","code":" AmazonEC2"}	\N	\N
->>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1327,13 +1629,8 @@ COPY public.directus_roles (id, name, icon, description, parent) FROM stdin;
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin, next_token) FROM stdin;
-<<<<<<< HEAD
-Tz-F1PXFVAg5YbvLbITdQY-Dq-pQHNFmrtL9qi2hflofxtC54MTK12J6v6gwk96y	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.996+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	xi6TFRDzyRaQmgyrga027YLv51B7byKX2IXXzHxwsuOAizeIegUA97njAdtRYqn9
-xi6TFRDzyRaQmgyrga027YLv51B7byKX2IXXzHxwsuOAizeIegUA97njAdtRYqn9	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:43:54.995+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
-=======
-teLLqFvtS7L_UtLlgXUg5fIk3PR5kFpO8pBlfvgRDCK-huA_2ipCBfHfahGLmNIV	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 14:58:15.954+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	o3kiagHAI7OLZKLzmo6Wun4LZ14bZ_BbfV6RwsKYfxOeCyu7S2PBjkkDAoCbRnxv
-o3kiagHAI7OLZKLzmo6Wun4LZ14bZ_BbfV6RwsKYfxOeCyu7S2PBjkkDAoCbRnxv	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:58:05.954+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
->>>>>>> 76d0a939 (update db & add items)
+o3kiagHAI7OLZKLzmo6Wun4LZ14bZ_BbfV6RwsKYfxOeCyu7S2PBjkkDAoCbRnxv	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 15:10:25.251+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	p_iswvBH48-3nJsTVvj6YyFSaVD7e9P2vPJTWnZUVewfvFJFRFIGuntfIfpw0l9e
+p_iswvBH48-3nJsTVvj6YyFSaVD7e9P2vPJTWnZUVewfvFJFRFIGuntfIfpw0l9e	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 15:10:15.25+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
 \.
 
 
@@ -1367,11 +1664,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides, text_direction) FROM stdin;
-<<<<<<< HEAD
-27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	\N	2025-10-01 13:43:55.016+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N	auto
-=======
-27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	\N	2025-10-01 14:58:05.964+00	/content/regions	default	\N	\N	t	\N	\N	\N	\N	\N	auto
->>>>>>> 76d0a939 (update db & add items)
+27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	\N	2025-10-01 15:10:15.29+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N	auto
 \.
 
 
@@ -1392,12 +1685,9 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 
 
 --
--- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: directus
+-- Data for Name: instance_types; Type: TABLE DATA; Schema: public; Owner: directus
 --
 
-<<<<<<< HEAD
-COPY public.test (id, testfield) FROM stdin;
-=======
 COPY public.instance_types (id, name, service) FROM stdin;
 \.
 
@@ -1460,7 +1750,6 @@ COPY public.simulations (id, name, region) FROM stdin;
 --
 
 COPY public.simulations_simulation_entries (id, simulations_id, simulation_entries_id) FROM stdin;
->>>>>>> 76d0a939 (update db & add items)
 \.
 
 
@@ -1468,18 +1757,14 @@ COPY public.simulations_simulation_entries (id, simulations_id, simulation_entri
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 5, true);
-=======
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 80, true);
->>>>>>> 76d0a939 (update db & add items)
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 83, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 2, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 37, true);
 
 
 --
@@ -1514,11 +1799,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, false);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 4, true);
-=======
 SELECT pg_catalog.setval('public.directus_revisions_id_seq', 69, true);
->>>>>>> 76d0a939 (update db & add items)
 
 
 --
@@ -1536,12 +1817,9 @@ SELECT pg_catalog.setval('public.directus_webhooks_id_seq', 1, false);
 
 
 --
--- Name: test_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+-- Name: instance_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('public.test_id_seq', 1, false);
-=======
 SELECT pg_catalog.setval('public.instance_types_id_seq', 1, false);
 
 
@@ -1585,7 +1863,6 @@ SELECT pg_catalog.setval('public.simulations_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.simulations_simulation_entries_id_seq', 1, false);
->>>>>>> 76d0a939 (update db & add items)
 
 
 --
@@ -1853,11 +2130,59 @@ ALTER TABLE ONLY public.directus_webhooks
 
 
 --
--- Name: test test_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+-- Name: instance_types instance_types_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
 --
 
-ALTER TABLE ONLY public.test
-    ADD CONSTRAINT test_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.instance_types
+    ADD CONSTRAINT instance_types_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pricing pricing_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.pricing
+    ADD CONSTRAINT pricing_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: regions regions_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.regions
+    ADD CONSTRAINT regions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: services services_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.services
+    ADD CONSTRAINT services_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simulation_entries simulation_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulation_entries
+    ADD CONSTRAINT simulation_entries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simulations simulations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations
+    ADD CONSTRAINT simulations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simulations_simulation_entries simulations_simulation_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations_simulation_entries
+    ADD CONSTRAINT simulations_simulation_entries_pkey PRIMARY KEY (id);
 
 
 --
@@ -2205,7 +2530,86 @@ ALTER TABLE ONLY public.directus_webhooks
 
 
 --
+-- Name: instance_types instance_types_service_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.instance_types
+    ADD CONSTRAINT instance_types_service_foreign FOREIGN KEY (service) REFERENCES public.services(id) ON DELETE SET NULL;
+
+
+--
+-- Name: pricing pricing_instance_type_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.pricing
+    ADD CONSTRAINT pricing_instance_type_foreign FOREIGN KEY (instance_type) REFERENCES public.instance_types(id) ON DELETE SET NULL;
+
+
+--
+-- Name: pricing pricing_region_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.pricing
+    ADD CONSTRAINT pricing_region_foreign FOREIGN KEY (region) REFERENCES public.regions(id) ON DELETE SET NULL;
+
+
+--
+-- Name: pricing pricing_service_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.pricing
+    ADD CONSTRAINT pricing_service_foreign FOREIGN KEY (service) REFERENCES public.services(id) ON DELETE SET NULL;
+
+
+--
+-- Name: simulation_entries simulation_entries_instance_type_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulation_entries
+    ADD CONSTRAINT simulation_entries_instance_type_foreign FOREIGN KEY (instance_type) REFERENCES public.instance_types(id) ON DELETE SET NULL;
+
+
+--
+-- Name: simulation_entries simulation_entries_service_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulation_entries
+    ADD CONSTRAINT simulation_entries_service_foreign FOREIGN KEY (service) REFERENCES public.services(id) ON DELETE SET NULL;
+
+
+--
+-- Name: simulation_entries simulation_entries_simulation_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulation_entries
+    ADD CONSTRAINT simulation_entries_simulation_foreign FOREIGN KEY (simulation) REFERENCES public.simulations(id) ON DELETE SET NULL;
+
+
+--
+-- Name: simulations simulations_region_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations
+    ADD CONSTRAINT simulations_region_foreign FOREIGN KEY (region) REFERENCES public.regions(id) ON DELETE SET NULL;
+
+
+--
+-- Name: simulations_simulation_entries simulations_simulation_entries_simulation_entries_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations_simulation_entries
+    ADD CONSTRAINT simulations_simulation_entries_simulation_entries_id_foreign FOREIGN KEY (simulation_entries_id) REFERENCES public.simulation_entries(id) ON DELETE SET NULL;
+
+
+--
+-- Name: simulations_simulation_entries simulations_simulation_entries_simulations_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.simulations_simulation_entries
+    ADD CONSTRAINT simulations_simulation_entries_simulations_id_foreign FOREIGN KEY (simulations_id) REFERENCES public.simulations(id) ON DELETE SET NULL;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ZfLzQpRkR4hW9upgVK8kxKbA6CCObtWXEyIYdIAbTmOojWon2PgoA7mI3nIghHw
