@@ -6,27 +6,31 @@ services:
     ports:
       - "8055:8055"
     environment:
-      KEY: supersecretkey
-      SECRET: anothersecretkey
       ADMIN_EMAIL: admin@example.com
       ADMIN_PASSWORD: admin123
       DB_CLIENT: pg
-      DB_HOST: postgres
-      DB_PORT: 5432
       DB_DATABASE: directus
-      DB_USER: directus
+      DB_HOST: postgres
       DB_PASSWORD: directus
+      DB_PORT: 5432
+      DB_USER: directus
+      KEY: supersecretkey
+      SECRET: anothersecretkey
     depends_on:
       - postgres
-  
+
   frontend:
     build:
-      context: ../app
+      context: ./app
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
     volumes:
       - ./app:/app
+    depends_on:
+      - directus
+    environment:
+      VITE_DIRECTUS_URL: "http://directus:8055"
 
   postgres:
     image: postgres:15
@@ -36,6 +40,10 @@ services:
       POSTGRES_PASSWORD: directus
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./config/directus.sql:/docker-entrypoint-initdb.d/directus.sql
 
 volumes:
   pgdata:
+
+
+
