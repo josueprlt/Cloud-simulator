@@ -22,7 +22,7 @@ WORKDIR /app
 COPY . .
 
 # Installer les dépendances en utilisant Composer
-RUN composer install --no-interaction --optimize-autoloader
+RUN composer install --no-interaction --optimize-autoloader --no-scripts
 
 # Exposer le port pour l'application
 EXPOSE 8000
