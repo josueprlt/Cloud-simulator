@@ -498,7 +498,10 @@ const selectTemplate = (templateKey) => {
 
           {editingResource && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <div className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="bg-white rounded-xl p-6 max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                <div className="grid md:grid-cols-3 gap-6">
+                  {/* Formulaire principal - 2/3 */}
+                  <div className="md:col-span-2">
                 <h3 className="text-2xl font-bold mb-6">
                   {editingResource.id.startsWith('temp-') && !resources.find(r => r.id === editingResource.id) 
                     ? "Ajouter une ressource" 
@@ -617,6 +620,76 @@ const selectTemplate = (templateKey) => {
                   >
                     Enregistrer
                   </button>
+                </div>
+                  </div>
+
+                  {/* Panel d'aide - 1/3 */}
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+                    <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                      <span className="text-blue-600">💡</span>
+                      Guide des types d'instance
+                    </h4>
+
+                    <div className="space-y-3 text-sm">
+                      <div className="bg-white rounded-lg p-3 border border-blue-100">
+                        <p className="font-semibold text-gray-800 mb-1">📊 Comprendre les specs</p>
+                        <ul className="text-gray-600 space-y-1 text-xs">
+                          <li><strong>vCPU</strong> : Processeurs virtuels</li>
+                          <li><strong>GiB</strong> : Mémoire RAM (1 GiB ≈ 1.07 GB)</li>
+                          <li><strong>Storage</strong> : Disque de stockage</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-white rounded-lg p-3 border border-blue-100">
+                        <p className="font-semibold text-gray-800 mb-2">🏷️ Familles d'instances</p>
+                        <div className="space-y-2 text-xs">
+                          <div>
+                            <span className="font-bold text-orange-600">C</span>
+                            <span className="text-gray-600"> (Compute) - CPU optimisé</span>
+                            <p className="text-gray-500 ml-2">→ Applications gourmandes en calcul</p>
+                          </div>
+                          <div>
+                            <span className="font-bold text-green-600">M</span>
+                            <span className="text-gray-600"> (Memory) - Équilibré</span>
+                            <p className="text-gray-500 ml-2">→ Usage général, web apps</p>
+                          </div>
+                          <div>
+                            <span className="font-bold text-blue-600">R</span>
+                            <span className="text-gray-600"> (RAM) - Mémoire optimisée</span>
+                            <p className="text-gray-500 ml-2">→ Bases de données, cache</p>
+                          </div>
+                          <div>
+                            <span className="font-bold text-purple-600">I</span>
+                            <span className="text-gray-600"> (I/O) - Stockage optimisé</span>
+                            <p className="text-gray-500 ml-2">→ Gros volumes de données</p>
+                          </div>
+                          <div>
+                            <span className="font-bold text-pink-600">X</span>
+                            <span className="text-gray-600"> (Extreme) - Très haute mémoire</span>
+                            <p className="text-gray-500 ml-2">→ Bases SAP, analytics</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-white rounded-lg p-3 border border-blue-100">
+                        <p className="font-semibold text-gray-800 mb-1">📏 Tailles courantes</p>
+                        <div className="text-xs text-gray-600 space-y-1">
+                          <div><strong>nano/micro</strong> : Tests, dev</div>
+                          <div><strong>small/medium</strong> : Apps légères</div>
+                          <div><strong>large/xlarge</strong> : Production standard</div>
+                          <div><strong>2xlarge+</strong> : Haute performance</div>
+                          <div><strong>metal</strong> : Serveur physique complet</div>
+                        </div>
+                      </div>
+
+                      <div className="bg-gradient-to-r from-orange-100 to-orange-50 rounded-lg p-3 border border-orange-200">
+                        <p className="font-semibold text-orange-800 text-xs">💰 Conseil économique</p>
+                        <p className="text-xs text-orange-700 mt-1">
+                          Commencez petit (t3.small, t3.medium) puis augmentez selon vos besoins réels.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
