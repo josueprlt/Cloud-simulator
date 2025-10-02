@@ -14,7 +14,7 @@ export default function SimulationPage() {
         <div className="max-w-5xl mx-auto space-y-10">
 
             {/* Simulation Form */}
-            <section className="bg-white rounded-2xl shadow-md border border-gray-100 max-h-[50vh] overflow-hidden">
+            <section className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
                 <FormComponent />
             </section>
 

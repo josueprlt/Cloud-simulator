@@ -4,6 +4,7 @@ import { Loader2, ArrowRight, TrendingDown, TrendingUp, Download, FileText } fro
 import { DirectusDatas } from '../services/getDatas';
 import { exportComparisonToCSV, exportComparisonToPDF } from '../utils/export';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import Header from './HeaderPart';
 
 const COLORS = ['#FB8C00', '#4CAF50', '#2196F3', '#F44336', '#9C27B0', '#FF9800'];
 
@@ -173,6 +174,8 @@ export default function ComparisonPage() {
   }
 
   return (
+      <>  <Header />
+
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">
@@ -420,5 +423,6 @@ export default function ComparisonPage() {
         )}
       </div>
     </div>
+    </>
   );
 }

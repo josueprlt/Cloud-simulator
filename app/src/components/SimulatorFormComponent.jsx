@@ -274,7 +274,7 @@ export default function SimulationWizard() {
       alert('Veuillez donner un nom à la simulation avant d\'exporter');
       return;
     }
-    x
+    
     const enrichedResources = resources.map(r => ({
       ...r,
       service: services.find(s => s.id === r.service) || r.service,

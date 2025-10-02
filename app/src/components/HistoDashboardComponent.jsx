@@ -1,5 +1,6 @@
 import React from "react";
 import {IconArrowClockWise} from "./icons.jsx";
+import { Link } from 'react-router-dom';
 
 export function HistoDashboardComponent({simulations, loading}) {
     return (
@@ -42,9 +43,11 @@ export function HistoDashboardComponent({simulations, loading}) {
                 </div>
             </div>
             <div className="flex justify-center">
-                <a className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white font-bold py-2 px-4 rounded"
-                   href="/history">Voir plus</a>
+                <Link className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white text-center font-bold py-2 px-4 rounded" to="/history">
+                Voir plus
+                </Link>
             </div>
+           
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import { createDirectus, rest, staticToken } from '@directus/sdk';
 
 const VITE_DIRECTUS_URL = import.meta.env.VITE_DIRECTUS_URL,
-    VITE_DIRECTUS_TOKEN = "zk053KxbuUhsbmwLzDeuox4lmQsV_hh7"
+    VITE_DIRECTUS_TOKEN = "-_XZSlDdjJBcZb507A9-8QJKMCi1xQYh"
 
 export const directus = createDirectus(VITE_DIRECTUS_URL)
     .with(staticToken(VITE_DIRECTUS_TOKEN))

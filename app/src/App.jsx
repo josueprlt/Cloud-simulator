@@ -4,6 +4,7 @@ import HistoryPage from './pages/HistoryPage.jsx';
 import SimulationPage from './pages/SimulationPage.jsx';
 import ComparisonPage from './pages/ComparaisonPage.jsx';
 
+
 function App() {
 
     return (

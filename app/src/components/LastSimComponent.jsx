@@ -2,7 +2,6 @@ import React from "react";
 import {IconArrowClockWise, IconSimulation} from "./icons.jsx";
 
 export function LastSimComponent({simulation, loading}) {
-    console.log(simulation)
     return (
         <div className="p-6 space-y-6">
             <h3 className="text-xl text-[#808080] font-bold">Dernière simulation</h3>
