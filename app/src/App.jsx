@@ -5,12 +5,9 @@ function App() {
 
     return (
         <>
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
+            <FormComponent />
             <div className="flex justify-center">
                 <div className="w-1/2 bg-white p-4">
-                    <FormComponent />
                 </div>
             </div>
             <ChartComponent/>
