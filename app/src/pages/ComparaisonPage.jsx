@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import { Loader2, ArrowRight, TrendingDown, TrendingUp, Download, FileText } from 'lucide-react';
 import { DirectusDatas } from '../services/getDatas';
 import { exportComparisonToCSV, exportComparisonToPDF } from '../utils/export';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import Header from './HeaderPart';
+import { calculateComparisonMetrics, SERVICE_CATEGORIES } from '../utils/serviceConfig';
 
 const COLORS = ['#FB8C00', '#4CAF50', '#2196F3', '#F44336', '#9C27B0', '#FF9800'];
 
@@ -255,12 +256,46 @@ const getPerformanceMetrics = (resources) => {
         </div>
 
         {/* Résultats de la comparaison */}
-        {sim1Data && sim2Data && (
+        {sim1Data && sim2Data && (() => {
+          const metrics = calculateComparisonMetrics(sim1Data.resources, sim2Data.resources, services);
+
+          return (
           <>
+            {/* Métriques globales */}
+            <div className="bg-gradient-to-r from-[#FB8C00]/10 to-blue-50 rounded-xl shadow-md p-6 mb-6 border-2 border-[#FB8C00]/20">
+              <h2 className="text-xl font-semibold mb-4">💡 Analyse Comparative</h2>
+              <div className="grid md:grid-cols-4 gap-4">
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <p className="text-sm text-gray-600 mb-1">Simulation la moins chère</p>
+                  <p className="text-lg font-bold text-[#FB8C00]">
+                    {metrics.cheaperSimulation === 1 ? sim1Data.simulation.name : sim2Data.simulation.name}
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <p className="text-sm text-gray-600 mb-1">Économies potentielles</p>
+                  <p className={`text-2xl font-bold ${metrics.savings > 0 ? 'text-green-600' : metrics.savings < 0 ? 'text-red-600' : 'text-gray-600'}`}>
+                    {metrics.savings > 0 ? '-' : metrics.savings < 0 ? '+' : ''}${Math.abs(metrics.savings).toFixed(2)}
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <p className="text-sm text-gray-600 mb-1">Pourcentage d'économie</p>
+                  <p className={`text-2xl font-bold ${metrics.savingsPercent > 0 ? 'text-green-600' : metrics.savingsPercent < 0 ? 'text-red-600' : 'text-gray-600'}`}>
+                    {metrics.savingsPercent > 0 ? '-' : metrics.savingsPercent < 0 ? '+' : ''}{Math.abs(metrics.savingsPercent).toFixed(1)}%
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <p className="text-sm text-gray-600 mb-1">Catégories comparées</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {new Set([...Object.keys(metrics.sim1Grouped), ...Object.keys(metrics.sim2Grouped)]).size}
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Résumé des coûts */}
             <div className="bg-white rounded-xl shadow-md p-6 mb-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold">Comparaison des Coûts</h2>
+                <h2 className="text-xl font-semibold">💰 Comparaison des Coûts Totaux</h2>
                 <div className="flex gap-2">
                   <button
                     onClick={handleExportCSV}
@@ -333,67 +368,476 @@ const getPerformanceMetrics = (resources) => {
               </div>
             </div>
 
-            {/* Comparaison des performances */}
+            {/* Comparaison par catégorie de service */}
             <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-              <h2 className="text-xl font-semibold mb-4">Comparaison des Performances</h2>
-              
+              <h2 className="text-xl font-semibold mb-4">📊 Coûts par Catégorie de Service</h2>
+
+              {(() => {
+                const metrics = calculateComparisonMetrics(sim1Data.resources, sim2Data.resources, services);
+                const allCategories = new Set([
+                  ...Object.keys(metrics.sim1Grouped),
+                  ...Object.keys(metrics.sim2Grouped)
+                ]);
+
+                return (
+                  <div className="space-y-4">
+                    {Array.from(allCategories).map(category => {
+                      const categoryConfig = SERVICE_CATEGORIES[category] || SERVICE_CATEGORIES['Compute'];
+                      const sim1Category = metrics.sim1Grouped[category];
+                      const sim2Category = metrics.sim2Grouped[category];
+                      const sim1Cost = sim1Category?.totalCost || 0;
+                      const sim2Cost = sim2Category?.totalCost || 0;
+                      const diff = sim2Cost - sim1Cost;
+
+                      return (
+                        <div key={category} className={`border ${categoryConfig.borderColor} rounded-lg p-4`}>
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className={`font-bold ${categoryConfig.textColor} text-lg`}>
+                              {categoryConfig.name}
+                            </h3>
+                            {diff !== 0 && (
+                              <span className={`text-sm font-semibold ${diff < 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                {diff < 0 ? '↓' : '↑'} ${Math.abs(diff).toFixed(2)}
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="grid md:grid-cols-2 gap-4">
+                            {/* Simulation 1 */}
+                            <div className={`${categoryConfig.bgColor} p-3 rounded-lg`}>
+                              <p className="text-sm font-medium text-gray-700 mb-2">
+                                {sim1Data.simulation.name}
+                              </p>
+                              <p className="text-2xl font-bold text-gray-900 mb-2">
+                                ${sim1Cost.toFixed(2)} <span className="text-sm font-normal text-gray-600">/mois</span>
+                              </p>
+                              {sim1Category && (
+                                <div className="text-xs text-gray-600 space-y-1">
+                                  {sim1Category.resources.map((r, idx) => (
+                                    <div key={idx} className="flex justify-between">
+                                      <span>{r.serviceConfig.icon} {r.resource_name}</span>
+                                      <span className="font-medium">${parseFloat(r.monthly_cost).toFixed(2)}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                              {!sim1Category && (
+                                <p className="text-xs text-gray-500 italic">Aucune ressource</p>
+                              )}
+                            </div>
+
+                            {/* Simulation 2 */}
+                            <div className={`${categoryConfig.bgColor} p-3 rounded-lg`}>
+                              <p className="text-sm font-medium text-gray-700 mb-2">
+                                {sim2Data.simulation.name}
+                              </p>
+                              <p className="text-2xl font-bold text-gray-900 mb-2">
+                                ${sim2Cost.toFixed(2)} <span className="text-sm font-normal text-gray-600">/mois</span>
+                              </p>
+                              {sim2Category && (
+                                <div className="text-xs text-gray-600 space-y-1">
+                                  {sim2Category.resources.map((r, idx) => (
+                                    <div key={idx} className="flex justify-between">
+                                      <span>{r.serviceConfig.icon} {r.resource_name}</span>
+                                      <span className="font-medium">${parseFloat(r.monthly_cost).toFixed(2)}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                              {!sim2Category && (
+                                <p className="text-xs text-gray-500 italic">Aucune ressource</p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
+            </div>
+
+            {/* Comparaison détaillée ressource par ressource */}
+            <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+              <h2 className="text-xl font-semibold mb-4">🔍 Comparaison Détaillée par Service</h2>
+
+              {(() => {
+                const metrics = calculateComparisonMetrics(sim1Data.resources, sim2Data.resources, services);
+                const allCategories = new Set([
+                  ...Object.keys(metrics.sim1Grouped),
+                  ...Object.keys(metrics.sim2Grouped)
+                ]);
+
+                return Array.from(allCategories).map(category => {
+                  const categoryConfig = SERVICE_CATEGORIES[category] || SERVICE_CATEGORIES['Compute'];
+                  const sim1Resources = metrics.sim1Grouped[category]?.resources || [];
+                  const sim2Resources = metrics.sim2Grouped[category]?.resources || [];
+
+                  // Grouper par type de service
+                  const serviceGroups = {};
+
+                  [...sim1Resources, ...sim2Resources].forEach(r => {
+                    const serviceCode = r.serviceConfig?.icon + ' ' + r.serviceName;
+                    if (!serviceGroups[serviceCode]) {
+                      serviceGroups[serviceCode] = { sim1: [], sim2: [] };
+                    }
+                  });
+
+                  sim1Resources.forEach(r => {
+                    const serviceCode = r.serviceConfig?.icon + ' ' + r.serviceName;
+                    serviceGroups[serviceCode].sim1.push(r);
+                  });
+
+                  sim2Resources.forEach(r => {
+                    const serviceCode = r.serviceConfig?.icon + ' ' + r.serviceName;
+                    serviceGroups[serviceCode].sim2.push(r);
+                  });
+
+                  return (
+                    <div key={category} className="mb-6">
+                      <h3 className={`font-bold ${categoryConfig.textColor} text-lg mb-3`}>
+                        {categoryConfig.name}
+                      </h3>
+
+                      {Object.entries(serviceGroups).map(([serviceName, data]) => (
+                        <div key={serviceName} className={`border ${categoryConfig.borderColor} rounded-lg p-4 mb-3`}>
+                          <h4 className="font-semibold text-gray-800 mb-3">{serviceName}</h4>
+
+                          <div className="overflow-x-auto">
+                            <table className="w-full text-sm">
+                              <thead className={`${categoryConfig.bgColor}`}>
+                                <tr>
+                                  <th className="text-left p-2 font-medium">Nom</th>
+                                  <th className="text-left p-2 font-medium">Type</th>
+                                  <th className="text-center p-2 font-medium">vCPU</th>
+                                  <th className="text-center p-2 font-medium">RAM</th>
+                                  <th className="text-center p-2 font-medium">Quantité</th>
+                                  <th className="text-right p-2 font-medium">Coût/mois</th>
+                                  <th className="text-center p-2 font-medium">Simulation</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {data.sim1.map((resource, idx) => {
+                                  const instanceType = instanceTypes.find(it => it.id === resource.instance_type);
+                                  const config = typeof resource.configuration === 'string'
+                                    ? JSON.parse(resource.configuration)
+                                    : resource.configuration;
+
+                                  return (
+                                    <tr key={`sim1-${idx}`} className="border-t border-gray-200 hover:bg-blue-50">
+                                      <td className="p-2">{resource.resource_name}</td>
+                                      <td className="p-2 text-gray-600">{instanceType?.name || '-'}</td>
+                                      <td className="p-2 text-center text-gray-600">{instanceType?.vcpu || '-'}</td>
+                                      <td className="p-2 text-center text-gray-600">{instanceType?.memory || '-'}</td>
+                                      <td className="p-2 text-center">{config?.quantity || 1}</td>
+                                      <td className="p-2 text-right font-bold text-blue-600">
+                                        ${parseFloat(resource.monthly_cost).toFixed(2)}
+                                      </td>
+                                      <td className="p-2 text-center">
+                                        <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">
+                                          {sim1Data.simulation.name}
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+
+                                {data.sim2.map((resource, idx) => {
+                                  const instanceType = instanceTypes.find(it => it.id === resource.instance_type);
+                                  const config = typeof resource.configuration === 'string'
+                                    ? JSON.parse(resource.configuration)
+                                    : resource.configuration;
+
+                                  return (
+                                    <tr key={`sim2-${idx}`} className="border-t border-gray-200 hover:bg-orange-50">
+                                      <td className="p-2">{resource.resource_name}</td>
+                                      <td className="p-2 text-gray-600">{instanceType?.name || '-'}</td>
+                                      <td className="p-2 text-center text-gray-600">{instanceType?.vcpu || '-'}</td>
+                                      <td className="p-2 text-center text-gray-600">{instanceType?.memory || '-'}</td>
+                                      <td className="p-2 text-center">{config?.quantity || 1}</td>
+                                      <td className="p-2 text-right font-bold text-[#FB8C00]">
+                                        ${parseFloat(resource.monthly_cost).toFixed(2)}
+                                      </td>
+                                      <td className="p-2 text-center">
+                                        <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs">
+                                          {sim2Data.simulation.name}
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+
+                                {/* Ligne de total pour ce service */}
+                                <tr className={`${categoryConfig.bgColor} font-bold`}>
+                                  <td colSpan="5" className="p-2 text-right">Total {serviceName}</td>
+                                  <td className="p-2 text-right">
+                                    <div className="space-y-1">
+                                      <div className="text-blue-600">
+                                        ${data.sim1.reduce((sum, r) => sum + parseFloat(r.monthly_cost), 0).toFixed(2)}
+                                      </div>
+                                      <div className="text-[#FB8C00]">
+                                        ${data.sim2.reduce((sum, r) => sum + parseFloat(r.monthly_cost), 0).toFixed(2)}
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td className="p-2 text-center">
+                                    {(() => {
+                                      const total1 = data.sim1.reduce((sum, r) => sum + parseFloat(r.monthly_cost), 0);
+                                      const total2 = data.sim2.reduce((sum, r) => sum + parseFloat(r.monthly_cost), 0);
+                                      const diff = total2 - total1;
+
+                                      return diff !== 0 ? (
+                                        <span className={`text-xs font-semibold ${diff < 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                          {diff < 0 ? '↓' : '↑'} ${Math.abs(diff).toFixed(2)}
+                                        </span>
+                                      ) : (
+                                        <span className="text-xs text-gray-500">=</span>
+                                      );
+                                    })()}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+
+            {/* Statistiques clés */}
+            <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+              <h2 className="text-xl font-semibold mb-4">📈 Statistiques Clés</h2>
+
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-medium text-gray-700 mb-3">{sim1Data.simulation.name}</h3>
-                  {(() => {
-                    const metrics = getPerformanceMetrics(sim1Data.resources);
-                    return (
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Total vCPUs:</span>
-                        <span className="font-semibold">{metrics.totalVCPU || 'N/A'}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Total RAM:</span>
-                        <span className="font-semibold">
-                          {metrics.totalMemoryGB > 0 ? `${metrics.totalMemoryGB} GiB` : 'N/A'}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Instances compute:</span>
-                        <span className="font-semibold">{metrics.totalInstances}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Total ressources:</span>
-                        <span className="font-semibold">{metrics.totalResources}</span>
+                {/* Simulation 1 */}
+                <div className="border-2 border-blue-200 rounded-lg p-4">
+                  <h3 className="font-bold text-blue-600 mb-3 text-lg">{sim1Data.simulation.name}</h3>
+
+                  <div className="space-y-3">
+                    {/* Compute */}
+                    {(() => {
+                      const computeResources = sim1Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['EC2', 'ECS', 'EKS'].includes(service?.code);
+                      });
+
+                      if (computeResources.length > 0) {
+                        let totalVCPU = 0;
+                        let totalMemoryGB = 0;
+
+                        computeResources.forEach(r => {
+                          const instanceType = instanceTypes.find(it => it.id === r.instance_type);
+                          const config = typeof r.configuration === 'string' ? JSON.parse(r.configuration) : r.configuration;
+                          const quantity = config?.quantity || 1;
+
+                          if (instanceType?.vcpu) {
+                            totalVCPU += parseInt(instanceType.vcpu) * quantity;
+                          }
+                          if (instanceType?.memory) {
+                            const memMatch = instanceType.memory.match(/(\d+)/);
+                            if (memMatch) {
+                              totalMemoryGB += parseInt(memMatch[1]) * quantity;
+                            }
+                          }
+                        });
+
+                        return (
+                          <div className="bg-orange-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">🖥️ Compute (EC2, ECS, EKS)</p>
+                            <div className="flex justify-between text-sm">
+                              <span>{computeResources.length} ressource(s)</span>
+                              <span className="font-bold">{totalVCPU} vCPU • {totalMemoryGB} GiB RAM</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    {/* Database */}
+                    {(() => {
+                      const dbResources = sim1Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['RDS', 'DynamoDB'].includes(service?.code);
+                      });
+
+                      if (dbResources.length > 0) {
+                        return (
+                          <div className="bg-purple-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">🗄️ Databases</p>
+                            <div className="text-sm">
+                              <span>{dbResources.length} base(s) de données</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    {/* Storage */}
+                    {(() => {
+                      const storageResources = sim1Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['S3'].includes(service?.code);
+                      });
+
+                      if (storageResources.length > 0) {
+                        return (
+                          <div className="bg-blue-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">🪣 Stockage</p>
+                            <div className="text-sm">
+                              <span>{storageResources.length} bucket(s) S3</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    {/* Serverless */}
+                    {(() => {
+                      const serverlessResources = sim1Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['Lambda'].includes(service?.code);
+                      });
+
+                      if (serverlessResources.length > 0) {
+                        return (
+                          <div className="bg-green-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">⚡ Serverless</p>
+                            <div className="text-sm">
+                              <span>{serverlessResources.length} fonction(s) Lambda</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    <div className="border-t pt-2 mt-2">
+                      <div className="flex justify-between text-sm font-bold">
+                        <span>Total ressources</span>
+                        <span className="text-blue-600">{sim1Data.resources.length}</span>
                       </div>
                     </div>
-                    );
-                  })()}
+                  </div>
                 </div>
 
-                <div>
-                  <h3 className="font-medium text-gray-700 mb-3">{sim2Data.simulation.name}</h3>
-                  {(() => {
-                    const metrics = getPerformanceMetrics(sim2Data.resources);
-                    return (
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Total vCPUs:</span>
-                          <span className="font-semibold">{metrics.totalVCPU || 'N/A'}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Total RAM:</span>
-                          <span className="font-semibold">
-                            {metrics.totalMemoryGB > 0 ? `${metrics.totalMemoryGB} GiB` : 'N/A'}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Instances compute:</span>
-                          <span className="font-semibold">{metrics.totalInstances}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Total ressources:</span>
-                          <span className="font-semibold">{metrics.totalResources}</span>
-                        </div>
+                {/* Simulation 2 */}
+                <div className="border-2 border-orange-200 rounded-lg p-4">
+                  <h3 className="font-bold text-[#FB8C00] mb-3 text-lg">{sim2Data.simulation.name}</h3>
+
+                  <div className="space-y-3">
+                    {/* Compute */}
+                    {(() => {
+                      const computeResources = sim2Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['EC2', 'ECS', 'EKS'].includes(service?.code);
+                      });
+
+                      if (computeResources.length > 0) {
+                        let totalVCPU = 0;
+                        let totalMemoryGB = 0;
+
+                        computeResources.forEach(r => {
+                          const instanceType = instanceTypes.find(it => it.id === r.instance_type);
+                          const config = typeof r.configuration === 'string' ? JSON.parse(r.configuration) : r.configuration;
+                          const quantity = config?.quantity || 1;
+
+                          if (instanceType?.vcpu) {
+                            totalVCPU += parseInt(instanceType.vcpu) * quantity;
+                          }
+                          if (instanceType?.memory) {
+                            const memMatch = instanceType.memory.match(/(\d+)/);
+                            if (memMatch) {
+                              totalMemoryGB += parseInt(memMatch[1]) * quantity;
+                            }
+                          }
+                        });
+
+                        return (
+                          <div className="bg-orange-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">🖥️ Compute (EC2, ECS, EKS)</p>
+                            <div className="flex justify-between text-sm">
+                              <span>{computeResources.length} ressource(s)</span>
+                              <span className="font-bold">{totalVCPU} vCPU • {totalMemoryGB} GiB RAM</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    {/* Database */}
+                    {(() => {
+                      const dbResources = sim2Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['RDS', 'DynamoDB'].includes(service?.code);
+                      });
+
+                      if (dbResources.length > 0) {
+                        return (
+                          <div className="bg-purple-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">🗄️ Databases</p>
+                            <div className="text-sm">
+                              <span>{dbResources.length} base(s) de données</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    {/* Storage */}
+                    {(() => {
+                      const storageResources = sim2Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['S3'].includes(service?.code);
+                      });
+
+                      if (storageResources.length > 0) {
+                        return (
+                          <div className="bg-blue-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">🪣 Stockage</p>
+                            <div className="text-sm">
+                              <span>{storageResources.length} bucket(s) S3</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    {/* Serverless */}
+                    {(() => {
+                      const serverlessResources = sim2Data.resources.filter(r => {
+                        const service = services.find(s => s.id === r.service);
+                        return ['Lambda'].includes(service?.code);
+                      });
+
+                      if (serverlessResources.length > 0) {
+                        return (
+                          <div className="bg-green-50 rounded p-2">
+                            <p className="text-xs text-gray-600 font-medium mb-1">⚡ Serverless</p>
+                            <div className="text-sm">
+                              <span>{serverlessResources.length} fonction(s) Lambda</span>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+
+                    <div className="border-t pt-2 mt-2">
+                      <div className="flex justify-between text-sm font-bold">
+                        <span>Total ressources</span>
+                        <span className="text-[#FB8C00]">{sim2Data.resources.length}</span>
                       </div>
-                    );
-                  })()}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -447,7 +891,8 @@ const getPerformanceMetrics = (resources) => {
               </div>
             </div>
           </>
-        )}
+          );
+        })()}
       </div>
     </div>
     </>
