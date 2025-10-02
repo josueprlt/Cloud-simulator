@@ -63,4 +63,22 @@ export class DirectusDatas {
             throw error;
         }
     }
+
+    async createSimulation(formData) {
+    try {
+        const simulationPayload = {
+            name: formData.name,
+            description: formData.description,
+            status: formData.status || 'draft',
+            scenario_type: formData.scenario_type || 'current',
+            monthly_coast: formData.monthly_coast,
+            created_at: formData.created_at || new Date().toISOString(),
+        };
+        const simulationCreated = await directus.request(createItem('simulations', simulationPayload));
+        return simulationCreated;
+    } catch (error) {
+        console.error('Failed to create simulation:', error);
+        throw error;
+    }
+}
 }

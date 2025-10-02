@@ -16,6 +16,8 @@ services:
       DB_USER: directus
       KEY: supersecretkey
       SECRET: anothersecretkey
+      CORS_ENABLED: 'true'      
+      CORS_ORIGIN: 'http://localhost:8080'
     depends_on:
       - postgres
 
@@ -30,7 +32,8 @@ services:
     depends_on:
       - directus
     environment:
-      VITE_DIRECTUS_URL: "http://directus:8055"
+      VITE_DIRECTUS_URL: ${DIRECTUS_URL}
+      VITE_STATIC_TOKEN: ${STATIC_TOKEN}
 
   postgres:
     image: postgres:15

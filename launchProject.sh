@@ -22,8 +22,6 @@ function start_project() {
     echo "🌐 Frontend: http://localhost:$FRONTEND_PORT"
 }
 
-
-
 function stop_project() {
     echo "🛑 Stopping $PROJECT_NAME stack..."
 

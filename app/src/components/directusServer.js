@@ -1,10 +1,7 @@
 import { createDirectus, rest, staticToken } from '@directus/sdk';
-import 'dotenv/config';
 
+console.log(import.meta);
 
-const { DIRECTUS_URL, STATIC_TOKEN } = process.env;
-
-export const directus = createDirectus(DIRECTUS_URL)
-    .with(staticToken(STATIC_TOKEN))
+export const directus = createDirectus(import.meta.env.VITE_DIRECTUS_URL)
+    .with(staticToken(import.meta.env.VITE_STATIC_TOKEN))
     .with(rest());
-
