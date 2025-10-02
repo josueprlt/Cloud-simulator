@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Plus, Trash2, Save, TrendingDown } from 'lucide-react';
 import awsRegions from '../../data/awsRegions.js';
 
-// Constantes
 const TEMPLATES = {
   blank: {
     name: "Partir de zéro",
