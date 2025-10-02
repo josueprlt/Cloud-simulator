@@ -1,17 +1,23 @@
-import ChartComponent from "./components/ChartComponent"
-import AwsForm from "./views/AwsForm"
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import DashboardPage from './pages/DashboardPage.jsx';
+import HistoricPage from './pages/HistoricPage.jsx';
+import SimulationPage from './pages/SimulationPage.jsx';
+
 function App() {
 
     return (
         <>
-            <AwsForm />
-            <div className="flex justify-center">
-                <div className="w-1/2 bg-white p-4">
-                </div>
-            </div>
-            <ChartComponent/>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<DashboardPage/>}/>
+                    <Route path="/simulator" element={<SimulationPage/>}/>
+                    <Route path="/results" element={<DashboardPage/>}/>
+                    <Route path="/historic" element={<HistoricPage/>}/>
+                </Routes>
+            </Router>
         </>
     )
 }
 
 export default App
+

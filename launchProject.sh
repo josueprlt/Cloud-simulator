@@ -16,6 +16,7 @@ function start_project() {
 
     echo "📥 Seeding database from $SQL_DUMP_PATH..."
     docker exec -i $PG_CONTAINER psql -U directus directus < "$SQL_DUMP_PATH" &>/dev/null
+    cd app/ && yarn install
 
     echo "✅ Database seeded"
     echo "🌐 Directus: http://localhost:$DIRECTUS_PORT"

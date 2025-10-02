@@ -1,5 +1,5 @@
-import { directus } from "../components/directusServer.js";
-import {createItem, readItems} from '@directus/sdk';
+import { directus } from "../../server/directusServer.js";
+import { createItem, readItems } from '@directus/sdk';
 
 export class DirectusDatas {
     // GET
@@ -29,6 +29,16 @@ export class DirectusDatas {
         return prices;
         } catch (error) {
         console.error('Failed to fetch prices:', error);
+        throw error;
+        }
+    }
+
+    async getSimulations() {
+        try {
+        const simulations = await directus.request(readItems('simulations'));
+        return simulations;
+        } catch (error) {
+        console.error('Failed to fetch simulations:', error);
         throw error;
         }
     }
