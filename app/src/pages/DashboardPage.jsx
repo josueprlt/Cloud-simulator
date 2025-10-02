@@ -1,10 +1,13 @@
 import React from "react";
+import FormComponent from "../components/form/AwsForm.jsx";
+import {LastSimComponent} from "../components/LastSimComponent.jsx";
+import {HistoDashboardComponent} from "../components/HistoDashboardComponent.jsx";
 
 function DashboardPage() {
     return (
         <>
-            <div className="rounded-lg p-22 bg-gradient-to-b from-[#FB8C00]/20 to-white">
-                <h1 className="text-2xl text-center font-bold text-[#FB8C00]">
+            <div className="p-22 bg-gradient-to-b from-[#FB8C00]/20 to-white">
+                <h1 className="text-center font-bold text-4xl text-[#FB8C00]">
                     Cloud Cost Simulator
                 </h1>
             </div>
@@ -16,9 +19,9 @@ function DashboardPage() {
                 </div>
             </div>
 
-            <div className="p-6 space-y-6">
-                <h3>Dernière simulation</h3>
-            </div>
+            <LastSimComponent/>
+
+            <HistoDashboardComponent/>
         </>
     );
 }

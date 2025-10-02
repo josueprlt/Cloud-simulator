@@ -1,5 +1,7 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage.jsx';
+import SimulatorPage from './pages/SimulatorPage.jsx';
+import HistoricPage from './pages/HistoricPage.jsx';
 
 function App() {
 
@@ -8,9 +10,8 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<DashboardPage/>}/>
-                    <Route path="/simulator" element={<DashboardPage/>}/>
-                    <Route path="/results" element={<DashboardPage/>}/>
-                    <Route path="/historic" element={<DashboardPage/>}/>
+                    <Route path="/simulator" element={<SimulatorPage/>}/>
+                    <Route path="/historic" element={<HistoricPage/>}/>
                 </Routes>
             </Router>
         </>
