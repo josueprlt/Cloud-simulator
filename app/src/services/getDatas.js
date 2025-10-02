@@ -55,8 +55,6 @@ export class DirectusDatas {
 
     static async getResourcesBySimulation(simulationId) {
         try {
-            console.log(simulationId);
-            
             // Récupère toutes les ressources où simulations_id = simulationId
             const resources = await directus.request(readItems(`resources?filter[simulations_id][_eq]=${simulationId}`));
             return resources;

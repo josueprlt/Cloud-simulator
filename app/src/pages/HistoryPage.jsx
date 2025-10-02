@@ -24,9 +24,6 @@ export default function HistoryPage() {
         fetchSimulations();
     }, []);
 
-    console.log(simulations);
-    
-
     return (
         <>
         <Header />
