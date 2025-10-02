@@ -2344,7 +2344,6 @@ COPY public.directus_roles (id, name, icon, description, parent) FROM stdin;
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin, next_token) FROM stdin;
-a00oDnlOpvjG_QlU2ZwDyN_OmfH5PUzCXoeLxV1xQYh-f7lmCjXax3sSXb77ow_Z	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-03 12:45:33.497+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
 xi6TFRDzyRaQmgyrga027YLv51B7byKX2IXXzHxwsuOAizeIegUA97njAdtRYqn9	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:43:54.995+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
 rutD25QeW5W3mwH7w_F6r46NGgfK_r3oV4cjyyCnpJdZYHBMATSQ4Ibuqr2n7BiI	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:48:40.732+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 DUYe9oWFPyhDtUZUFxPjK7t2YJ-2Rj9PmvZ-0VLbH0g7JHH4v5Jw1pC-F9W07ltK	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:32:57.302+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
@@ -2352,6 +2351,7 @@ DUYe9oWFPyhDtUZUFxPjK7t2YJ-2Rj9PmvZ-0VLbH0g7JHH4v5Jw1pC-F9W07ltK	27fc7a4b-bd46-4
 7uAPjz8KpkmdexpJUMnP0M2bplVqaCGaSjZQEeLaDiNd2ZnLu0pWM4_DdcRtVNat	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:59:54.866+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 jmXkyiIcxk6aRHfQhh9O60ByiO2fIhGcjrlYS82duENxVO7p-rRvOkfE-AiI3vXK	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 17:33:40.194+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 wJqpv6vFJrzVzC3joJelzN4XmQgoUpxLqwl32rzj0vkpRh2nFGzQc5e8Xdlej1mZ	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 17:37:32.614+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
+iB0c2yyP85OwzAH4aZJQoCJfczhCsXwjVoUBa4jhKYaM7uxOqtmc6l4BvgjllqiE	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-03 13:22:24.21+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
 IG7DvSFn69QrvOtxlKle97a9hUO3EKNhVwFFEaTX2IaAbfWDVZ8k_lLNS5GuKzR5	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 17:45:00.981+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 hpKZk1YfoClQoQthSteGBoCcpxWAIrPVBivFPFbK7l94fw28RtYvtTLT8MCKOlql	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:00:22.406+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 Fp5aq7WTjDymWIg69A5KmoViIMiMGN6lEMJBeMjRgeaBBixbJcyhu-KARe5Xpi8i	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:14:59.223+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
@@ -2363,7 +2363,7 @@ WZcWI_XBjnl6gXL_jMwPP6-yuduOlCb6Uj8Wvx0CFTmKIZmtnOu30xfwugtouZ2w	27fc7a4b-bd46-4
 Miun5SreoxBobo-8Gl47kXVXDUumorh5id4KmcFTvo39hbfXgXDhiouL21Bk-adX	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 21:14:11.639+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 tGLoIhUZpf4ESzGTM8a1edvOB1leHs5rq7EyZAiVULi1gbHvO_Y_vlrFIEqw-P5P	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:16:19.931+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 ekFiGIyU8KQuzvUm1KZTFC5oHGdcUpROW3GS1Dzpe5TdwjJL5cq3SHGosQ-SUrUe	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:28:32.688+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
-5E3tsZFb8t8zqGBS--JNmYjdZnsZfu4OjIMh386sY-_qO9XL4P9dP4W0Tp5o2sRk	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 12:45:43.499+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	a00oDnlOpvjG_QlU2ZwDyN_OmfH5PUzCXoeLxV1xQYh-f7lmCjXax3sSXb77ow_Z
+Ro4zPj1NKrtdgyvr-5_S61_xj3n4tv6XHjyOrpEllcNaNRw-vMZxCvyU1JnH2uB0	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:22:34.211+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	iB0c2yyP85OwzAH4aZJQoCJfczhCsXwjVoUBa4jhKYaM7uxOqtmc6l4BvgjllqiE
 \.
 
 
@@ -2397,7 +2397,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides, text_direction) FROM stdin;
-27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK	2025-10-02 12:45:33.512+00	/content/simulations/+	default	\N	\N	t	\N	\N	\N	\N	\N	auto
+27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK	2025-10-02 13:22:24.22+00	/content/services	default	\N	\N	t	\N	\N	\N	\N	\N	auto
 \.
 
 
@@ -2744,14 +2744,14 @@ SELECT pg_catalog.setval('public.comparisons_id_seq', 1, false);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 517, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 518, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 86, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 87, true);
 
 
 --
@@ -2786,7 +2786,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 21, true);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 445, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 446, true);
 
 
 --
