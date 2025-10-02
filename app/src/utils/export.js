@@ -203,14 +203,14 @@ export function exportComparisonToPDF(simulation1, resources1, simulation2, reso
     `$${parseFloat(r.monthly_cost || 0).toFixed(2)}`
   ]);
   
-  doc.autoTable({
-    startY: 88,
+  autoTable(doc, {
+      startY: 88,
     head: [['Ressource', 'Service', 'Type', 'Coût/mois']],
     body: tableData1,
     theme: 'grid',
     headStyles: { fillColor: [79, 70, 229] },
     styles: { fontSize: 8 }
-  });
+    });
   
   // Tableau simulation 2
   const startY2 = doc.lastAutoTable.finalY + 15;
@@ -223,15 +223,15 @@ export function exportComparisonToPDF(simulation1, resources1, simulation2, reso
     r.instance_type?.name || 'N/A',
     `$${parseFloat(r.monthly_cost || 0).toFixed(2)}`
   ]);
-  
-  doc.autoTable({
+
+  autoTable(doc, {
     startY: startY2 + 3,
     head: [['Ressource', 'Service', 'Type', 'Coût/mois']],
     body: tableData2,
     theme: 'grid',
     headStyles: { fillColor: [79, 70, 229] },
     styles: { fontSize: 8 }
-  });
+    });
   
   // Pied de page
   const pageCount = doc.internal.getNumberOfPages();
