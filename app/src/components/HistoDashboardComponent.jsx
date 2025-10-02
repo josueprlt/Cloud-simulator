@@ -43,7 +43,7 @@ export function HistoDashboardComponent({simulations, loading}) {
             </div>
             <div className="flex justify-center">
                 <a className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white font-bold py-2 px-4 rounded"
-                   href="/historic">Voir plus</a>
+                   href="/history">Voir plus</a>
             </div>
         </div>
     );
