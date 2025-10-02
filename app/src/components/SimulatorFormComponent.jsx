@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, Save, TrendingDown, Loader2, Download, FileText } from 'lucide-react';
 import { exportSimulationToCSV, exportSimulationToPDF } from '../utils/export';
-import { directus } from '../../server/directusServer';
 import { DirectusDatas } from '../services/getDatas';
 
 const TEMPLATES = {
@@ -41,7 +40,6 @@ export default function SimulationWizard() {
   const [resources, setResources] = useState([]);
   const [editingResource, setEditingResource] = useState(null);
   
-  // États pour les données de l'API
   const [services, setServices] = useState([]);
   const [regions, setRegions] = useState([]);
   const [instanceTypes, setInstanceTypes] = useState([]);
@@ -49,7 +47,6 @@ export default function SimulationWizard() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  // Charger les données au démarrage
   useEffect(() => {
     loadReferenceData();
   }, []);
@@ -76,16 +73,14 @@ export default function SimulationWizard() {
     }
   };
 
-  // Calculer le coût avec les vrais prix de l'API
   const calculateMonthlyCost = (resource) => {
-    // Chercher le prix dans la base de données
     const price = prices.find(p => 
       p.service === resource.service &&
       p.region === resource.region &&
       p.instance_type === resource.instance_type
     );
     
-    const unitPrice = price ? parseFloat(price.price_hourly) : 0.05; // Fallback
+    const unitPrice = price ? parseFloat(price.price_hourly) : 0.05;
     const quantity = resource.configuration?.quantity || 1;
     const hours = resource.configuration?.hours_per_month || 730;
     
@@ -96,7 +91,6 @@ export default function SimulationWizard() {
     const template = TEMPLATES[templateKey];
     setSelectedTemplate(templateKey);
     
-    // Mapper les templates avec les vrais IDs de l'API
     setResources(template.resources.map((r, i) => {
       const service = services.find(s => s.code === r.service);
       const region = regions.find(reg => reg.code === r.region);
@@ -127,7 +121,7 @@ export default function SimulationWizard() {
   const addResource = () => {
     const defaultService = services[0];
     const defaultRegion = regions[0];
-    const defaultInstanceType = instanceTypes.find(it => it.service === defaultService?.id);
+    const defaultInstanceType = instanceTypes[0]; // Prend le premier disponible
     
     setEditingResource({
       id: `temp-${Date.now()}`,
@@ -167,7 +161,6 @@ export default function SimulationWizard() {
 
   const totalCost = resources.reduce((sum, r) => sum + parseFloat(r.monthly_cost || "0"), 0);
 
-  // Sauvegarder la simulation dans Directus
   const saveSimulation = async () => {
     if (!simulation.name) {
       alert('Veuillez donner un nom à la simulation');
@@ -182,7 +175,6 @@ export default function SimulationWizard() {
     try {
       setSaving(true);
       
-      // 1. Créer la simulation (tu devras ajouter cette méthode dans DirectusDatas)
       const simulationPayload = {
         name: simulation.name,
         description: simulation.description,
@@ -192,12 +184,10 @@ export default function SimulationWizard() {
         created_at: new Date().toISOString()
       };
       
-      // Note: Tu dois ajouter createSimulation dans DirectusDatas.js
-      const createdSimulation = await directus.createSimulation(simulationPayload);
+      const createdSimulation = await DirectusDatas.createSimulation(simulationPayload);
 
-      // 2. Créer toutes les ressources
       for (const resource of resources) {
-        await directus.createResources({
+        await DirectusDatas.createResources({
           simulations_id: createdSimulation.id,
           resource_name: resource.resource_name,
           service: resource.service,
@@ -211,7 +201,6 @@ export default function SimulationWizard() {
 
       alert(`✅ Simulation "${simulation.name}" sauvegardée avec succès !\n\nCoût total: $${totalCost.toFixed(2)}/mois`);
       
-      // Reset
       setSimulation({ name: "", description: "", scenario_type: "current" });
       setResources([]);
       setStep(1);
@@ -241,7 +230,6 @@ export default function SimulationWizard() {
     });
   };
 
-  // Recalcul automatique du coût
   useEffect(() => {
     if (editingResource) {
       const newCost = calculateMonthlyCost(editingResource);
@@ -254,7 +242,6 @@ export default function SimulationWizard() {
     }
   }, [editingResource?.configuration?.quantity, editingResource?.configuration?.hours_per_month, editingResource?.service, editingResource?.region, editingResource?.instance_type]);
 
-  // Export CSV
   const handleExportCSV = () => {
     if (resources.length === 0) {
       alert('Aucune ressource à exporter');
@@ -266,7 +253,6 @@ export default function SimulationWizard() {
       return;
     }
     
-    // Enrichir les ressources avec les noms complets pour l'export
     const enrichedResources = resources.map(r => ({
       ...r,
       service: services.find(s => s.id === r.service) || r.service,
@@ -278,7 +264,6 @@ export default function SimulationWizard() {
     alert('✅ Export CSV téléchargé !');
   };
 
-  // Export PDF
   const handleExportPDF = () => {
     if (resources.length === 0) {
       alert('Aucune ressource à exporter');
@@ -289,8 +274,7 @@ export default function SimulationWizard() {
       alert('Veuillez donner un nom à la simulation avant d\'exporter');
       return;
     }
-    
-    // Enrichir les ressources avec les noms complets pour l'export
+    x
     const enrichedResources = resources.map(r => ({
       ...r,
       service: services.find(s => s.id === r.service) || r.service,
@@ -300,11 +284,6 @@ export default function SimulationWizard() {
     
     exportSimulationToPDF(simulation, enrichedResources);
     alert('✅ Export PDF téléchargé !');
-  };
-
-  // Filtrer les instance_types selon le service
-  const getFilteredInstanceTypes = (serviceId) => {
-    return instanceTypes.filter(it => it.service === serviceId);
   };
 
   if (loading) {
@@ -539,15 +518,10 @@ export default function SimulationWizard() {
                       <label className="block text-sm font-medium mb-2">Service</label>
                       <select
                         value={editingResource.service || ''}
-                        onChange={(e) => {
-                          const serviceId = parseInt(e.target.value);
-                          updateResourceField('service', serviceId);
-                          // Reset instance type
-                          const firstInstanceType = instanceTypes.find(it => it.service === serviceId);
-                          updateResourceField('instance_type', firstInstanceType?.id || null);
-                        }}
+                        onChange={(e) => updateResourceField('service', parseInt(e.target.value))}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FB8C00] outline-none"
                       >
+                        <option value="">Sélectionner un service</option>
                         {services.map(s => (
                           <option key={s.id} value={s.id}>{s.name}</option>
                         ))}
@@ -561,6 +535,7 @@ export default function SimulationWizard() {
                         onChange={(e) => updateResourceField('region', parseInt(e.target.value))}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FB8C00] outline-none"
                       >
+                        <option value="">Sélectionner une région</option>
                         {regions.map(r => (
                           <option key={r.id} value={r.id}>
                             {r.name}
@@ -570,7 +545,8 @@ export default function SimulationWizard() {
                     </div>
                   </div>
 
-                  {editingResource.service && getFilteredInstanceTypes(editingResource.service).length > 0 && (
+                  {/* DROPDOWN INSTANCE TYPE - AFFICHE TOUS LES TYPES */}
+                  {instanceTypes.length > 0 && (
                     <div>
                       <label className="block text-sm font-medium mb-2">Type d'instance</label>
                       <select
@@ -578,7 +554,8 @@ export default function SimulationWizard() {
                         onChange={(e) => updateResourceField('instance_type', parseInt(e.target.value))}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FB8C00] outline-none"
                       >
-                        {getFilteredInstanceTypes(editingResource.service).map(type => (
+                        <option value="">Sélectionner un type</option>
+                        {instanceTypes.map(type => (
                           <option key={type.id} value={type.id}>
                             {type.name} ({type.vcpu} vCPU, {type.memory})
                           </option>

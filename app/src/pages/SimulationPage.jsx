@@ -1,7 +1,8 @@
 import React from "react";
-import FormComponent from "../views/AwsForm.jsx";
+import FormComponent from "../components/SimulatorFormComponent.jsx";
 import Header from "./HeaderPart.jsx";
 import ServicesExplanation from "../components/ServicesExplanation.jsx";
+import Comparaison from "./ComparaisonPage.jsx";
 
 export default function SimulationPage() {
     document.title = "Simulateur | CloudSim";

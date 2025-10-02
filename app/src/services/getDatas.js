@@ -91,4 +91,13 @@ export class DirectusDatas {
             throw error;
         }
     }
+
+    async getResourcesBySimulation(simulationId) {
+    try {
+        return await this.request(`resources?filter[simulations_id][_eq]=${simulationId}`);
+    } catch (error) {
+        console.error('Failed to fetch resources:', error);
+        throw error;
+    }
+}
 }

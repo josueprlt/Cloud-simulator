@@ -7,6 +7,7 @@ export default function Header() {
         { name: 'Accueil', path: '/' },
         { name: 'Simulateur', path: '/simulator' },
         { name: 'Historique', path: '/history' },
+        { name: 'Comparaison', path: '/comparaison' },
     ];
 
     return (
