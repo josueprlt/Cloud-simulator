@@ -4,6 +4,7 @@ import {HistoDashboardComponent} from "../components/HistoDashboardComponent.jsx
 import Header from "./HeaderPart.jsx";
 
 function DashboardPage() {
+    document.title = 'Accueil | CloudSim';
     return (
         <>  <Header />
             <div className="p-22 bg-gradient-to-b from-[#FB8C00]/20 to-white">

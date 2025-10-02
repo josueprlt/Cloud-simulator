@@ -1,16 +1,23 @@
+<<<<<<< HEAD:app/src/pages/HistoricPage.jsx
 import {useEffect, useState} from 'react';
 import {DirectusDatas} from '../services/getDatas.js';
 import '../styles/HistoricPage.css';
+=======
+import { useEffect, useState } from 'react';
+import { DirectusDatas } from '../services/getDatas.js';
+import '../styles/HistoryPage.css';
+>>>>>>> a7f20210 (fix front):app/src/pages/HistoryPage.jsx
 import Header from './HeaderPart.jsx';
 
 
-export default function HistoricPage() {
+export default function HistoryPage() {
     const [simulations, setSimulations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         async function fetchSimulations() {
+<<<<<<< HEAD:app/src/pages/HistoricPage.jsx
             try {
                 const data = await DirectusDatas.getSimulations();
                 console.log(data);
@@ -20,6 +27,18 @@ export default function HistoricPage() {
             } finally {
                 setLoading(false);
             }
+=======
+        document.title = 'Historique | CloudSim';
+        try {
+            const data = await DirectusDatas.getSimulations();
+            console.log(data);
+            setSimulations(data);
+        } catch (err) {
+            setError('Erreur lors du chargement des simulations.');
+        } finally {
+            setLoading(false);
+        }
+>>>>>>> a7f20210 (fix front):app/src/pages/HistoryPage.jsx
         }
 
         fetchSimulations();

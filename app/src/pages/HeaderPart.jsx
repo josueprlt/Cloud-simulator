@@ -6,8 +6,7 @@ export default function Header() {
     const navItems = [
         { name: 'Accueil', path: '/' },
         { name: 'Simulateur', path: '/simulator' },
-        { name: 'Resultats', path: '/results' },
-        { name: 'Historique', path: '/historic' },
+        { name: 'Historique', path: '/history' },
     ];
 
     return (
