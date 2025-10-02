@@ -19,8 +19,8 @@ export function LastSimComponent({simulation, loading}) {
                         <div className="flex justify-between items-center border-b border-gray-200 pb-4">
                             <h4 className="text-2xl font-bold text-gray-900">{simulation.name}</h4>
                             <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                                simulation.status === 'completed' ? 'bg-green-100 text-green-700' :
-                                    simulation.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                                simulation.status === 'active' ? 'bg-green-100 text-green-700' :
+                                    simulation.status === 'archived' ? 'bg-yellow-100 text-yellow-700' :
                                         'bg-gray-100 text-gray-700'
                             }`}>
                                 {simulation.status}

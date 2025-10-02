@@ -12,7 +12,7 @@ export function HistoDashboardComponent({simulations, loading}) {
                         <tr>
                             <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">ID</th>
                             <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Nom</th>
-                            <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Créé
+                            <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Créée
                                 le
                             </th>
                             <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Status</th>
