@@ -1,10 +1,11 @@
 import React from "react";
 import {LastSimComponent} from "../components/LastSimComponent.jsx";
 import {HistoDashboardComponent} from "../components/HistoDashboardComponent.jsx";
+import Header from "./HeaderPart.jsx";
 
 function DashboardPage() {
     return (
-        <>
+        <>  <Header />
             <div className="p-22 bg-gradient-to-b from-[#FB8C00]/20 to-white">
                 <h1 className="text-center font-bold text-4xl text-[#FB8C00]">
                     Cloud Cost Simulator

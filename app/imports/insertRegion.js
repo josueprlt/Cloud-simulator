@@ -1,4 +1,4 @@
-import awsRegions from "./data/awsRegions.js"
+import awsRegions from "../data/awsRegions.js"
 
 const DIRECTUS_URL = "http://localhost:8055"
 const STATIC_TOKEN = "sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK"

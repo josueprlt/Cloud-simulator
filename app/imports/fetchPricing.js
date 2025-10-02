@@ -1,6 +1,6 @@
 import fs from "fs";
 import axios from "axios";
-import awsRegions from "./data/awsRegions.js";
+import awsRegions from "../data/awsRegions.js";
 
 const services = ["AmazonEC2", "AmazonRDS", "AmazonS3", "AWSLambda", "AmazonECS", "AmazonEKS"];
 

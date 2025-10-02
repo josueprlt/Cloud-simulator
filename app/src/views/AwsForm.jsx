@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, Save, TrendingDown, Loader2, Download, FileText } from 'lucide-react';
-import { DirectusDatas } from '../services/getDatas';
 import { exportSimulationToCSV, exportSimulationToPDF } from '../utils/export';
-
-const directusAPI = new DirectusDatas();
+import { directus } from '../../server/directusServer';
 
 const TEMPLATES = {
   blank: {
@@ -59,10 +57,10 @@ export default function SimulationWizard() {
     try {
       setLoading(true);
       const [servicesData, regionsData, instanceTypesData, pricesData] = await Promise.all([
-        directusAPI.getServices(),
-        directusAPI.getRegions(),
-        directusAPI.getInstanceType(),
-        directusAPI.getPrices()
+        directus.getServices(),
+        directus.getRegions(),
+        directus.getInstanceType(),
+        directus.getPrices()
       ]);
       
       setServices(servicesData);
@@ -194,11 +192,11 @@ export default function SimulationWizard() {
       };
       
       // Note: Tu dois ajouter createSimulation dans DirectusDatas.js
-      const createdSimulation = await directusAPI.createSimulation(simulationPayload);
+      const createdSimulation = await directus.createSimulation(simulationPayload);
 
       // 2. Créer toutes les ressources
       for (const resource of resources) {
-        await directusAPI.createResources({
+        await directus.createResources({
           simulations_id: createdSimulation.id,
           resource_name: resource.resource_name,
           service: resource.service,
