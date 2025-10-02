@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@directus/sdk": "^20.1.0",
+    "@sinclair/typebox": "^0.34.41",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.12.2",
     "dotenv": "^17.2.3",
