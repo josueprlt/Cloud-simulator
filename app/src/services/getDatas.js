@@ -3,7 +3,7 @@ import { createItem, readItems } from '@directus/sdk';
 
 export class DirectusDatas {
     // GET
-    async getRegions() {
+    static async getRegions() {
         try {
         const regions = await directus.request(readItems('regions'));
         return regions;
@@ -13,7 +13,7 @@ export class DirectusDatas {
         }
     }
 
-    async getServices() {
+    static async getServices() {
         try {
         const services = await directus.request(readItems('services'));
         return services;
@@ -23,7 +23,7 @@ export class DirectusDatas {
         }
     }
 
-    async getPrices() {
+    static async getPrices() {
         try {
         const prices = await directus.request(readItems('prices'));
         return prices;
@@ -33,17 +33,17 @@ export class DirectusDatas {
         }
     }
 
-    async getSimulations() {
+    static async getSimulations() {
         try {
-        const simulations = await directus.request(readItems('simulations'));
-        return simulations;
+            const simulations = await directus.request(readItems('simulations'));
+            return simulations;
         } catch (error) {
         console.error('Failed to fetch simulations:', error);
         throw error;
         }
     }
 
-    async getInstanceType() {
+    static async getInstanceType() {
         try {
         const instance_types = await directus.request(readItems('instance_types'));
         return instance_types;
@@ -53,7 +53,7 @@ export class DirectusDatas {
         }
     }
     // CREATE
-    async createResources(formData) {
+    static async createResources(formData) {
         try {
             const resourcePayload = {
                 service: formData.service,
@@ -74,21 +74,21 @@ export class DirectusDatas {
         }
     }
 
-    async createSimulation(formData) {
-    try {
-        const simulationPayload = {
-            name: formData.name,
-            description: formData.description,
-            status: formData.status || 'draft',
-            scenario_type: formData.scenario_type || 'current',
-            monthly_coast: formData.monthly_coast,
-            created_at: formData.created_at || new Date().toISOString(),
-        };
-        const simulationCreated = await directus.request(createItem('simulations', simulationPayload));
-        return simulationCreated;
-    } catch (error) {
-        console.error('Failed to create simulation:', error);
-        throw error;
+    static async createSimulation(formData) {
+        try {
+            const simulationPayload = {
+                name: formData.name,
+                description: formData.description,
+                status: formData.status || 'draft',
+                scenario_type: formData.scenario_type || 'current',
+                monthly_coast: formData.monthly_coast,
+                created_at: formData.created_at || new Date().toISOString(),
+            };
+            const simulationCreated = await directus.request(createItem('simulations', simulationPayload));
+            return simulationCreated;
+        } catch (error) {
+            console.error('Failed to create simulation:', error);
+            throw error;
+        }
     }
-}
 }

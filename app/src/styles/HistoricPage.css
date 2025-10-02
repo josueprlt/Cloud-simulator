@@ -1,0 +1,13 @@
+/* HistoricPage.css */
+.historic-page {
+  font-family: 'Inter', sans-serif;
+  background-image: linear-gradient(to bottom right, #f9fafb, #e0f2fe);
+}
+
+.historic-page h1 {
+  border-color: #cbd5e1;
+}
+
+.historic-page .card:hover {
+  transform: translateY(-2px);
+}
