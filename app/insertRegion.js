@@ -1,8 +1,10 @@
 import awsRegions from "./data/awsRegions.js"
+import dotenv from 'dotenv';
+dotenv.config();
+import process from 'process';
 
-const DIRECTUS_URL = process.env.VITE_DIRECTUS_URL;
-const ACCESS_TOKEN = process.env.VITE_DIRECTUS_ACCESS_TOKEN;
-
+const DIRECTUS_URL = process.env.DIRECTUS_URL;
+const ACCESS_TOKEN = process.env.DIRECTUS_TOKEN;
 
 async function directusRequest(endpoint, method = 'GET', body = null) {
 

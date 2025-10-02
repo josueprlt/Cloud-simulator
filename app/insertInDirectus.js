@@ -1,7 +1,17 @@
 import data from './data/AmazonEC2/af-south-1.json' with { type: "json" };
+import dotenv from 'dotenv';
+dotenv.config();
+import process from 'process';
+
+const DIRECTUS_URL = process.env.DIRECTUS_URL;
+const ACCESS_TOKEN = process.env.DIRECTUS_TOKEN;
 
 // request helper
 async function directusRequest(endpoint, method = 'GET', body = null) {
+
+  console.log(process.env);
+  
+
   const options = {
     method,
     headers: {
