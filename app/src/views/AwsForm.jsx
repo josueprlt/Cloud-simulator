@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Trash2, Save, TrendingDown, Loader2, Download, FileText } from 'lucide-react';
 import { exportSimulationToCSV, exportSimulationToPDF } from '../utils/export';
 import { directus } from '../../server/directusServer';
+import { DirectusDatas } from '../services/getDatas';
 
 const TEMPLATES = {
   blank: {
@@ -57,10 +58,10 @@ export default function SimulationWizard() {
     try {
       setLoading(true);
       const [servicesData, regionsData, instanceTypesData, pricesData] = await Promise.all([
-        directus.getServices(),
-        directus.getRegions(),
-        directus.getInstanceType(),
-        directus.getPrices()
+        DirectusDatas.getServices(),
+        DirectusDatas.getRegions(),
+        DirectusDatas.getInstanceType(),
+        DirectusDatas.getPrices()
       ]);
       
       setServices(servicesData);
