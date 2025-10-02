@@ -1,6 +1,6 @@
 // src/utils/export.js
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import Papa from 'papaparse';
 
 /**
@@ -89,13 +89,13 @@ export function exportSimulationToPDF(simulation, resources) {
     `$${parseFloat(resource.monthly_cost || 0).toFixed(2)}`
   ]);
   
-  doc.autoTable({
+  autoTable(doc, {
     startY: startY + 6,
     head: [['Ressource', 'Service', 'Région', 'Type', 'Qté', 'H/mois', 'Coût/mois']],
     body: tableData,
     theme: 'striped',
     headStyles: { 
-      fillColor: [79, 70, 229], // Indigo-600
+      fillColor: [79, 70, 229],
       textColor: 255,
       fontStyle: 'bold'
     },
