@@ -145,7 +145,7 @@ export default function SimulationWizard() {
 
   if (step === 1) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
+      <div className="min-h-screen bg-gradient-to-br from-[#FB8C00]/20 to-[#FB8C00]/0 p-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -165,7 +165,7 @@ export default function SimulationWizard() {
                 <button
                   key={key}
                   onClick={() => selectTemplate(key)}
-                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-transparent hover:border-indigo-500 text-left"
+                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-transparent hover:border-[#FB8C00] text-left"
                 >
                   <h3 className="text-xl font-semibold mb-2 text-gray-800">
                     {template.name}
@@ -173,7 +173,7 @@ export default function SimulationWizard() {
                   <p className="text-gray-600 text-sm">
                     {template.description}
                   </p>
-                  <div className="mt-4 text-indigo-600 font-medium">
+                  <div className="mt-4 text-[#FB8C00] font-medium">
                     {template.resources.length} ressources →
                   </div>
                 </button>
@@ -209,7 +209,7 @@ export default function SimulationWizard() {
               </div>
               <div className="text-right ml-6">
                 <div className="text-sm text-gray-500">Coût mensuel estimé</div>
-                <div className="text-3xl font-bold text-indigo-600">
+                <div className="text-3xl font-bold text-[#FB8C00]">
                   ${totalCost.toFixed(2)}
                 </div>
               </div>
