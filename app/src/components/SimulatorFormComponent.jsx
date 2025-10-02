@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Trash2, Save, TrendingDown, Loader2, Download, FileText } from 'lucide-react';
 import { exportSimulationToCSV, exportSimulationToPDF } from '../utils/export';
 import { DirectusDatas } from '../services/getDatas';
+import { getServiceConfig, requiresInstanceType } from '../utils/serviceConfig';
 
 const TEMPLATES = {
   blank: {
@@ -39,7 +40,7 @@ export default function SimulationWizard() {
   });
   const [resources, setResources] = useState([]);
   const [editingResource, setEditingResource] = useState(null);
-  
+
   const [services, setServices] = useState([]);
   const [regions, setRegions] = useState([]);
   const [instanceTypes, setInstanceTypes] = useState([]);
@@ -47,9 +48,45 @@ export default function SimulationWizard() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
+  // États pour l'autocomplétion des types d'instance
+  const [instanceSearchTerm, setInstanceSearchTerm] = useState('');
+  const [showInstanceDropdown, setShowInstanceDropdown] = useState(false);
+  const [filteredInstanceTypes, setFilteredInstanceTypes] = useState([]);
+
   useEffect(() => {
     loadReferenceData();
   }, []);
+
+  // Fermer le dropdown quand on clique en dehors
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (showInstanceDropdown && !e.target.closest('.instance-search-container')) {
+        setShowInstanceDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showInstanceDropdown]);
+
+  // Initialiser le champ de recherche quand on ouvre/modifie une ressource
+  useEffect(() => {
+    if (editingResource && editingResource.instance_type) {
+      const selectedType = instanceTypes.find(t => t.id === editingResource.instance_type);
+      if (selectedType) {
+        setInstanceSearchTerm(`${selectedType.name} (${selectedType.vcpu} vCPU, ${selectedType.memory})`);
+      } else {
+        // Si le type n'existe pas ou est invalide, réinitialiser
+        setInstanceSearchTerm('');
+        if (editingResource) {
+          editingResource.instance_type = null;
+        }
+      }
+    } else {
+      setInstanceSearchTerm('');
+    }
+    setFilteredInstanceTypes(instanceTypes.slice(0, 50));
+  }, [editingResource, instanceTypes]);
 
   const loadReferenceData = async () => {
     try {
@@ -143,8 +180,60 @@ const selectTemplate = (templateKey) => {
     });
   };
 
+  // Filtrer les types d'instance en fonction de la recherche
+  const filterInstanceTypes = (searchValue) => {
+    if (!searchValue.trim()) {
+      setFilteredInstanceTypes(instanceTypes.slice(0, 50)); // Limite initiale à 50
+      return;
+    }
+
+    const search = searchValue.toLowerCase();
+    const filtered = instanceTypes.filter(type => {
+      const nameMatch = type.name.toLowerCase().includes(search);
+      const vcpuMatch = type.vcpu && type.vcpu.toString().includes(search);
+      const memoryMatch = type.memory && type.memory.toLowerCase().includes(search);
+      return nameMatch || vcpuMatch || memoryMatch;
+    });
+
+    setFilteredInstanceTypes(filtered.slice(0, 50)); // Limite à 50 résultats
+  };
+
+  // Sélectionner un type d'instance
+  const selectInstanceType = (typeId) => {
+    updateResourceField('instance_type', typeId);
+    const selectedType = instanceTypes.find(t => t.id === typeId);
+    setInstanceSearchTerm(selectedType ? `${selectedType.name} (${selectedType.vcpu} vCPU, ${selectedType.memory})` : '');
+    setShowInstanceDropdown(false);
+  };
+
   const saveResource = () => {
     if (!editingResource) return;
+
+    // Validation des champs obligatoires
+    if (!editingResource.resource_name || !editingResource.resource_name.trim()) {
+      alert('⚠️ Veuillez donner un nom à la ressource');
+      return;
+    }
+
+    if (!editingResource.service) {
+      alert('⚠️ Veuillez sélectionner un service');
+      return;
+    }
+
+    if (!editingResource.region) {
+      alert('⚠️ Veuillez sélectionner une région');
+      return;
+    }
+
+    // Validation intelligente selon le service
+    const service = services.find(s => s.id === editingResource.service);
+    const serviceCode = service?.code;
+
+    if (serviceCode && requiresInstanceType(serviceCode) && !editingResource.instance_type) {
+      const config = getServiceConfig(serviceCode);
+      alert(`⚠️ ${config.icon} ${config.name} nécessite un type d'instance. Veuillez en sélectionner un.`);
+      return;
+    }
 
     const updatedResource = {
       ...editingResource,
@@ -157,6 +246,8 @@ const selectTemplate = (templateKey) => {
       setResources(resources.map(r => r.id === updatedResource.id ? updatedResource : r));
     }
     setEditingResource(null);
+    setInstanceSearchTerm('');
+    setShowInstanceDropdown(false);
   };
 
   const deleteResource = (id) => {
@@ -552,22 +643,77 @@ const selectTemplate = (templateKey) => {
                     </div>
                   </div>
 
-                  {/* DROPDOWN INSTANCE TYPE - AFFICHE TOUS LES TYPES */}
+                  {/* INPUT AVEC AUTOCOMPLÉTION POUR LES TYPES D'INSTANCE */}
                   {instanceTypes.length > 0 && (
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Type d'instance</label>
-                      <select
-                        value={editingResource.instance_type || ''}
-                        onChange={(e) => updateResourceField('instance_type', parseInt(e.target.value))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FB8C00] outline-none"
-                      >
-                        <option value="">Sélectionner un type</option>
-                        {instanceTypes.map(type => (
-                          <option key={type.id} value={type.id}>
-                            {type.name} ({type.vcpu} vCPU, {type.memory})
-                          </option>
-                        ))}
-                      </select>
+                    <div className="relative instance-search-container">
+                      <label className="block text-sm font-medium mb-2">Type d'instance (optionnel)</label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={instanceSearchTerm}
+                          onChange={(e) => {
+                            setInstanceSearchTerm(e.target.value);
+                            filterInstanceTypes(e.target.value);
+                            setShowInstanceDropdown(true);
+                            // Si l'input est vidé, réinitialiser la sélection
+                            if (!e.target.value.trim()) {
+                              updateResourceField('instance_type', null);
+                            }
+                          }}
+                          onFocus={() => {
+                            setShowInstanceDropdown(true);
+                            if (!instanceSearchTerm) {
+                              setFilteredInstanceTypes(instanceTypes.slice(0, 50));
+                            }
+                          }}
+                          placeholder="Rechercher un type (ex: t3.medium, 4 vCPU, 8 GiB...)"
+                          className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FB8C00] outline-none"
+                        />
+                        {/* Bouton pour effacer */}
+                        {instanceSearchTerm && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setInstanceSearchTerm('');
+                              updateResourceField('instance_type', null);
+                              setShowInstanceDropdown(false);
+                            }}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Dropdown de résultats */}
+                      {showInstanceDropdown && filteredInstanceTypes.length > 0 && (
+                        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-64 overflow-y-auto">
+                          {filteredInstanceTypes.map(type => (
+                            <button
+                              key={type.id}
+                              type="button"
+                              onClick={() => selectInstanceType(type.id)}
+                              className={`w-full text-left px-4 py-2 hover:bg-[#FB8C00]/10 transition-colors ${
+                                editingResource.instance_type === type.id ? 'bg-[#FB8C00]/20 font-semibold' : ''
+                              }`}
+                            >
+                              <div className="flex justify-between items-center">
+                                <span className="font-medium text-gray-900">{type.name}</span>
+                                <span className="text-sm text-gray-600">
+                                  {type.vcpu} vCPU, {type.memory}
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Message si aucun résultat */}
+                      {showInstanceDropdown && instanceSearchTerm && filteredInstanceTypes.length === 0 && (
+                        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg p-4 text-center text-gray-500">
+                          Aucun type d'instance trouvé pour "{instanceSearchTerm}"
+                        </div>
+                      )}
                     </div>
                   )}
 
