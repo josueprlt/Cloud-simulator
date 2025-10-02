@@ -1,53 +1,60 @@
-import React from "react";
-import {IconArrowClockWise} from "./icons.jsx";
 import { Link } from 'react-router-dom';
+import { Calendar, Tag } from 'lucide-react';
 
-export function HistoDashboardComponent({simulations, loading}) {
+export function HistoDashboardComponent({simulations}) {
     return (
-        <div className="p-6 space-y-6">
-            <h3 className="text-xl text-[#808080] font-bold">Historique</h3>
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-                <div className="overflow-x-auto">
-                    <table className="min-w-full border-separate border-spacing-0">
-                        <thead className="bg-gray-50">
-                        <tr>
-                            <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">ID</th>
-                            <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Nom</th>
-                            <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Créée
-                                le
-                            </th>
-                            <th className="sticky top-0 z-10 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 border-b border-gray-200">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody className="[&>tr:hover]:bg-gray-50">
-                        {simulations.length === 0 ? (
-                            <tr>
-                                <td colSpan="4" className="text-center py-4 text-[#D5D5D5] font-bold">Aucune simulation
-                                    disponible
-                                </td>
-                            </tr>
-                        ) : (
-                            simulations.map((item, index) => (
-                                index < 3 && (
-                                    <tr key={index} className="transition-colors">
-                                        <td className="px-4 py-3 text-sm text-gray-900 border-b border-gray-100">{item.id}</td>
-                                        <td className="px-4 py-3 text-sm text-gray-900 border-b border-gray-100">{item.name}</td>
-                                        <td className="px-4 py-3 text-sm text-gray-600 border-b border-gray-100">{item.created_at}</td>
-                                        <td className="px-4 py-3 text-sm text-gray-900 border-b border-gray-100">{item.status}</td>
-                                    </tr>
-                                )
-                            ))
-                        )}
-                        </tbody>
-                    </table>
+        <div className="p-6 space-y-6 text-center">
+            <h3 className="text-xl text-[#808080] font-bold">Historique des simulations</h3>
+            <div className="flex justify-center items-center flex-col gap-4 p-6 bg-white border-gray-200 overflow-hidden">
+                <div className="bg-gray-50 p-4 rounded-lg w-300">
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-3 text-left">Dernières simulations ({Math.min(simulations.length, 3)})</p>
+                    {simulations.length === 0 ? (
+                        <div className="text-center py-8">
+                            <Tag className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                            <span className="text-sm text-gray-400 italic">Aucune simulation disponible</span>
+                        </div>
+                    ) : (
+                        <div className="space-y-2">
+                            {simulations.slice(0, 3).map((item, index) => (
+                                <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 hover:border-[#FB8C00]/50 transition-all">
+                                    <div className="flex items-center justify-between gap-3">
+                                        {/* Left: ID + Name */}
+                                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                                            <div className="flex items-center justify-center w-10 h-10 bg-[#FB8C00]/10 rounded text-[#FB8C00] font-bold text-sm">
+                                                #{item.id}
+                                            </div>
+                                            <div className="min-w-0 flex-1">
+                                                <h4 className="font-semibold text-sm text-gray-900 truncate">{item.name}</h4>
+                                                <p className="text-xs text-gray-500 truncate">Simulation {item.scenario_type || 'standard'}</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Center: Date */}
+                                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                                            <Calendar className="w-3.5 h-3.5 text-gray-400" />
+                                            <span>{new Date(item.created_at).toLocaleDateString('fr-FR')}</span>
+                                        </div>
+
+                                        {/* Right: Status */}
+                                        <div className="text-right">
+                                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                                                item.status === 'active' ? 'bg-green-100 text-green-700' :
+                                                item.status === 'archived' ? 'bg-yellow-100 text-yellow-700' :
+                                                'bg-gray-100 text-gray-700'
+                                            }`}>
+                                                {item.status}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            </div>
-            <div className="flex justify-center">
-                <Link className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white text-center font-bold py-2 px-4 rounded" to="/history">
-                Voir plus
+                <Link className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white text-center font-bold py-2 px-4 rounded transition-colors" to="/history">
+                    Voir plus
                 </Link>
             </div>
-           
         </div>
     );
 }

@@ -105,27 +105,42 @@ export default function ComparisonPage() {
     return Object.entries(grouped).map(([name, value]) => ({ name, value }));
   };
 
-  const getPerformanceMetrics = (resources) => {
-    let totalVCPU = 0;
-    let totalMemoryGB = 0;
-    let totalInstances = 0;
+const getPerformanceMetrics = (resources) => {
+  let totalVCPU = 0;
+  let totalMemoryGB = 0;
+  let totalInstancesWithType = 0; // Instances avec un type
+  let totalResourcesCount = 0; // Toutes les ressources
 
-    resources.forEach(r => {
-      const instanceType = instanceTypes.find(it => it.id === r.instance_type);
-      if (instanceType) {
-        const quantity = r.configuration?.quantity || 1;
-        totalVCPU += (instanceType.vcpu || 0) * quantity;
-        
-        const memoryMatch = instanceType.memory?.match(/(\d+)/);
-        if (memoryMatch) {
-          totalMemoryGB += parseInt(memoryMatch[1]) * quantity;
-        }
-        totalInstances += quantity;
+  resources.forEach(r => {
+    const quantity = r.configuration?.quantity || 1;
+    totalResourcesCount += quantity;
+    
+    if (!r.instance_type) {
+      // Ressource sans instance type (S3, Lambda, etc.)
+      return;
+    }
+
+    const instanceType = instanceTypes.find(it => it.id === r.instance_type);
+    
+    if (instanceType) {
+      totalVCPU += (instanceType.vcpu || 0) * quantity;
+      
+      const memoryMatch = instanceType.memory?.match(/(\d+)/);
+      if (memoryMatch) {
+        totalMemoryGB += parseInt(memoryMatch[1]) * quantity;
       }
-    });
+      
+      totalInstancesWithType += quantity;
+    }
+  });
 
-    return { totalVCPU, totalMemoryGB, totalInstances };
+  return { 
+    totalVCPU, 
+    totalMemoryGB, 
+    totalInstances: totalInstancesWithType, // Seulement celles avec instance type
+    totalResources: totalResourcesCount // Toutes les ressources
   };
+};
 
   const enrichResource = (resource) => ({
     ...resource,
@@ -328,20 +343,26 @@ export default function ComparisonPage() {
                   {(() => {
                     const metrics = getPerformanceMetrics(sim1Data.resources);
                     return (
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Total vCPUs:</span>
-                          <span className="font-semibold">{metrics.totalVCPU}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Total RAM:</span>
-                          <span className="font-semibold">{metrics.totalMemoryGB} GiB</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Instances:</span>
-                          <span className="font-semibold">{metrics.totalInstances}</span>
-                        </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total vCPUs:</span>
+                        <span className="font-semibold">{metrics.totalVCPU || 'N/A'}</span>
                       </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total RAM:</span>
+                        <span className="font-semibold">
+                          {metrics.totalMemoryGB > 0 ? `${metrics.totalMemoryGB} GiB` : 'N/A'}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Instances compute:</span>
+                        <span className="font-semibold">{metrics.totalInstances}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total ressources:</span>
+                        <span className="font-semibold">{metrics.totalResources}</span>
+                      </div>
+                    </div>
                     );
                   })()}
                 </div>
@@ -354,15 +375,21 @@ export default function ComparisonPage() {
                       <div className="space-y-2">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Total vCPUs:</span>
-                          <span className="font-semibold">{metrics.totalVCPU}</span>
+                          <span className="font-semibold">{metrics.totalVCPU || 'N/A'}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Total RAM:</span>
-                          <span className="font-semibold">{metrics.totalMemoryGB} GiB</span>
+                          <span className="font-semibold">
+                            {metrics.totalMemoryGB > 0 ? `${metrics.totalMemoryGB} GiB` : 'N/A'}
+                          </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Instances:</span>
+                          <span className="text-gray-600">Instances compute:</span>
                           <span className="font-semibold">{metrics.totalInstances}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Total ressources:</span>
+                          <span className="font-semibold">{metrics.totalResources}</span>
                         </div>
                       </div>
                     );
