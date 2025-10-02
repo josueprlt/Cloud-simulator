@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DirectusDatas } from '../services/getDatas.js';
 
 export function LastSimComponent() {
+<<<<<<< Updated upstream
     const [recentSimulations, setRecentSimulations] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,6 +23,8 @@ export function LastSimComponent() {
 
         fetchRecentSimulations();
     }, []);
+=======
+>>>>>>> Stashed changes
 
     return (
         <div className="p-6 space-y-6">
