@@ -1,5 +1,4 @@
 import React from "react";
-import FormComponent from "../components/form/AwsForm.jsx";
 import {LastSimComponent} from "../components/LastSimComponent.jsx";
 import {HistoDashboardComponent} from "../components/HistoDashboardComponent.jsx";
 
