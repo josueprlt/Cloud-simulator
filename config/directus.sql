@@ -1312,6 +1312,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 102	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 07:00:34.729+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	80	http://localhost:8055
 103	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 07:00:36.893+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	81	http://localhost:8055
 104	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 07:00:39.462+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	82	http://localhost:8055
+106	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 09:17:42.137+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	simulations	2	http://localhost:8055
 3	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.76+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	1	http://localhost:8055
 4	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:04.769+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_collections	test	http://localhost:8055
 5	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-01 13:44:12.851+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	directus_fields	2	http://localhost:8055
@@ -1715,6 +1716,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 415	102	directus_fields	80	{"special":null,"collection":"resources","field":"created_at"}	{"special":null,"collection":"resources","field":"created_at"}	\N	\N
 416	103	directus_fields	81	{"special":null,"collection":"resources","field":"resource_name"}	{"special":null,"collection":"resources","field":"resource_name"}	\N	\N
 417	104	directus_fields	82	{"special":null,"collection":"resources","field":"simulations_id"}	{"special":null,"collection":"resources","field":"simulations_id"}	\N	\N
+419	106	simulations	2	{"name":"test","region":5,"entries":[]}	{"name":"test","region":5,"entries":[]}	\N	\N
 51	62	services	2	{"name":"Lambda"}	{"name":"Lambda"}	\N	\N
 54	65	services	4	{"name":"Amazon ECS"}	{"name":"Amazon ECS"}	\N	\N
 418	105	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	{"id":"27fc7a4b-bd46-414c-8883-99f3ae3089df","first_name":"Admin","last_name":"User","email":"admin@example.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":"7d7ad24c-6292-497b-9809-ec4d797b1df5","token":"**********","last_access":"2025-10-02T07:12:28.047Z","last_page":"/users/27fc7a4b-bd46-414c-8883-99f3ae3089df","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null,"text_direction":"auto","policies":[]}	{"token":"**********"}	\N	\N
@@ -1826,7 +1828,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides, text_direction) FROM stdin;
-27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK	2025-10-02 08:24:45.92+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N	auto
+27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK	2025-10-02 08:24:45.92+00	/content/pricing/+	default	\N	\N	t	\N	\N	\N	\N	\N	auto
 \.
 
 
@@ -1920,6 +1922,7 @@ COPY public.simulation_entries (id, simulation, service, instance_type, quantity
 --
 
 COPY public.simulations (id, name, region) FROM stdin;
+2	test	5
 \.
 
 
@@ -1935,7 +1938,7 @@ COPY public.simulations_simulation_entries (id, simulations_id, simulation_entri
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 105, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 106, true);
 
 
 --
@@ -1977,7 +1980,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 17, true);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 418, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 419, true);
 
 
 --
@@ -2047,7 +2050,7 @@ SELECT pg_catalog.setval('public.simulation_entries_id_seq', 1, false);
 -- Name: simulations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.simulations_id_seq', 1, true);
+SELECT pg_catalog.setval('public.simulations_id_seq', 2, true);
 
 
 --
