@@ -52,6 +52,19 @@ export class DirectusDatas {
         throw error;
         }
     }
+
+    static async getResourcesBySimulation(simulationId) {
+        try {
+            console.log(simulationId);
+            
+            // Récupère toutes les ressources où simulations_id = simulationId
+            const resources = await directus.request(readItems(`resources?filter[simulations_id][_eq]=${simulationId}`));
+            return resources;
+        } catch (error) {
+            console.error('Failed to fetch resources for simulation:', error);
+            throw error;
+        }
+    }
     // CREATE
     static async createResources(formData) {
         try {

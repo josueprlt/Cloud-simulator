@@ -87,36 +87,40 @@ export default function SimulationWizard() {
     return (unitPrice * quantity * hours).toFixed(2);
   };
 
-  const selectTemplate = (templateKey) => {
-    const template = TEMPLATES[templateKey];
-    setSelectedTemplate(templateKey);
+const selectTemplate = (templateKey) => {
+  const template = TEMPLATES[templateKey];
+  setSelectedTemplate(templateKey);
+  
+  setResources(template.resources.map((r, i) => {
+    const service = services.find(s => s.code === r.service);
+    const region = regions.find(reg => reg.code === r.region);
     
-    setResources(template.resources.map((r, i) => {
-      const service = services.find(s => s.code === r.service);
-      const region = regions.find(reg => reg.code === r.region);
-      const instanceType = r.instance_type ? instanceTypes.find(it => it.name === r.instance_type) : null;
-      
-      const resourceObj = {
-        id: `temp-${i}`,
-        resource_name: `${r.service} ${i + 1}`,
-        service: service?.id || null,
-        region: region?.id || null,
-        instance_type: instanceType?.id || null,
-        configuration: r.configuration || {
-          quantity: 1,
-          hours_per_month: 730,
-          os: "Linux"
-        },
-        unit_price: 0.05
-      };
-      
-      return {
-        ...resourceObj,
-        monthly_cost: calculateMonthlyCost(resourceObj)
-      };
-    }));
-    setStep(2);
-  };
+    // Ne cherche un instance_type QUE si spécifié dans le template
+    const instanceType = r.instance_type 
+      ? instanceTypes.find(it => it.name === r.instance_type) 
+      : null;
+    
+    const resourceObj = {
+      id: `temp-${i}`,
+      resource_name: `${r.service} ${i + 1}`,
+      service: service?.id || null,
+      region: region?.id || null,
+      instance_type: instanceType?.id || null, // null si pas trouvé
+      configuration: r.configuration || {
+        quantity: 1,
+        hours_per_month: 730,
+        os: "Linux"
+      },
+      unit_price: 0.05
+    };
+    
+    return {
+      ...resourceObj,
+      monthly_cost: calculateMonthlyCost(resourceObj)
+    };
+  }));
+  setStep(2);
+};
 
   const addResource = () => {
     const defaultService = services[0];
@@ -288,7 +292,7 @@ export default function SimulationWizard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="bg-gray-50 flex items-center justify-center py-20">
         <div className="text-center">
           <Loader2 className="animate-spin mx-auto mb-4 text-[#FB8C00]" size={48} />
           <p className="text-gray-600">Chargement des données...</p>
@@ -299,7 +303,7 @@ export default function SimulationWizard() {
 
   if (step === 1) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#FB8C00]/20 to-[#FB8C00]/0 p-8">
+      <div className="bg-gradient-to-br from-[#FB8C00]/20 to-[#FB8C00]/0 p-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -319,7 +323,7 @@ export default function SimulationWizard() {
                 <button
                   key={key}
                   onClick={() => selectTemplate(key)}
-                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-transparent hover:border-[#FB8C00] text-left"
+                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-transparent hover:border-[#FB8C00] text-left h-full"
                 >
                   <h3 className="text-xl font-semibold mb-2 text-gray-800">
                     {template.name}
@@ -341,7 +345,7 @@ export default function SimulationWizard() {
 
   if (step === 2) {
     return (
-      <div className="min-h-screen bg-gray-50 p-8">
+      <div className="bg-gray-50 p-8">
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-xl shadow-md p-6 mb-6">
             <div className="flex justify-between items-start mb-4">

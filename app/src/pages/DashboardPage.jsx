@@ -7,6 +7,10 @@ import {DirectusDatas} from "../services/getDatas.js";
 function DashboardPage() {
     const [simulations, setSimulations] = useState([]);
     const [lastSimulation, setLastSimulation] = useState([]);
+    const [lastSimResources, setLastSimResources] = useState([]);
+    const [services, setServices] = useState([]);
+    const [regions, setRegions] = useState([]);
+    const [instanceTypes, setInstanceTypes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -15,16 +19,29 @@ function DashboardPage() {
 
         async function fetchSimulations() {
             try {
-                const data = await DirectusDatas.getSimulations();
-                setSimulations(data);
+                const [simsData, servicesData, regionsData, instanceTypesData] = await Promise.all([
+                    DirectusDatas.getSimulations(),
+                    DirectusDatas.getServices(),
+                    DirectusDatas.getRegions(),
+                    DirectusDatas.getInstanceType()
+                ]);
 
-                if (data && data.length > 0) {
-                    const mostRecent = data.reduce((latest, current) => {
+                setSimulations(simsData);
+                setServices(servicesData);
+                setRegions(regionsData);
+                setInstanceTypes(instanceTypesData);
+
+                if (simsData && simsData.length > 0) {
+                    const mostRecent = simsData.reduce((latest, current) => {
                         const latestDate = new Date(latest.created_at);
                         const currentDate = new Date(current.created_at);
                         return currentDate > latestDate ? current : latest;
                     });
                     setLastSimulation(mostRecent);
+
+                    // Charger les ressources de la dernière simulation
+                    const resources = await DirectusDatas.getResourcesBySimulation(mostRecent.id);
+                    setLastSimResources(resources);
                 }
             } catch (err) {
                 setError('Erreur lors du chargement des simulations.');
@@ -51,7 +68,14 @@ function DashboardPage() {
                 </div>
             </div>
 
-            <LastSimComponent simulation={lastSimulation} loading={loading} />
+            <LastSimComponent
+                simulation={lastSimulation}
+                resources={lastSimResources}
+                services={services}
+                regions={regions}
+                instanceTypes={instanceTypes}
+                loading={loading}
+            />
 
             <HistoDashboardComponent simulations={simulations} loading={loading}/>
         </>

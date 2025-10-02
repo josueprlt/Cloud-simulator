@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict IwQyGoegss57nbWExjSgFc2OcYiDJ91buZ7Nd6UtVACwRbnbthxXI0NUOrQPrha
+\restrict n72jGb3qtMNgjRQcsiOovW1iaNBfB0Yntg2H3GaYi22qbebFTJZvjUIJ4kbGuMS
 
 -- Dumped from database version 15.14 (Debian 15.14-1.pgdg13+1)
 -- Dumped by pg_dump version 15.14 (Debian 15.14-1.pgdg13+1)
@@ -1770,6 +1770,16 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 532	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:00:28.547+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	14	http://localhost:8080
 535	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:29:24.713+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	8	http://localhost:8080
 536	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:29:24.777+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	16	http://localhost:8080
+539	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:27:53.067+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	http://localhost:8055
+541	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:07.868+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	1	http://localhost:8055
+550	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:56:21.918+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	10	http://localhost:8080
+551	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:56:22.078+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	18	http://localhost:8080
+552	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:56:22.095+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	19	http://localhost:8080
+553	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:56:22.111+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	20	http://localhost:8080
+555	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 17:32:10.281+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	11	http://localhost:8080
+556	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 17:32:10.301+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	21	http://localhost:8080
+557	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 17:32:10.315+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	22	http://localhost:8080
+558	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 17:32:10.327+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	23	http://localhost:8080
 494	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 10:10:37.011+00	172.21.0.1	node	prices	1	\N
 495	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 10:10:37.041+00	172.21.0.1	node	instance_types	117	\N
 496	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 10:10:37.057+00	172.21.0.1	node	prices	2	\N
@@ -1804,6 +1814,16 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 534	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:04:23.229+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	15	http://localhost:8080
 537	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:43:17.329+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	9	http://localhost:8080
 538	create	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 13:43:17.374+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	resources	17	http://localhost:8080
+540	update	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:28:02.894+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	http://localhost:8055
+542	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.693+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	2	http://localhost:8055
+543	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.694+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	3	http://localhost:8055
+544	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.696+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	4	http://localhost:8055
+545	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.697+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	5	http://localhost:8055
+546	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.698+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	6	http://localhost:8055
+547	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.7+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	7	http://localhost:8055
+548	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.701+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	8	http://localhost:8055
+549	delete	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:41:28.702+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	simulations	9	http://localhost:8055
+554	login	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 16:13:25.657+00	172.21.0.1	PostmanRuntime/7.48.0	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N
 \.
 
 
@@ -2088,12 +2108,12 @@ abf8a154-5b1c-4a46-ac9c-7300570f4f17	$t:public_label	public	$t:public_descriptio
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
 3	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	resources	\N	\N	{"tabular":{"fields":["region","resource_name","service","simulation_id","id"]}}	\N	\N	\N	bookmark	\N
 2	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	directus_files	\N	cards	{"cards":{"sort":["-uploaded_on"],"page":1}}	{"cards":{"icon":"insert_drive_file","title":"{{ title }}","subtitle":"{{ type }} • {{ filesize }}","size":4,"imageFit":"crop"}}	\N	\N	bookmark	\N
-5	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	simulations	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 7	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	prices	\N	\N	{"tabular":{"fields":["instance_type","region","service","sku","os","price_per_unit","created_at","updated_at"],"page":1}}	\N	\N	\N	bookmark	\N
-6	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	instance_types	\N	\N	{"tabular":{"page":1,"fields":["memory","name","service","vcpu","service.id"]}}	\N	\N	\N	bookmark	\N
 4	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	services	\N	\N	{"tabular":{"limit":1000,"page":1}}	\N	\N	\N	bookmark	\N
 8	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
 1	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	regions	\N	\N	{"tabular":{"fields":["code","name","country"],"page":1}}	{"tabular":{"widths":{"code":160,"name":441.5260009765625}}}	\N	\N	bookmark	\N
+6	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	instance_types	\N	\N	{"tabular":{"page":1,"fields":["memory","name","service","vcpu","service.id"]}}	\N	\N	\N	bookmark	\N
+5	\N	27fc7a4b-bd46-414c-8883-99f3ae3089df	\N	simulations	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 \.
 
 
@@ -2574,6 +2594,13 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 448	520	resources	5	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:52:12","resource_name":"RDS 2","simulations_id":3}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:52:12","resource_name":"RDS 2","simulations_id":3}	\N	\N
 450	522	simulations	4	{"name":"test1","description":"","status":"draft","scenario_type":"current","monthly_coast":"182.50","created_at":"2025-10-02T12:52:46"}	{"name":"test1","description":"","status":"draft","scenario_type":"current","monthly_coast":"182.50","created_at":"2025-10-02T12:52:46"}	\N	\N
 453	525	resources	9	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:52:46","resource_name":"S3 3","simulations_id":4}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:52:46","resource_name":"S3 3","simulations_id":4}	\N	\N
+467	539	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	{"id":"27fc7a4b-bd46-414c-8883-99f3ae3089df","first_name":"Admin","last_name":"User","email":"admin@example.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":"7d7ad24c-6292-497b-9809-ec4d797b1df5","token":"**********","last_access":"2025-10-02T14:26:47.778Z","last_page":"/users/27fc7a4b-bd46-414c-8883-99f3ae3089df","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null,"text_direction":"auto","policies":[]}	{"token":"**********"}	\N	\N
+469	541	simulations	1	{"id":1,"name":"Architecture actuelle","description":"Infrastructure de production actuelle","status":"active","scenario_type":"current","monthly_coast":"120.00000","created_at":"2025-10-01T12:00:00","updated_at":null,"resources":[1,2,3]}	{"monthly_coast":"120"}	\N	\N
+473	553	resources	20	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T14:56:21","resource_name":"S3 3","simulations_id":10}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T14:56:21","resource_name":"S3 3","simulations_id":10}	\N	\N
+474	555	simulations	11	{"name":"With type selection","description":"","status":"draft","scenario_type":"current","monthly_coast":"182.50","created_at":"2025-10-02T17:32:10"}	{"name":"With type selection","description":"","status":"draft","scenario_type":"current","monthly_coast":"182.50","created_at":"2025-10-02T17:32:10"}	\N	\N
+475	556	resources	21	{"service":null,"region":11,"instance_types":45,"configuration":{"quantity":3,"hours_per_month":730,"os":"Linux"},"monthly_cost":"109.50","unit_price":0.05,"created_at":"2025-10-02T17:32:10","resource_name":"EC2 1","simulations_id":11}	{"service":null,"region":11,"instance_types":45,"configuration":{"quantity":3,"hours_per_month":730,"os":"Linux"},"monthly_cost":"109.50","unit_price":0.05,"created_at":"2025-10-02T17:32:10","resource_name":"EC2 1","simulations_id":11}	\N	\N
+476	557	resources	22	{"service":null,"region":11,"instance_types":50,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T17:32:10","resource_name":"RDS 2","simulations_id":11}	{"service":null,"region":11,"instance_types":50,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T17:32:10","resource_name":"RDS 2","simulations_id":11}	\N	\N
+477	558	resources	23	{"service":null,"region":11,"instance_types":73,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T17:32:10","resource_name":"S3 3","simulations_id":11}	{"service":null,"region":11,"instance_types":73,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T17:32:10","resource_name":"S3 3","simulations_id":11}	\N	\N
 455	527	resources	10	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":3,"hours_per_month":730,"os":"Linux"},"monthly_cost":"109.50","unit_price":0.05,"created_at":"2025-10-02T12:56:16","resource_name":"EC2 1","simulations_id":5}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":3,"hours_per_month":730,"os":"Linux"},"monthly_cost":"109.50","unit_price":0.05,"created_at":"2025-10-02T12:56:16","resource_name":"EC2 1","simulations_id":5}	\N	\N
 456	528	resources	11	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:56:16","resource_name":"RDS 2","simulations_id":5}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:56:16","resource_name":"RDS 2","simulations_id":5}	\N	\N
 457	529	resources	12	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:56:16","resource_name":"S3 3","simulations_id":5}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T12:56:16","resource_name":"S3 3","simulations_id":5}	\N	\N
@@ -2586,6 +2613,10 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 464	536	resources	16	{"service":1,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T13:29:24","resource_name":"","simulations_id":8}	{"service":1,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T13:29:24","resource_name":"","simulations_id":8}	\N	\N
 465	537	simulations	9	{"name":"sim!","description":"","status":"draft","scenario_type":"current","monthly_coast":"36.50","created_at":"2025-10-02T13:43:16"}	{"name":"sim!","description":"","status":"draft","scenario_type":"current","monthly_coast":"36.50","created_at":"2025-10-02T13:43:16"}	\N	\N
 466	538	resources	17	{"service":1,"region":11,"instance_types":45,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T13:43:16","resource_name":"","simulations_id":9}	{"service":1,"region":11,"instance_types":45,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T13:43:16","resource_name":"","simulations_id":9}	\N	\N
+468	540	directus_users	27fc7a4b-bd46-414c-8883-99f3ae3089df	{"id":"27fc7a4b-bd46-414c-8883-99f3ae3089df","first_name":"Admin","last_name":"User","email":"admin@example.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":"7d7ad24c-6292-497b-9809-ec4d797b1df5","token":"**********","last_access":"2025-10-02T14:26:47.778Z","last_page":"/users/27fc7a4b-bd46-414c-8883-99f3ae3089df","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null,"text_direction":"auto","policies":[]}	{"token":"**********"}	\N	\N
+470	550	simulations	10	{"name":"Complete setUp","description":"","status":"draft","scenario_type":"current","monthly_coast":"182.50","created_at":"2025-10-02T14:56:21"}	{"name":"Complete setUp","description":"","status":"draft","scenario_type":"current","monthly_coast":"182.50","created_at":"2025-10-02T14:56:21"}	\N	\N
+471	551	resources	18	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":3,"hours_per_month":730,"os":"Linux"},"monthly_cost":"109.50","unit_price":0.05,"created_at":"2025-10-02T14:56:21","resource_name":"EC2 1","simulations_id":10}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":3,"hours_per_month":730,"os":"Linux"},"monthly_cost":"109.50","unit_price":0.05,"created_at":"2025-10-02T14:56:21","resource_name":"EC2 1","simulations_id":10}	\N	\N
+472	552	resources	19	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T14:56:21","resource_name":"RDS 2","simulations_id":10}	{"service":null,"region":11,"instance_types":null,"configuration":{"quantity":1,"hours_per_month":730,"os":"Linux"},"monthly_cost":"36.50","unit_price":0.05,"created_at":"2025-10-02T14:56:21","resource_name":"RDS 2","simulations_id":10}	\N	\N
 \.
 
 
@@ -2605,7 +2636,6 @@ COPY public.directus_roles (id, name, icon, description, parent) FROM stdin;
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin, next_token) FROM stdin;
 rutD25QeW5W3mwH7w_F6r46NGgfK_r3oV4cjyyCnpJdZYHBMATSQ4Ibuqr2n7BiI	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:48:40.732+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 DUYe9oWFPyhDtUZUFxPjK7t2YJ-2Rj9PmvZ-0VLbH0g7JHH4v5Jw1pC-F9W07ltK	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:32:57.302+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
-3ao1ekkjKw1LL4uNIWiJ5VQeTrP2Oh8udIMHNpWpfzjRi7B7HiDZD4h493SXH8Ot	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 15:11:44.1+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
 7uAPjz8KpkmdexpJUMnP0M2bplVqaCGaSjZQEeLaDiNd2ZnLu0pWM4_DdcRtVNat	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:59:54.866+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 jmXkyiIcxk6aRHfQhh9O60ByiO2fIhGcjrlYS82duENxVO7p-rRvOkfE-AiI3vXK	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 17:33:40.194+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 wJqpv6vFJrzVzC3joJelzN4XmQgoUpxLqwl32rzj0vkpRh2nFGzQc5e8Xdlej1mZ	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 17:37:32.614+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
@@ -2613,14 +2643,14 @@ IG7DvSFn69QrvOtxlKle97a9hUO3EKNhVwFFEaTX2IaAbfWDVZ8k_lLNS5GuKzR5	27fc7a4b-bd46-4
 hpKZk1YfoClQoQthSteGBoCcpxWAIrPVBivFPFbK7l94fw28RtYvtTLT8MCKOlql	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:00:22.406+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 Fp5aq7WTjDymWIg69A5KmoViIMiMGN6lEMJBeMjRgeaBBixbJcyhu-KARe5Xpi8i	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 18:14:59.223+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 sE0oUPzwAiZF5m8teZGLTYPUnWdEy1ME1gq3NrxIBNGfefxNzoVricQuvYDOdwan	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:23:55.145+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
+ESDyX6LfYM6EJH8cn1wax4MZ7SQ8byGa5rwOkz0AeC2e3sTsMgSiqlphegxtPjZn	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-09 16:13:25.65+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 iP5i2o_8BT3pdUzokoYxPLZLI8rjCScOoi-VMvU8Joha3V-Tci2TDc9FFpOP3u2r	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:10:24.189+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 P8jexrHm1xVh_mwW1Tza6Mi4g270TBk2ZnL4sOdZQge_PreNguxjbwxxD4RaIGHJ	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:10:33.14+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
-IDiESW82eABrud00PWfhKDcD6HIScAfMeitWpbsl1CC3QWEjcUipfdVClIRHMdlk	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-03 14:21:34.982+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	\N	http://localhost:8055	\N
 WZcWI_XBjnl6gXL_jMwPP6-yuduOlCb6Uj8Wvx0CFTmKIZmtnOu30xfwugtouZ2w	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:13:08.023+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 Miun5SreoxBobo-8Gl47kXVXDUumorh5id4KmcFTvo39hbfXgXDhiouL21Bk-adX	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 21:14:11.639+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 tGLoIhUZpf4ESzGTM8a1edvOB1leHs5rq7EyZAiVULi1gbHvO_Y_vlrFIEqw-P5P	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:16:19.931+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
 ekFiGIyU8KQuzvUm1KZTFC5oHGdcUpROW3GS1Dzpe5TdwjJL5cq3SHGosQ-SUrUe	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-08 19:28:32.688+00	172.21.0.1	PostmanRuntime/7.48.0	\N	\N	\N
-0F-cPqMZ_1kBiWj1K5ucIIm_W7qGqUnFaBg6sIJ6W1MAdgEiT27RsBr2pCnD20SK	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 14:21:44.983+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	\N	http://localhost:8055	IDiESW82eABrud00PWfhKDcD6HIScAfMeitWpbsl1CC3QWEjcUipfdVClIRHMdlk
+h_acBUGJm5R3efldHUyE9ANS6k7gEP5PMcSDgBOAsAk6ProyLcLhISLELmJbOvzg	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-03 14:26:47.771+00	172.21.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0	\N	http://localhost:8055	\N
 \.
 
 
@@ -2654,7 +2684,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides, text_direction) FROM stdin;
-27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	zk053KxbuUhsbmwLzDeuox4lmQsV_hh7	2025-10-02 14:21:34.987+00	/content/services	default	\N	\N	t	\N	\N	\N	\N	\N	auto
+27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	-_XZSlDdjJBcZb507A9-8QJKMCi1xQYh	2025-10-02 16:13:25.659+00	/content/simulations/1	default	\N	\N	t	\N	\N	\N	\N	\N	auto
 \.
 
 
@@ -2907,23 +2937,29 @@ COPY public.regions (id, name, code, country) FROM stdin;
 --
 
 COPY public.resources (id, service, region, instance_type, configuration, unit_price, monthly_cost, created_at, resource_name, simulations_id) FROM stdin;
-7	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 12:52:46.828	EC2 1	4
-8	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:46.842	RDS 2	4
-9	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:46.856	S3 3	4
-10	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 12:56:16.047	EC2 1	5
-11	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:56:16.062	RDS 2	5
-12	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:56:16.077	S3 3	5
-13	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:00:28.66		6
-14	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:00:28.678		6
-15	1	11	\N	{"quantity":122,"hours_per_month":730,"os":"Linux"}	0.05000	4453.00000	2025-10-02 13:04:23.546	Simulation	7
-16	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:29:24.835		8
-17	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:43:16.938		9
 2	1	19	\N	{"quantity":4,"hours_per_month":630,"os":"Linux"}	0.02200	55.44000	2025-10-01 23:54:00	Production Web Servers 2	1
 3	1	29	\N	{"quantity":5,"hours_per_month":830,"os":"Linux"}	0.08320	345.28000	2025-10-01 23:56:00	Production Web Servers 3	1
 1	1	11	61	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.08320	182.19000	2025-10-01 12:00:00	Production Web Servers 1	1
-4	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 12:52:12.754	EC2 1	3
-5	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:12.775	RDS 2	3
-6	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:12.794	S3 3	3
+4	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 12:52:12.754	EC2 1	\N
+5	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:12.775	RDS 2	\N
+6	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:12.794	S3 3	\N
+7	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 12:52:46.828	EC2 1	\N
+8	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:46.842	RDS 2	\N
+9	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:52:46.856	S3 3	\N
+10	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 12:56:16.047	EC2 1	\N
+11	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:56:16.062	RDS 2	\N
+12	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 12:56:16.077	S3 3	\N
+13	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:00:28.66		\N
+14	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:00:28.678		\N
+15	1	11	\N	{"quantity":122,"hours_per_month":730,"os":"Linux"}	0.05000	4453.00000	2025-10-02 13:04:23.546	Simulation	\N
+16	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:29:24.835		\N
+17	1	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 13:43:16.938		\N
+18	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 14:56:21.581	EC2 1	10
+19	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 14:56:21.747	RDS 2	10
+20	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 14:56:21.765	S3 3	10
+21	\N	11	\N	{"quantity":3,"hours_per_month":730,"os":"Linux"}	0.05000	109.50000	2025-10-02 17:32:10.658	EC2 1	11
+22	\N	11	\N	{"quantity":1,"hours_per_month":730,"os":"Linux"}	0.05000	36.50000	2025-10-02 17:32:10.677	RDS 2	11
+23	\N	11	\N	{"quantity":1,"hours_per_month":730,"storage_gb":500,"os":"Linux"}	0.05000	36.50000	2025-10-02 17:32:10.69	S3 3	11
 \.
 
 
@@ -2947,15 +2983,9 @@ COPY public.services (id, name, code) FROM stdin;
 --
 
 COPY public.simulations (id, name, description, status, scenario_type, monthly_coast, created_at, updated_at) FROM stdin;
-1	Architecture actuelle	Infrastructure de production actuelle	active	current	0.00000	2025-10-01 12:00:00	\N
-2	test		draft	current	182.50000	2025-10-02 12:50:58.942	\N
-3	test		draft	current	182.50000	2025-10-02 12:52:12.728	\N
-4	test1		draft	current	182.50000	2025-10-02 12:52:46.802	\N
-5	test 2		draft	current	182.50000	2025-10-02 12:56:16.025	\N
-6	eqwe		draft	current	73.00000	2025-10-02 13:00:28.635	\N
-7	Simulation		draft	current	4453.00000	2025-10-02 13:04:23.522	\N
-8	eqw		draft	current	36.50000	2025-10-02 13:29:24.811	\N
-9	sim!		draft	current	36.50000	2025-10-02 13:43:16.898	\N
+1	Architecture actuelle	Infrastructure de production actuelle	active	current	120.00000	2025-10-01 12:00:00	\N
+10	Complete setUp		draft	current	182.50000	2025-10-02 14:56:21.555	\N
+11	With type selection		draft	current	182.50000	2025-10-02 17:32:10.624	\N
 \.
 
 
@@ -2970,7 +3000,7 @@ SELECT pg_catalog.setval('public.comparisons_id_seq', 1, false);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 538, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 558, true);
 
 
 --
@@ -3012,7 +3042,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 21, true);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 466, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 477, true);
 
 
 --
@@ -3061,7 +3091,7 @@ SELECT pg_catalog.setval('public.regions_id_seq', 44, true);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.resources_id_seq', 17, true);
+SELECT pg_catalog.setval('public.resources_id_seq', 23, true);
 
 
 --
@@ -3075,7 +3105,7 @@ SELECT pg_catalog.setval('public.services_id_seq', 8, true);
 -- Name: simulations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.simulations_id_seq', 9, true);
+SELECT pg_catalog.setval('public.simulations_id_seq', 11, true);
 
 
 --
@@ -3850,5 +3880,5 @@ ALTER TABLE ONLY public.resources
 -- PostgreSQL database dump complete
 --
 
-\unrestrict IwQyGoegss57nbWExjSgFc2OcYiDJ91buZ7Nd6UtVACwRbnbthxXI0NUOrQPrha
+\unrestrict n72jGb3qtMNgjRQcsiOovW1iaNBfB0Yntg2H3GaYi22qbebFTJZvjUIJ4kbGuMS
 
