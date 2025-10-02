@@ -11,16 +11,23 @@ function start_project() {
     echo "🚀 Starting $PROJECT_NAME stack..."
     docker-compose up --build -d
 
-    echo "✅ Directus is up!"
-    echo "🌐 Access Directus: http://localhost:$DIRECTUS_PORT"
-    echo "🌐 Access Frontend: http://localhost:$FRONTEND_PORT"
+    echo "⏳ Waiting for PostgreSQL..."
+    sleep 5
+
+    echo "📥 Seeding database from $SQL_DUMP_PATH..."
+    docker exec -i $PG_CONTAINER psql -U directus directus < "$SQL_DUMP_PATH" &>/dev/null
+    cd app/ && yarn install
+
+    echo "✅ Database seeded"
+    echo "🌐 Directus: http://localhost:$DIRECTUS_PORT"
+    echo "🌐 Frontend: http://localhost:$FRONTEND_PORT"
 }
 
 function stop_project() {
     echo "🛑 Stopping $PROJECT_NAME stack..."
 
-    echo "📦 Dumping Directus database to $SQL_DUMP_PATH..."
-    docker exec $PG_CONTAINER pg_dump -U directus directus > $SQL_DUMP_PATH
+    echo "📦 Overwriting $SQL_DUMP_PATH with current database state..."
+    docker exec $PG_CONTAINER pg_dump -U directus directus > "$SQL_DUMP_PATH"
 
     echo "🧹 Shutting down containers..."
     docker-compose down

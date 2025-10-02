@@ -10,8 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@directus/sdk": "^20.1.0",
+    "@sinclair/typebox": "^0.34.41",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.12.2",
+    "dotenv": "^17.2.3",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2",
+    "lucide-react": "^0.544.0",
+    "papaparse": "^5.5.3",
+    "process": "^0.11.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.63.0",
