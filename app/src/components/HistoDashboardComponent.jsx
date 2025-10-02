@@ -46,8 +46,8 @@ export function HistoDashboardComponent() {
                                 </td>
                             </tr>
                         ) : (
-                            data.map(item => (
-                                <tr className="transition-colors">
+                            data.map((item, index) => (
+                                <tr key={index} className="transition-colors">
                                     <td className="px-4 py-3 text-sm text-gray-900 border-b border-gray-100">{item.id}</td>
                                     <td className="px-4 py-3 text-sm text-gray-900 border-b border-gray-100">{item.name}</td>
                                     <td className="px-4 py-3 text-sm text-gray-600 border-b border-gray-100">{item.created_date}</td>
