@@ -1,7 +1,8 @@
 import { directus } from "../components/directusServer.js";
-import {readItems} from '@directus/sdk';
+import {createItem, readItems} from '@directus/sdk';
 
 export class DirectusDatas {
+    // GET
     async getRegions() {
         try {
         const regions = await directus.request(readItems('regions'));
@@ -39,6 +40,27 @@ export class DirectusDatas {
         } catch (error) {
         console.error('Failed to fetch instance_types:', error);
         throw error;
+        }
+    }
+    // CREATE
+    async createResources(formData) {
+        try {
+            const resourcePayload = {
+                service: formData.service,
+                region: formData.region,
+                instance_types: formData.instance_types,
+                configuration: formData.configuration,
+                monthly_cost: formData.monthly_cost,
+                unit_price: formData.unit_price,
+                created_at: new Date().toISOString(),
+                resource_name: formData.resource_name,
+                simulations_id: formData.simulations_id,
+            };
+            const resourcesCreated = await directus.request(createItem('resources', resourcePayload));
+            return resourcesCreated;
+        } catch (error) {
+            console.error('Failed to create resources:', error);
+            throw error;
         }
     }
 }

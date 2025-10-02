@@ -1791,8 +1791,8 @@ COPY public.directus_roles (id, name, icon, description, parent) FROM stdin;
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin, next_token) FROM stdin;
--K_Ggmpt4tWsw8a60BayrXs3X40FHvSd28oA6kCSarQ8bDolRM64iNQC0dQ2mSch	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-03 07:12:28.02+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
-sPWhz2xhj96mNcNmalzUjOuZOweRJaIMMkDT2hkyhSPmUxoPNXpKt9zrkTqn5cjR	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 07:12:38.021+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	-K_Ggmpt4tWsw8a60BayrXs3X40FHvSd28oA6kCSarQ8bDolRM64iNQC0dQ2mSch
+-K_Ggmpt4tWsw8a60BayrXs3X40FHvSd28oA6kCSarQ8bDolRM64iNQC0dQ2mSch	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-02 07:46:13.351+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	S_9Ei_GztzIf3f_pR6YBVuh0lXd-xV26PoTRxCOwo8XFlNoamcuWcLOXxltyhdP6
+S_9Ei_GztzIf3f_pR6YBVuh0lXd-xV26PoTRxCOwo8XFlNoamcuWcLOXxltyhdP6	27fc7a4b-bd46-414c-8883-99f3ae3089df	2025-10-03 07:46:03.35+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36	\N	http://localhost:8055	\N
 \.
 
 
@@ -1826,7 +1826,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides, text_direction) FROM stdin;
-27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK	2025-10-02 07:12:28.047+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N	auto
+27fc7a4b-bd46-414c-8883-99f3ae3089df	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$hPFw2a086BrG9B03t6pPxg$HGjy3p+0DAtjm/b7TmkYUPAwr8sk8Fb/+XexTjOQwz0	\N	\N	\N	\N	\N	\N	\N	active	7d7ad24c-6292-497b-9809-ec4d797b1df5	sqdI9gHDEUicFil6PLCM2lC9mmYRMqpK	2025-10-02 07:46:03.364+00	/settings/data-model/resources	default	\N	\N	t	\N	\N	\N	\N	\N	auto
 \.
 
 
