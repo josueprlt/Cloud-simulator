@@ -272,13 +272,13 @@ const getPerformanceMetrics = (resources) => {
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-4 text-center">
-                  <p className="text-sm text-gray-600 mb-1">Économies potentielles</p>
+                  <p className="text-sm text-gray-600 mb-1">Différence en brut</p>
                   <p className={`text-2xl font-bold ${metrics.savings > 0 ? 'text-green-600' : metrics.savings < 0 ? 'text-red-600' : 'text-gray-600'}`}>
                     {metrics.savings > 0 ? '-' : metrics.savings < 0 ? '+' : ''}${Math.abs(metrics.savings).toFixed(2)}
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-4 text-center">
-                  <p className="text-sm text-gray-600 mb-1">Pourcentage d'économie</p>
+                  <p className="text-sm text-gray-600 mb-1">Différence en pourcentage</p>
                   <p className={`text-2xl font-bold ${metrics.savingsPercent > 0 ? 'text-green-600' : metrics.savingsPercent < 0 ? 'text-red-600' : 'text-gray-600'}`}>
                     {metrics.savingsPercent > 0 ? '-' : metrics.savingsPercent < 0 ? '+' : ''}{Math.abs(metrics.savingsPercent).toFixed(1)}%
                   </p>

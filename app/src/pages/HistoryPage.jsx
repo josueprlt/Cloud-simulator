@@ -56,13 +56,6 @@ export default function HistoryPage() {
                                             <p className="text-gray-600">{selectedSimulation.description}</p>
                                         )}
                                     </div>
-                                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                                        selectedSimulation.status === 'active' ? 'bg-green-100 text-green-700' :
-                                            selectedSimulation.status === 'archived' ? 'bg-yellow-100 text-yellow-700' :
-                                                'bg-gray-100 text-gray-700'
-                                    }`}>
-                                        {selectedSimulation.status || 'N/A'}
-                                    </span>
                                 </div>
 
                                 <div className="bg-[#FB8C00]/10 p-4 rounded-lg border border-[#FB8C00]/20">

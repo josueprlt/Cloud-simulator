@@ -37,13 +37,6 @@ export function HistoDashboardComponent({simulations}) {
 
                                         {/* Right: Status */}
                                         <div className="text-right">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                                item.status === 'active' ? 'bg-green-100 text-green-700' :
-                                                item.status === 'archived' ? 'bg-yellow-100 text-yellow-700' :
-                                                'bg-gray-100 text-gray-700'
-                                            }`}>
-                                                {item.status}
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
