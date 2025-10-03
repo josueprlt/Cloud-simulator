@@ -2,22 +2,37 @@ import {useEffect, useState} from 'react';
 import {DirectusDatas} from '../services/getDatas.js';
 import Header from './HeaderPart.jsx';
 import ModalComponent from '../components/ModalComponent.jsx';
+import { Server, Globe, Cpu, HardDrive } from 'lucide-react';
 
 export default function HistoryPage() {
     const [open, setOpen] = useState(false);
     const [selectedSimulation, setSelectedSimulation] = useState(null);
+    const [selectedResources, setSelectedResources] = useState([]);
 
     const [simulations, setSimulations] = useState([]);
+    const [services, setServices] = useState([]);
+    const [regions, setRegions] = useState([]);
+    const [instanceTypes, setInstanceTypes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingResources, setLoadingResources] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         document.title = 'Historique | CloudSim';
 
-        async function fetchSimulations() {
+        async function fetchData() {
             try {
-                const data = await DirectusDatas.getSimulations();
-                setSimulations(data);
+                const [simsData, servicesData, regionsData, instanceTypesData] = await Promise.all([
+                    DirectusDatas.getSimulations(),
+                    DirectusDatas.getServices(),
+                    DirectusDatas.getRegions(),
+                    DirectusDatas.getInstanceType()
+                ]);
+
+                setSimulations(simsData);
+                setServices(servicesData);
+                setRegions(regionsData);
+                setInstanceTypes(instanceTypesData);
             } catch (err) {
                 setError('Erreur lors du chargement des simulations.');
             } finally {
@@ -25,15 +40,25 @@ export default function HistoryPage() {
             }
         }
 
-        fetchSimulations();
+        fetchData();
     }, []);
 
-    const handleSimulationClick = (simulation) => {
+    const handleSimulationClick = async (simulation) => {
         setSelectedSimulation(simulation);
         setOpen(true);
+        setLoadingResources(true);
+
+        try {
+            const resources = await DirectusDatas.getResourcesBySimulation(simulation.id);
+            setSelectedResources(resources);
+        } catch (err) {
+            console.error('Erreur lors du chargement des ressources:', err);
+            setSelectedResources([]);
+        } finally {
+            setLoadingResources(false);
+        }
     };
 
-    console.log(simulations)
     return (
         <>
             <Header/>
@@ -56,6 +81,7 @@ export default function HistoryPage() {
                                             <p className="text-gray-600">{selectedSimulation.description}</p>
                                         )}
                                     </div>
+                          
                                 </div>
 
                                 <div className="bg-[#FB8C00]/10 p-4 rounded-lg border border-[#FB8C00]/20">
@@ -98,20 +124,90 @@ export default function HistoryPage() {
                                     )}
                                 </div>
 
-                                {selectedSimulation.resources && selectedSimulation.resources.length > 0 && (
-                                    <div className="bg-gray-50 p-4 rounded-lg">
-                                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Ressources
-                                            utilisées</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {selectedSimulation.resources.map((resource, index) => (
-                                                <span key={index}
-                                                      className="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-700">
-                                                    {resource}
-                                                </span>
-                                            ))}
+                                {/* Ressources détaillées */}
+                                <div className="bg-gray-50 p-4 rounded-lg">
+                                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">
+                                        Ressources utilisées ({selectedResources.length})
+                                    </p>
+
+                                    {loadingResources ? (
+                                        <div className="text-center py-6">
+                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FB8C00] mx-auto"></div>
+                                            <p className="text-sm text-gray-500 mt-2">Chargement des ressources...</p>
                                         </div>
-                                    </div>
-                                )}
+                                    ) : selectedResources.length > 0 ? (
+                                        <div className="space-y-2">
+                                            {selectedResources.map((resource, index) => {
+                                                const service = services.find(s => s.id === resource.service);
+                                                const region = regions.find(r => r.id === resource.region);
+                                                const instanceType = instanceTypes.find(it => it.id === resource.instance_types);
+                                                const config = typeof resource.configuration === 'string'
+                                                    ? JSON.parse(resource.configuration)
+                                                    : resource.configuration;
+
+                                                return (
+                                                    <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 hover:border-[#FB8C00]/50 transition-all">
+                                                        <div className="flex items-center justify-between gap-3">
+                                                            {/* Left: Icon + Name + Service */}
+                                                            <div className="flex items-center gap-2 min-w-0 flex-1">
+                                                                <div className="p-1.5 bg-[#FB8C00]/10 rounded">
+                                                                    <Server className="w-4 h-4 text-[#FB8C00]" />
+                                                                </div>
+                                                                <div className="min-w-0 flex-1">
+                                                                    <h4 className="font-semibold text-sm text-gray-900 truncate">
+                                                                        {resource.resource_name || 'Sans nom'}
+                                                                    </h4>
+                                                                    <p className="text-xs text-gray-500 truncate">
+                                                                        {service?.code || 'N/A'}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Center: Details */}
+                                                            <div className="flex items-center gap-3 text-xs text-gray-600">
+                                                                <div className="flex items-center gap-1">
+                                                                    <Globe className="w-3.5 h-3.5 text-gray-400" />
+                                                                    <span>{region?.code || 'N/A'}</span>
+                                                                </div>
+                                                                {instanceType && (
+                                                                    <div className="flex items-center gap-1">
+                                                                        <Cpu className="w-3.5 h-3.5 text-gray-400" />
+                                                                        <span>{instanceType.name}</span>
+                                                                    </div>
+                                                                )}
+                                                                {config?.quantity && (
+                                                                    <div className="flex items-center gap-1">
+                                                                        <span className="text-gray-400">×</span>
+                                                                        <span>{config.quantity}</span>
+                                                                    </div>
+                                                                )}
+                                                                {config?.hours_per_month && (
+                                                                    <div className="flex items-center gap-1">
+                                                                        <span className="text-gray-400">⏱</span>
+                                                                        <span>{config.hours_per_month}h</span>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            {/* Right: Price */}
+                                                            <div className="text-right">
+                                                                <p className="text-base font-bold text-[#FB8C00] whitespace-nowrap">
+                                                                    ${parseFloat(resource.monthly_cost || 0).toFixed(2)}
+                                                                </p>
+                                                                <p className="text-xs text-gray-500">USD/mois</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <div className="text-center py-6">
+                                            <Server className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                                            <span className="text-sm text-gray-400 italic">Aucune ressource définie</span>
+                                        </div>
+                                    )}
+                                </div>
 
                                 {selectedSimulation.entries && selectedSimulation.entries.length > 0 && (
                                     <div className="bg-gray-50 p-4 rounded-lg">

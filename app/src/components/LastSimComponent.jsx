@@ -4,28 +4,28 @@ import { Server, Globe, Cpu, HardDrive } from 'lucide-react';
 
 export function LastSimComponent({simulation, resources = [], services = [], regions = [], instanceTypes = [], loading}) {
     return (
-        <div className="p-6 space-y-6 text-center">
-            <h3 className="text-xl text-[#808080] font-bold">Dernière simulation</h3>
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 text-center">
+            <h3 className="text-lg sm:text-xl text-[#808080] font-bold">Dernière simulation</h3>
             <div
-                className="flex justify-center items-center flex-col gap-4 p-6 bg-white border-gray-200 overflow-hidden">
-                {loading && <IconArrowClockWise className="w-32 h-25 animate-spin"/>}
+                className="flex justify-center items-center flex-col gap-4 p-4 sm:p-6 bg-white border-gray-200 overflow-hidden">
+                {loading && <IconArrowClockWise className="w-24 h-24 sm:w-32 sm:h-25 animate-spin"/>}
                 {simulation === undefined ? (
                     <>
-                        <IconSimulation className="w-32 h-25" fill="#D5D5D5"/>
-                        <p className="text-[#D5D5D5] font-bold">Aucune simulation disponible</p>
+                        <IconSimulation className="w-24 h-24 sm:w-32 sm:h-25" fill="#D5D5D5"/>
+                        <p className="text-[#D5D5D5] font-bold text-sm sm:text-base">Aucune simulation disponible</p>
                     </>
                 ) : (
-                    <div className="w-300 space-y-4">
-                        <div className="flex justify-between items-center border-b border-gray-200 pb-4">
-                            <h4 className="text-lg font-bold text-[#372c2c]">Simulation name : {simulation.name}</h4>
+                    <div className="xl:w-300 space-y-4 px-2 sm:px-0">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 pb-4 gap-2">
+                            <h4 className="text-base sm:text-lg font-bold text-[#372c2c] break-words">Simulation name : {simulation.name}</h4>
                         </div>
 
-                        <div className="bg-[#FB8C00]/10 p-4 rounded-lg border border-[#FB8C00]/20">
-                            <p className="text-sm text-gray-600 mb-1">Coût mensuel estimé</p>
-                            <p className="text-3xl font-bold text-[#FB8C00]">${parseFloat(simulation.monthly_coast || 0).toFixed(2)} USD</p>
+                        <div className="bg-[#FB8C00]/10 p-3 sm:p-4 rounded-lg border border-[#FB8C00]/20">
+                            <p className="text-xs sm:text-sm text-gray-600 mb-1">Coût mensuel estimé</p>
+                            <p className="text-2xl sm:text-3xl font-bold text-[#FB8C00]">${parseFloat(simulation.monthly_coast || 0).toFixed(2)} USD</p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div className="bg-gray-50 p-3 rounded-lg">
                                 <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Type de scénario</p>
                                 <p className="text-sm font-semibold text-gray-900">{simulation.scenario_type}</p>
@@ -40,13 +40,13 @@ export function LastSimComponent({simulation, resources = [], services = [], reg
                         </div>
 
                         {simulation.description && (
-                            <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
                                 <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Description</p>
-                                <p className="text-sm text-gray-700">{simulation.description}</p>
+                                <p className="text-sm text-gray-700 break-words">{simulation.description}</p>
                             </div>
                         )}
 
-                        <div className="bg-gray-50 p-4 rounded-lg">
+                        <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
                             <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Ressources utilisées ({resources.length})</p>
                             {resources && resources.length > 0 ? (
                                 <div className="space-y-3">

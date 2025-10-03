@@ -55,15 +55,15 @@ function DashboardPage() {
 
     return (
         <>  <Header/>
-            <div className="p-22 bg-gradient-to-b from-[#FB8C00]/20 to-white">
-                <h1 className="text-center font-bold text-4xl text-[#FB8C00]">
+            <div className="p-8 sm:p-12 md:p-16 lg:p-22 bg-gradient-to-b from-[#FB8C00]/20 to-white">
+                <h1 className="text-center font-bold text-2xl sm:text-3xl md:text-4xl text-[#FB8C00]">
                     Cloud Cost Simulator
                 </h1>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-6">
                 <div className="flex justify-center">
-                    <a className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white font-bold py-2 px-4 rounded"
+                    <a className="bg-[#FB8C00] hover:bg-[#FB8C00]/70 text-white font-bold py-2 px-4 rounded w-full sm:w-auto text-center"
                        href="/simulator">Lancer une simulation</a>
                 </div>
             </div>
