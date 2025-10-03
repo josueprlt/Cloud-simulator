@@ -6,7 +6,7 @@ export function HistoDashboardComponent({simulations}) {
         <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 text-center">
             <h3 className="text-lg sm:text-xl text-[#808080] font-bold">Historique des simulations</h3>
             <div className="flex justify-center items-center flex-col gap-4 p-4 sm:p-6 bg-white border-gray-200 overflow-hidden">
-                <div className="bg-gray-50 p-3 sm:p-4 rounded-lg xl:w-300">
+                <div className="bg-gray-50 p-3 sm:p-4 rounded-lg w-full xl:w-300">
                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-3 text-left">Dernières simulations ({Math.min(simulations.length, 3)})</p>
                     {simulations.length === 0 ? (
                         <div className="text-center py-8">

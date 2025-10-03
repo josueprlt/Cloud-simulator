@@ -15,7 +15,7 @@ export function LastSimComponent({simulation, resources = [], services = [], reg
                         <p className="text-[#D5D5D5] font-bold text-sm sm:text-base">Aucune simulation disponible</p>
                     </>
                 ) : (
-                    <div className="xl:w-300 space-y-4 px-2 sm:px-0">
+                    <div className="w-full xl:w-300 space-y-4 px-2 sm:px-0">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 pb-4 gap-2">
                             <h4 className="text-base sm:text-lg font-bold text-[#372c2c] break-words">Simulation name : {simulation.name}</h4>
                         </div>
